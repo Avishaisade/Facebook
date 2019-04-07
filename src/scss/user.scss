@@ -7,6 +7,10 @@
         height: 40px;
         border-radius: 50%;
         overflow: hidden;
+    }
+
+    .userAvatarContainer {
+        position: relative;
         float: left;
     }
 }
@@ -26,4 +30,53 @@
     color: #616770;
     display: block;
     padding: 0px 49px;
+}
+
+.onlineTag {
+    background-color: #42b72a;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    height: 9px;
+    left: 76%;
+    position: absolute;
+    top: 68%;
+    width: 9px;
+    z-index: 1;
+}
+
+/*
+User Page
+*/
+
+.userCoverContainer {
+    display: block;
+    position: relative;
+    height: 315px;
+    overflow: hidden;
+    text-decoration: none;
+
+    .coverImage {
+        top: 0px;
+        width: 100%;
+
+        img {
+            min-height: 100%;
+            min-width: 100%;
+            position: absolute;
+            left: 0;
+        }
+    }
+
+    .coverBorder {
+        background: linear-gradient(rgba(0,0,0,0) 71%, rgba(0,0,0, .53));
+        border-bottom-color: rgba(0, 0, 0, .4);
+        border: 1px solid #000;
+        border-color: rgba(0, 0, 0, .25);
+        border-top-color: rgba(0, 0, 0, .1);
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
 }

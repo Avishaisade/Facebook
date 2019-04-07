@@ -22,7 +22,7 @@ class UserHeader extends Component {
         return (
             <div className="UserHead">
                 <a href='https://google.com'>
-                    <Avatar url={user.avatarUrl} alt={user.firstName + " " + user.lastName} />
+                    <Avatar url={user.avatarUrl} alt={user.firstName + " " + user.lastName} online="true" />
                     <UserInfo fullname={user.firstName + " " + user.lastName} />
                     <TimeLabel dateAdded={Date.now()} />
                 </a>

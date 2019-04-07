@@ -1,5 +1,11 @@
 import React, { useState,useEffect} from 'react';
 
+useEffect(async ()=>{
+  const response= await fetch({});
+  let data= await response.json()
+  
+},[]);
+
 export default function Like() {
     const [count, setCount] = useState();
         return (

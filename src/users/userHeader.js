@@ -4,7 +4,7 @@ import UserInfo from './userInfo';
 import TimeLabel from './timelabel';
 
 class UserHeader extends Component {
-    // Get Avatar URL
+    // Get User data
     componentDidMount() {
         fetch('https://api.mydomain.com/users/XXX')
             .then(response => response.json())

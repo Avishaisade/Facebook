@@ -80,3 +80,131 @@ User Page
         top: 0;
     }
 }
+
+/*
+User page grid
+*/
+
+.profilePicThumb {
+    box-shadow: none;
+    height: 160px;
+    left: 15px;
+    margin-top: 0;
+    top: -143px;
+    width: 160px;
+    display: block;
+    padding: 5px;
+    position: absolute;
+    border-radius: 100%;
+    background: rgba(0, 0, 0, .15);
+    background-color: #fff;
+    border: 1px inset #d3d6db;
+}
+
+.userInfoCover {
+    ._2xc6 {
+        bottom: 12px;
+        left: 201px;
+        position: absolute;
+        top: -70px;
+    }
+    ._2nlv {
+        font-size: 24px;
+        -webkit-font-smoothing: antialiased;
+        font-weight: 500;
+        line-height: 30px;
+        max-width: 275px;
+        position: relative;
+        margin:0;
+
+        .alternate_name {
+            float: left;
+            font-size: 20px;
+            font-weight: normal;
+            overflow: hidden;
+            position: relative;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 280px;
+        }
+    }
+    ._2nly {
+        position: absolute;
+        white-space: nowrap;
+    }
+    ._2nlw {
+        color: #fff;
+        text-rendering: optimizelegibility;
+        text-shadow: 0 0 3px rgba(0, 0, 0, .8);
+    }
+}
+
+.coverHeaderContainer {
+    border: 1px solid #d3d6db;
+    border-radius: 0 0 3px 3px;
+}
+
+.fbTimelineHeadline {
+    min-height: 41px;
+    position: relative;
+    width: 100%;
+    z-index: 4;
+
+    .actionsCoverPic {
+        bottom: 15px;
+        padding: 0;
+        position: absolute;
+        right: 15px;
+    }
+
+    .headerMenu {
+        clear: right;
+        padding-left: 201px;
+        width: 649px;
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            border-left: 1px solid #e9eaed;
+            min-height: 41px;
+
+            ._9rx {
+                padding: 0;
+            }
+
+            ._6-7 {
+                border-width: 0 1px;
+                color: #4b4f56;
+            }
+            ._6-6 {
+                border-right: 1px solid #e9eaed;
+                float: left;
+                font-size: 14px;
+                font-weight: 600;
+                height: 43px;
+                line-height: 3.05;
+                padding: 0 17px;
+                position: relative;
+                vertical-align: middle;
+                white-space: nowrap;
+            }
+            ._6a {
+                display: inline-block;
+            }
+            a._p {
+                display: block;
+            }
+            ._9ry {
+                display: block;
+                padding: 0 17px;
+            }
+            ._gs6 {
+                color: #89919c;
+                font-size: 11px;
+                font-weight: normal;
+                padding-left: 6px;
+            }
+        }
+    }
+}

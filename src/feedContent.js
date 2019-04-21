@@ -13,21 +13,21 @@ class FeedContent extends Component {
       
     // const ownPost = this.props.uID === Comment.props.content.userId;
     return (
-      <div class="row">
-        <div class="col-lg-1 col-md-1 col-sm-1">
+      <div classNaName="feed-container">
+        <div classNaName="user-header">
         <UserHeader 
-             userId= {Comment.content.userId}  
+             userId= {this.userId}  
           />
         </div>
-        <div class="col-lg-10 col-md-10 col-sm-10">
+        <div classNaName="">
           <Link
-            class="text-vertical-align"
-            to={`/user/${this.props.content.userId}`}
+            classNaName="user"
+            to={`/user/${Comment.props.content.userId}`}
           >
             {`${this.props.content.firstName} ${this.props.content.lastName}`}
           </Link>
           <br />
-          <span class="text-vertical-align time-stamp">
+          <span classNaName="time-stamp">
             <Timelabel/>
           </span>
         </div>
@@ -36,7 +36,7 @@ class FeedContent extends Component {
   }
    renderPostContent() {
     return (
-      <div class="row minor-padding">
+      <div classNaName="content">
         <div>{this.props.content.content}</div>
       </div>
     );
@@ -67,14 +67,14 @@ class FeedContent extends Component {
       : [];
     values.map((value, i) => (value['key'] = keys[i]));
     return (
-      <div class="row comments">
+      <div classNa="comments">
         <CommentInput
           value={this.state.commentText}
           type="comment"
           onChange={event => this.setState({ commentText: event.target.value })}
           sendPost={() => this.postComment()}
         />
-        <div class="w3-container">
+        <div classNa="comments-container">
           {values
             .sort(
               (f1, f2) => parseFloat(f2.timestamp) - parseFloat(f1.timestamp)
@@ -103,7 +103,7 @@ class FeedContent extends Component {
   }
   render() {
     return (
-      <div class="w3-card major-padding remove-bottom-padding feed-margin">
+      <div classNa="feedBox">
         {this.renderPostHeader()}
         {this.renderPostContent()}
         {this.renderLikeCommentButton()}

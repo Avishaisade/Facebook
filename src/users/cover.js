@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 
 class Cover extends Component {
     render() {
+        const user = this.props.user;
         return (
             <div className="coverHeaderContainer">
                 <div className="userCoverContainer">
                     <div className="coverImage">
-                        <img src={this.props.url} alt={this.props.fullname} />
+                        <img src={user.coverPic} alt={user.firstName + ' ' + user.lastName} />
                         <div className="coverBorder"></div>
                     </div>
                 </div>
@@ -22,13 +23,13 @@ class Cover extends Component {
                             <li><div class="_6a _6-6 _9rx _6-7"><a class="_9ry _p" href="#">Photos</a></div></li>
                             <li><div class="_6a _6-6 _9rx _6-7"><a class="_9ry _p" href="#">Archive</a></div></li>
                         </ul>
-                        <img className="profilePicThumb" alt="Image" src="https://scontent.fhfa2-2.fna.fbcdn.net/v/t1.0-1/p320x320/41856506_10156700667269031_257695933226024960_n.jpg?_nc_cat=106&_nc_ht=scontent.fhfa2-2.fna&oh=3bd1b5afbbbac53409428069fe71b09e&oe=5D36CA5C" />
+                        <img className="profilePicThumb" alt="Image" src={user.avatarPic} />
                     </div>
                     <div className="userInfoCover">
                         <div className="_2nlj _2xc6">
                             <h1 className="_2nlv">
                                 <span className="_2t_q" >
-                                    <a className="_2nlw _2nlv" href="https://www.facebook.com/OsherLevy">Osher Levy ‎<span class="alternate_name">(אושר לוי)</span>‎</a>
+                                    <a className="_2nlw _2nlv" href="https://www.facebook.com/OsherLevy">{user.firstName + ' ' + user.lastName} ‎<span class="alternate_name">({user.alernateName})</span>‎</a>
                                 </span>
                             </h1>
                         </div>

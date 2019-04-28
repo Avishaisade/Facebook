@@ -8,19 +8,13 @@ class UserHeader extends Component {
         super(props);
         this.user = this.props.user;
     }
-    // Get User data
-    componentDidMount() {
-        fetch('https://api.mydomain.com/users/XXX')
-            .then(response => response.json())
-            .then(data => this.user = { userId: data.userId, firstName: data.firstName, lastName: data.lastName, avatarUrl: data.avatarUrl });
-    }
 
     render() {
         const user = this.user;
         return (
             <div className="UserHead">
                 <a href='https://google.com'>
-                    <Avatar url={user.avatarUrl} alt={user.firstName + " " + user.lastName} online="true" />
+                    <Avatar url={user.avatarPic} alt={user.firstName + " " + user.lastName} fullname={user.firstName + " " + user.lastName} online="true" />
                     <UserInfo fullname={user.firstName + " " + user.lastName} />
                     <TimeLabel dateAdded={Date.now()} />
                 </a>

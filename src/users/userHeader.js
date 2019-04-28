@@ -4,6 +4,10 @@ import UserInfo from './userInfo';
 import TimeLabel from './timelabel';
 
 class UserHeader extends Component {
+    constructor(props) {
+        super(props);
+        this.user = this.props.user;
+    }
     // Get User data
     componentDidMount() {
         fetch('https://api.mydomain.com/users/XXX')
@@ -12,13 +16,7 @@ class UserHeader extends Component {
     }
 
     render() {
-        const user = {
-            userId: null,
-            firstName: "Osher",
-            lastName: "Levy",
-            avatarUrl: "https://i.pinimg.com/originals/45/d9/8a/45d98aa922bef6b5213b488dc36a8764.png"
-        };
-
+        const user = this.user;
         return (
             <div className="UserHead">
                 <a href='https://google.com'>

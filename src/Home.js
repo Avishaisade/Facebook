@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import UserHeader from './users/userHeader';
+import Comment from './comment/comment';
+import FeedContent from './feedContent';
 
 class Home extends Component {
     state = { isLoaded: false, user: {} };

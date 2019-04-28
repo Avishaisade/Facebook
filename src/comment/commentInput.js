@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import UserHeader from '../users/userHeader';
 
 class CommentInput extends Component {
-  ref;
   render() {
     const { type } = this.props;
     return (
-      <div className="major-padding input-group">
-        <div className="input-group-addon">
-         
+      <div className="input-container">
+        <div className="input-user">         
         <UserHeader/>
         </div>
 
@@ -23,12 +21,18 @@ class CommentInput extends Component {
           }
           value={this.props.value}
           onKeyDown={event => {
-            if (event.keyCode === 13) this.props.sendPost();
+            if (event.keyCode === 13) this.props.sendCommnt();
           }}
         />
-        <span className="input-group-addon">
-          <i class="glyphicon glyphicon-camera" />
-        </span>
+        <button
+              class="reply-btn"
+              onClick={() => {
+                this.props.sendCommnt();
+              }}
+            >
+              Reply
+            </button>
+        
       </div>
     );
   }

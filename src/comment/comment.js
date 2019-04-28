@@ -11,9 +11,13 @@ import UserHeader from '../users/userHeader';
 class Comment extends Component {
  
     state = { showReplies: false, replyText:'', addComment: false};
-   
+
+    postCommentsHandler
+
+    
     render() {
     const { type, postID } = this.props;
+
     const {
       replies,
       content,
@@ -21,22 +25,24 @@ class Comment extends Component {
       lastName,
       userId,
       key,
-      
+      // timestamp= Timelabel.state.timeAgo,
     } = this.props.content;
+    
+    
     return (
-      <div class="row minor-padding">
-        <div class="col-lg-1 col-md-1 col-sm-1">
+      <div class="comment-container">
+        <div class="comment- user">
         <UserHeader 
-             userId= {this.props.userId}  
+             userId= {this.props.content.userId}  
+             firstName={this.props.content.firstName}
+             lastName={this.props.content.lastName}
           />
         </div>
-        <div class="col-lg-11 col-md-11 col-sm-11">
-          <div class="w3-card comment-card  minor-padding">
+        <div class="comment-content">
+          <div class="comment-link">
             <Link to={`/user/${userId}`}>{`${firstName} ${lastName}`}</Link> {content}
           </div>
           <div class="row">
-            <button class="reply-btn">Like</button>
-            .
             <button
               class="reply-btn"
               onClick={() => {
@@ -45,15 +51,12 @@ class Comment extends Component {
             >
               Reply
             </button>
+            <Like/>
             <Timelabel/>
            
           </div>
           {replies && this.state.showReplies
             ? replies
-                .sort(
-                  (f1, f2) =>
-                    parseFloat(f2.timestamp) - parseFloat(f1.timestamp)
-                )
                 .map((reply, i) => this.props.renderReplies(reply, i))
             : replies.length > 0 && (
                 <a href='1' onClick={() => this.setState({ showReplies: true })}>
@@ -70,21 +73,9 @@ class Comment extends Component {
                 type={'reply'}
                 value={this.state.replyText}
                 onChange={event =>
-                  this.setState({ replyText: event.target.value })
-                }
-                // sendPost={event => {
-                //   if (this.state.replyText.length > 0) {
-                //     this.props.postReply(
-                //       postID,
-                //       key,
-                //       userId,
-                //       lastName,
-                //       firstName,
-                //       this.state.replyText
-                //     );
-                //     this.setState({ replyText: '' });
-                //   }
-                // }}
+                  this.setState({ replyText: event.target.value })}
+              
+               
               />
             )}
         </div>

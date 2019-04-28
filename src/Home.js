@@ -7,8 +7,8 @@ function Home() {
     return (
         <div>
             <h1>Home</h1>
-           <UserHeader id="XXX" /> */}
-            {/* <Comment 
+           {/* <UserHeader id="XXX" />  */}
+            <Comment 
                 type= 'comment'
                  content={ 
                   { replies:[],
@@ -20,7 +20,7 @@ function Home() {
                  }}       
             />
             {/* <CommentInput/> */}
-            <FeedContent/>
+            {/* <FeedContent/> */}
         </div> 
     );
 }

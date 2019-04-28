@@ -7,22 +7,27 @@ import UserHeader from './users/userHeader';
 import Like from './comment/like'
 
 class FeedContent extends Component {
-  state = { showReplies: false };
+  state = { showReplies: false , commentText:'' };
+
+
+//   postComment(){
+
+// }
+
    renderPostHeader() {
     //  <Timelabel/>
-      
-    // const ownPost = this.props.uID === Comment.props.content.userId;
+  // const ownPost = this.props.uID === Comment.props.content.userId;
     return (
-      <div classNaName="feed-container">
+      <div classNaName="postHeader-container">
         <div classNaName="user-header">
         <UserHeader 
              userId= {this.userId}  
           />
         </div>
-        <div classNaName="">
+        <div classNaName="comment-container">
           <Link
             classNaName="user"
-            to={`/user/${Comment.props.content.userId}`}
+            to={`/user/${this.props.Comment.content.userId}`}
           >
             {`${this.props.content.firstName} ${this.props.content.lastName}`}
           </Link>
@@ -41,23 +46,15 @@ class FeedContent extends Component {
       </div>
     );
   }
-   renderLikeCommentButton() {
-    return (
-      <Like/>
-    );
-  }
-   postComment() {
-    if (this.state.commentText.length > 0) {
-      this.props.postComment(
-        this.props.content.key,
-        this.props.content.userId,
-        this.props.content.lastName,
-        this.props.content.firstName,
-        this.state.commentText,
-      );
-      this.setState({ commentText: '' });
-    }
-  }
+//  renderLikes(){
+//      return(
+//          <Like
+//             count={}
+//             />
+//      );
+
+//  }
+  
   renderComments() {
     const values = this.props.content.comments
       ? Object.values(this.props.content.comments).slice()
@@ -77,7 +74,7 @@ class FeedContent extends Component {
         <div classNa="comments-container">
           {values
             .sort(
-              (f1, f2) => parseFloat(f2.timestamp) - parseFloat(f1.timestamp)
+              (f1, f2) => parseFloat(f2.Timelabel) - parseFloat(f1.Timelabel)
             )
             .map((comment, i) => (
               <Comment
@@ -106,7 +103,7 @@ class FeedContent extends Component {
       <div classNa="feedBox">
         {this.renderPostHeader()}
         {this.renderPostContent()}
-        {this.renderLikeCommentButton()}
+        {this.renderLikes()}
         {this.renderComments()}
       </div>
     );

@@ -12,7 +12,6 @@ class CommentInput extends Component {
 
         <input
           {...this.props}
-          onChange={this.props.onChange}
           className="form-control"
           placeholder={
             type === 'reply'
@@ -21,7 +20,7 @@ class CommentInput extends Component {
           }
           value={this.props.value}
           onKeyDown={event => {
-            if (event.keyCode === 13) this.props.sendCommnt();
+            if (event.keyCode === 13) this.props.sendCommnt(event.target.value);
           }}
         />
         <button

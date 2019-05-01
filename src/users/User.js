@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import Cover from './cover';
 
+// import { UsersService } from "./UsersService";
+
+// const usersService = new UsersService();
+
 class User extends Component {
     state = { isLoaded: false, user: {} };
 
     componentDidMount() {
-        fetch('http://localhost:8080/users/5cc5b97ed4b68d29ece7e7fd')
+        fetch('http://localhost:8080/users/5cc753e748e3ba4324018e81)')
             .then(response => response.json())
             .then(data => {
                 this.setState({

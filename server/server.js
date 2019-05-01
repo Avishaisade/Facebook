@@ -7,6 +7,7 @@ mongoose.connect("mongodb://localhost:27017/FB-Project", { useNewUrlParser: true
 
 // routes requirement
 const users = require('./src/users/users.routes');
+const posts = require('./src/Posts/posts.routes');
 
 const express = require('express');
 const cors = require('cors');
@@ -26,6 +27,8 @@ app.use("/users", (req, res, next) => {
 
 // routes
 app.use(users.route);
+app.use(posts.route);
 
 // serve
-app.listen(8080);
+const port = process.env.PORT || 8080;
+app.listen(port, () => console.log(`Listening on port ${port}...`));

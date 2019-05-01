@@ -7,9 +7,14 @@ const {Comment} = require('./comments.model');
 const PostSchema = mongoose.Schema({
 	title: {
 		type: String,
-		required: true,
+		required: "Title is required",
+		minlength: 4,
+		maxlength: 150,
 	},
 body: String,
+	required: "Body is required",
+	minlength: 4,
+	maxlength: 150,
 	creationDate: {
 		type: Date,
 		default: Date.now,
@@ -27,7 +32,7 @@ body: String,
     },
     like:{
         type: Number,
-		required: true,   
+				required: true,   
     },
 	comments: [{
 		type: mongoose.Schema.Types.ObjectId,

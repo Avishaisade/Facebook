@@ -3,7 +3,7 @@ const formidable = require("formidable");
 const fs = require("fs");
 const _ = require("lodash");
 
-async function postById(req, res, next, id) {
+exports.postById = (req, res, next, id) => {
     Post.findById(id)
         .populate("postedBy", "_id name")
         .populate("comments.postedBy", "_id name")
@@ -21,13 +21,13 @@ async function postById(req, res, next, id) {
 };
 
 // with pagination
-async function getPosts (req, res) {
+exports.getPosts = async (req, res) => {
+    
     const currentPage = req.query.page || 1;
     const perPage = 6;
     let totalItems;
 
     const posts = await Post.find()
-        // countDocuments() gives you total count of posts
         .countDocuments()
         .then(count => {
             totalItems = count;
@@ -46,7 +46,7 @@ async function getPosts (req, res) {
         .catch(err => console.log(err));
 };
 
-async function createPost (req, res, next) {
+exports.createPost = (req, res, next) => {
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
     form.parse(req, (err, fields, files) => {
@@ -76,7 +76,7 @@ async function createPost (req, res, next) {
     });
 };
 
-async function postsByUser(req, res) {
+exports.postsByUser = (req, res) => {
     Post.find({ postedBy: req.profile._id })
         .populate("postedBy", "_id name")
         .select("_id title body created likes")
@@ -91,7 +91,7 @@ async function postsByUser(req, res) {
         });
 };
 
-async function isPoster (req, res, next){
+exports.isPoster = (req, res, next) => {
     let sameUser =
         req.post && req.auth && req.post.postedBy._id == req.auth._id;
     let adminUser = req.post && req.auth && req.auth.role === "admin";
@@ -109,8 +109,7 @@ async function isPoster (req, res, next){
     next();
 };
 
-
-async function updatePost (req, res, next){
+exports.updatePost = (req, res, next) => {
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
     form.parse(req, (err, fields, files) => {
@@ -140,8 +139,7 @@ async function updatePost (req, res, next){
     });
 };
 
-
-async function deletePost(req, res)  {
+exports.deletePost = (req, res) => {
     let post = req.post;
     post.remove((err, post) => {
         if (err) {
@@ -155,16 +153,16 @@ async function deletePost(req, res)  {
     });
 };
 
-async function photo (req, res, next) {
+exports.photo = (req, res, next) => {
     res.set("Content-Type", req.post.photo.contentType);
     return res.send(req.post.photo.data);
 };
 
-async function singlePost (req, res) {
+exports.singlePost = (req, res) => {
     return res.json(req.post);
 };
 
-async function like(req, res) {
+exports.like = (req, res) => {
     Post.findByIdAndUpdate(
         req.body.postId,
         { $push: { likes: req.body.userId } },
@@ -180,7 +178,7 @@ async function like(req, res) {
     });
 };
 
-async function unlike (req, res) {
+exports.unlike = (req, res) => {
     Post.findByIdAndUpdate(
         req.body.postId,
         { $pull: { likes: req.body.userId } },
@@ -196,7 +194,7 @@ async function unlike (req, res) {
     });
 };
 
-async function comment (req, res) {
+exports.comment = (req, res) => {
     let comment = req.body.comment;
     comment.postedBy = req.body.userId;
 
@@ -218,7 +216,7 @@ async function comment (req, res) {
         });
 };
 
-async function uncomment (req, res) {
+exports.uncomment = (req, res) => {
     let comment = req.body.comment;
 
     Post.findByIdAndUpdate(
@@ -237,20 +235,4 @@ async function uncomment (req, res) {
                 res.json(result);
             }
         });
-};
-
-module.exports = {
-    postById,
-    getPosts,
-    createPost,
-    postsByUser,
-    updatePost,
-    deletePost,
-    photo,
-    like,
-    unlike,
-    singlePost,
-    isPoster,
-    comment,
-    uncomment,    
 };

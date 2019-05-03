@@ -2,11 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "server for facebook appliaction.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Osher Levy and Avishai Sade",
+  "author": "Avishai Sade and Osher Levy",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",

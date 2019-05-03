@@ -3,7 +3,7 @@ const User = require("../models/users.model");
 const formidable = require("formidable");
 const fs = require("fs");
 
-const userById = (req, res, next, id) => {
+exports.userById = (req, res, next, id) => {
     User.findById(id)
         // populate followers and following users array
         .populate("following", "_id name")
@@ -19,13 +19,12 @@ const userById = (req, res, next, id) => {
         });
 };
 
-const hasAuthorization = (req, res, next) => {
+exports.hasAuthorization = (req, res, next) => {
     let sameUser = req.profile && req.auth && req.profile._id == req.auth._id;
     let adminUser = req.profile && req.auth && req.auth.role === "admin";
 
     const authorized = sameUser || adminUser;
 
-    // console.log("req.profile ", req.profile, " req.auth ", req.auth);
     console.log("SAMEUSER", sameUser, "ADMINUSER", adminUser);
 
     if (!authorized) {
@@ -36,7 +35,7 @@ const hasAuthorization = (req, res, next) => {
     next();
 };
 
-const allUsers = (req, res) => {
+exports.allUsers = (req, res) => {
     User.find((err, users) => {
         if (err) {
             return res.status(400).json({
@@ -47,13 +46,13 @@ const allUsers = (req, res) => {
     }).select("name email updated created role");
 };
 
-const getUser = (req, res) => {
+exports.getUser = (req, res) => {
     req.profile.hashed_password = undefined;
     req.profile.salt = undefined;
     return res.json(req.profile);
 };
 
-const updateUser = (req, res, next) => {
+exports.updateUser = (req, res, next) => {
     let form = new formidable.IncomingForm();
     // console.log("incoming form data: ", form);
     form.keepExtensions = true;
@@ -89,7 +88,8 @@ const updateUser = (req, res, next) => {
         });
     });
 };
-const userPhoto = (req, res, next) => {
+
+exports.userPhoto = (req, res, next) => {
     if (req.profile.photo.data) {
         res.set(("Content-Type", req.profile.photo.contentType));
         return res.send(req.profile.photo.data);
@@ -97,7 +97,7 @@ const userPhoto = (req, res, next) => {
     next();
 };
 
-const deleteUser = (req, res, next) => {
+exports.deleteUser = (req, res, next) => {
     let user = req.profile;
     user.remove((err, user) => {
         if (err) {
@@ -109,8 +109,8 @@ const deleteUser = (req, res, next) => {
     });
 };
 
-// Friend Unfriend
-const addFriend = (req, res, next) => {
+// friend 
+exports.addFriend = (req, res, next) => {
     User.findByIdAndUpdate(
         req.body.userId,
         { $push: { following: req.body.followId } },
@@ -123,7 +123,7 @@ const addFriend = (req, res, next) => {
     );
 };
 
-const addFollower = (req, res) => {
+exports.addFollower = (req, res) => {
     User.findByIdAndUpdate(
         req.body.followId,
         { $push: { followers: req.body.userId } },
@@ -144,7 +144,7 @@ const addFollower = (req, res) => {
 };
 
 // remove follow unfollow
-const removeFriend = (req, res, next) => {
+exports.removeFriend = (req, res, next) => {
     User.findByIdAndUpdate(
         req.body.userId,
         { $pull: { following: req.body.unfollowId } },
@@ -157,7 +157,7 @@ const removeFriend = (req, res, next) => {
     );
 };
 
-const removeFollower = (req, res) => {
+exports.removeFollower = (req, res) => {
     User.findByIdAndUpdate(
         req.body.unfollowId,
         { $pull: { followers: req.body.userId } },
@@ -177,7 +177,7 @@ const removeFollower = (req, res) => {
         });
 };
 
-const findPeople = (req, res) => {
+exports.findPeople = (req, res) => {
     let following = req.profile.following;
     following.push(req.profile._id);
     User.find({ _id: { $nin: following } }, (err, users) => {
@@ -189,19 +189,3 @@ const findPeople = (req, res) => {
         res.json(users);
     }).select("name");
 };
-
-
-module.exports = {
-    userById,
-    hasAuthorization,
-    allUsers,
-    getUser,
-    updateUser,
-    userPhoto,
-    deleteUser,
-    addFriend,
-    addFollower,
-    removeFriend,
-    removeFollower,
-    findPeople,
-}

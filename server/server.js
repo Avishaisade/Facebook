@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-var cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const expressValidator = require("express-validator");
 const fs = require("fs");
 const cors = require("cors");
@@ -20,9 +20,9 @@ mongoose.connection.on("error", err => {
 });
 
 // routes requirement
-const postRoutes = require("./Routes/posts");
-const authRoutes = require("./Routes/auth");
-const userRoutes = require("./Routes/user");
+const postRoutes = require("./Routes/posts.route");
+const authRoutes = require("./Routes/auth.route");
+const userRoutes = require("./Routes/user.route");
 
 // apiDocs
 app.get("/api", (req, res) => {
@@ -43,9 +43,9 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(cors());
-app.use("/api", postRoutes);
-app.use("/api", authRoutes);
-app.use("/api", userRoutes);
+app.use(postRoutes);
+app.use(authRoutes);
+app.use(userRoutes);
 app.use(function(err, req, res, next) {
     if (err.name === "UnauthorizedError") {
         res.status(401).json({ error: "Unauthorized!" });

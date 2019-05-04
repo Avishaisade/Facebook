@@ -147,7 +147,7 @@ exports.addFollower = (req, res) => {
 exports.removeFriend = (req, res, next) => {
     User.findByIdAndUpdate(
         req.body.userId,
-        { $pull: { following: req.body.unfollowId } },
+        { $pull: { friends: req.body.unfollowId } },
         (err, result) => {
             if (err) {
                 return res.status(400).json({ error: err });
@@ -163,7 +163,7 @@ exports.removeFollower = (req, res) => {
         { $pull: { followers: req.body.userId } },
         { new: true }
     )
-        .populate("following", "_id name")
+        .populate("friends", "_id name")
         .populate("followers", "_id name")
         .exec((err, result) => {
             if (err) {

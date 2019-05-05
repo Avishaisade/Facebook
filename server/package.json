@@ -2,20 +2,29 @@
   "name": "server",
   "version": "1.0.0",
   "description": "server for facebook appliaction.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Osher Levy and Avishai Sade",
+  "author": "Avishai Sade and Osher Levy",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-jwt": "^5.3.1",
+    "express-validator": "^5.3.1",
+    "formidable": "^1.2.1",
     "jasmine": "^3.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.11",
     "mongodb": "^3.1.13",
     "mongoose": "^5.4.19",
+    "mongoose-paginate": "^5.0.3",
     "morgan": "^1.9.1",
-    "morgan-body": "^2.4.5"
+    "morgan-body": "^2.4.5",
+    "nodemailer": "^6.1.1",
+    "uuidv1": "^1.6.14"
   }
 }

@@ -1,0 +1,78 @@
+.header-fb {
+    background-color: #4267b2;
+    border-bottom: 1px solid #29487d;
+    color: #fff;
+    width:100%;
+    box-sizing: border-box;
+    height: 43px;
+    padding-top: 8px;
+
+    .inner-container {
+        padding: 0;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .fb-logo {
+        float:left;
+        background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yP/r/IZFSOi34yXv.png');
+        background-repeat: no-repeat;
+        background-size: 140px 836px;
+        background-position: -25px -219px;
+        display: block;
+        height: 24px;
+        outline: none;
+        overflow: hidden;
+        text-indent: -999px;
+        white-space: nowrap;
+        width: 24px;
+    }
+
+    .searchBox {
+        background-color: #fff;
+        border: 1px solid #3b5998;
+        border-radius: 3px;
+        box-sizing: border-box;
+        height: 26px;
+        left: -1px;
+        margin-left: 30px;
+        margin-top: 0;
+        max-width: 448px;
+        overflow: hidden;
+        padding-left: 5px;
+        padding-right: 48px;
+        position: relative;
+        top: -1px;
+    }
+
+    .search-btn-wrapper {
+        background: #f5f6f7;
+        border: none;
+        border-radius: 0 2px 2px 0;
+        bottom: 0;
+        cursor: pointer;
+        display: block;
+        line-height: 1;
+        padding: 0 20px;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 0;
+        z-index: 1;
+    }
+
+    .search-icon {
+        background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yP/r/IZFSOi34yXv.png);
+        background-repeat: no-repeat;
+        background-size: 140px 836px;
+        background-position: -125px -192px;
+        cursor: pointer;
+        display: block;
+        height: 14px;
+        position: absolute;
+        right: 12px;
+        top: 4px;
+        width: 14px;
+        z-index: 2; 
+    }
+}

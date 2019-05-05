@@ -22,7 +22,7 @@ route.put("/user/friends", requireSignin, addFriend, addFollower);
 route.put("/user/unfriends", requireSignin, removeFriend, removeFollower);
 
 route.get("/users", allUsers);
-route.get("/user/:userId", requireSignin, getUser);
+route.get("/user/:userId", getUser);
 route.put("/user/:userId", requireSignin, hasAuthorization, updateUser);
 route.delete("/user/:userId", requireSignin, hasAuthorization, deleteUser);
 // photo

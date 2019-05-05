@@ -13,7 +13,7 @@ class UserHeader extends Component {
         const user = this.user;
         return (
             <div className="UserHead">
-                <a href='https://google.com'>
+                <a href={`/${user.id}`}>
                     <Avatar url={user.avatarPic} alt={user.firstName + " " + user.lastName} fullname={user.firstName + " " + user.lastName} online="true" />
                     <UserInfo fullname={user.firstName + " " + user.lastName} />
                     <TimeLabel dateAdded={Date.now()} />

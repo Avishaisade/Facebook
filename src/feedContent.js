@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Comment from './comment/comment';
 import CommentInput from './comment/commentInput';
 import Timelabel from './users/timelabel'
 import UserHeader from './users/userHeader';
-import Like from './comment/like'
 
 class FeedContent extends Component {
-  state = { showReplies: false , commentText:'' };
+  state = { showReplies: false, commentText: '' };
 
 
-//   postComment(){
+  //   postComment(){
 
-// }
+  // }
 
-   renderPostHeader() {
+  renderPostHeader() {
     //  <Timelabel/>
-  // const ownPost = this.props.uID === Comment.props.content.userId;
+    // const ownPost = this.props.uID === Comment.props.content.userId;
     return (
       <div classNaName="postHeader-container">
         <div classNaName="user-header">
-        <UserHeader 
-             userId= {this.userId}  
+          <UserHeader
+            userId={this.userId}
           />
         </div>
         <div classNaName="comment-container">
@@ -33,28 +32,28 @@ class FeedContent extends Component {
           </Link>
           <br />
           <span classNaName="time-stamp">
-            <Timelabel/>
+            <Timelabel />
           </span>
         </div>
       </div>
     );
   }
-   renderPostContent() {
+  renderPostContent() {
     return (
       <div classNaName="content">
         <div>{this.props.content.content}</div>
       </div>
     );
   }
-//  renderLikes(){
-//      return(
-//          <Like
-//             count={}
-//             />
-//      );
+  //  renderLikes(){
+  //      return(
+  //          <Like
+  //             count={}
+  //             />
+  //      );
 
-//  }
-  
+  //  }
+
   renderComments() {
     const values = this.props.content.comments
       ? Object.values(this.props.content.comments).slice()

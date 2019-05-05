@@ -1,29 +1,27 @@
-const SERVER_URL = 'http://localhost:8080';
+const SERVER_URL = 'http://localhost:8080/';
 
-export default class UsersService {
-	async fetchUsers() {
-		const users = await fetch(SERVER_URL + 'users');
-		return await users.json();
-	}
+export async function fetchUsers() {
+	const users = await fetch(SERVER_URL + 'users');
+	return await users.json();
+}
 
-	async fetchSpecificUser(id) {
-		const users = await fetch(SERVER_URL + 'user/' + id);
-		return await users.json();
-	}
+export async function fetchSpecificUser(id) {
+	const users = await fetch(SERVER_URL + 'user/' + id);
+	return await users.json();
+}
 
-	async createUser(user) {
-		await fetch(SERVER_URL + 'users', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(user)
-		});
-	}
+export async function createUser(user) {
+	await fetch(SERVER_URL + 'users', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(user)
+	});
+}
 
-	async deleteUser(id) {
-		await fetch(SERVER_URL + 'users/' + id, {
-			method: 'DELETE',
-		});
-	}
+export async function deleteUser(id) {
+	await fetch(SERVER_URL + 'users/' + id, {
+		method: 'DELETE',
+	});
 }

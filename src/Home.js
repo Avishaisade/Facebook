@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Comment from './comment/comment';
 import UserHeader from './users/userHeader';
+import { fetchUsers, fetchSpecificUser, createUser, deleteUser } from './Services/UserService';
 
 class Home extends Component {
     state = { isLoaded: false, user: {} };
 
     componentDidMount() {
-        fetch('http://localhost:8080/user/5ccdbe0c3e2e093b343c28bd')
-            .then(response => response.json())
+        fetchSpecificUser('5ccdbe0c3e2e093b343c28bd')
             .then(data => {
                 this.setState({
                     user: data,

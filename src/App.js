@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './scss/styles.scss';
 
 import Home from './Home';
+import Header from './Header';
 import User from './users/User';
 
 class App extends Component {
@@ -10,6 +11,7 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <Header></Header>
           <Link className="App-link" to='/'>Home</Link> |
           <Link className="App-link" to='/user'>User</Link> |
           <div className="globalContainer">

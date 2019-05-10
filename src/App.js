@@ -1,35 +1,16 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import MainRouter from "./MainRouter";
+
 import './scss/styles.scss';
 
-import Home from './Home';
-import Header from './Header';
-import User from './users/User';
-import Login from './Login';
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div>
-          <Header></Header>
-          {/* Navigation */}
-          <Link className="App-link" to='/'>Home</Link> |
-          <Link className="App-link" to='/User'>User</Link> |
-          <Link className="App-link" to='/Login'>Login</Link>
+const App = () => (
 
-          <div className="globalContainer">
-            <div className="fb_content">
-              {/* Routers */}
-              <Route path='/' exact component={Home} />
-              <Route path='/User' render={() => <User {...this.props} />} />
-              <Route path='/Login' exact component={Login} />
-            </div>
-          </div>
-        </div>
-      </Router>
-    );
-  }
-}
+    <BrowserRouter>
+        <MainRouter />
+    </BrowserRouter>
+);
 
 export default App;
+

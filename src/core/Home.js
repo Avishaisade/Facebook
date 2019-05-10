@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Comment from './comment/comment';
-import UserHeader from './users/userHeader';
-import { fetchUsers, fetchSpecificUser, createUser, deleteUser } from './Services/UserService';
+import Comment from '../comment/comment';
+import UserHeader from '../users/userHeader';
+import { fetchUsers, fetchSpecificUser, createUser, deleteUser } from '../Services/UserService';
 
 class Home extends Component {
     state = { isLoaded: false, user: {} };

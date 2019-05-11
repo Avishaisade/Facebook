@@ -5,6 +5,7 @@ const {
     getUser,
     updateUser,
     deleteUser,
+    userCoverPhoto,
     userPhoto,
     addFriend,
     addFollower,
@@ -27,6 +28,7 @@ route.put("/user/:userId", requireSignin, hasAuthorization, updateUser);
 route.delete("/user/:userId", requireSignin, hasAuthorization, deleteUser);
 // photo
 route.get("/user/photo/:userId", userPhoto);
+route.get("/user/coverPhoto/:userId", userCoverPhoto);
 
 // who to follow
 route.get("/user/findpeople/:userId", requireSignin, findPeople);

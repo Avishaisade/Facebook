@@ -8,7 +8,7 @@ const Footer = ({ history }) => (
         </ul>
         <div id="contentCurve"></div>
         <ul className="mt-0">
-            <li><Link to={"/Home"}>Home</Link></li>
+            <li><Link to={"/"}>Home</Link></li>
             <li><Link to={"/SignIn"}>Sign Up</Link></li>
             <li><Link to={"/SignIn"}>Log In</Link></li>
         </ul>

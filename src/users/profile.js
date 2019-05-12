@@ -95,7 +95,7 @@ class Profile extends Component {
             : { DefaultProfile };
 
         return (
-            <div className="container">
+            <div className="globalContainer">
                 <Cover
                     url={photoUrl}
                     coverUrl={coverPhotoUrl}

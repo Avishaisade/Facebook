@@ -13,26 +13,17 @@ import FindPeople from "./users/FindPeople";
 
 const MainRouter = () => (
     <div>
+        <Header />
         <Switch>
             <PrivateRoute
                 exact
                 path="/"
-                render={props =>
-                    <div>
-                        <Header />
-                        <Home />
-                    </div>
-                }
+                component={Home}
             />
             <PrivateRoute
                 exact
                 path="/users"
-                render={props =>
-                    <div>
-                        <Header />
-                        <Users />
-                    </div>
-                }
+                component={Users}
             />
             <Route
                 exact
@@ -48,34 +39,16 @@ const MainRouter = () => (
                 exact
                 path="/user/edit/:userId"
                 component={EditProfile}
-                render={props =>
-                    <div>
-                        <Header />
-                        <EditProfile />
-                    </div>
-                }
             />
             <PrivateRoute
                 exact
                 path="/findpeople"
                 component={FindPeople}
-                render={props =>
-                    <div>
-                        <Header />
-                        <FindPeople />
-                    </div>
-                }
             />
             <PrivateRoute
                 exact
                 path="/user/:userId"
                 component={Profile}
-                render={props =>
-                    <div>
-                        <Header />
-                        <Profile />
-                    </div>
-                }
             />
         </Switch>
     </div>

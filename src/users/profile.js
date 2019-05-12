@@ -8,13 +8,13 @@ import DeleteUser from "./DeleteUser";
 import FriendProfileButton from "./FriendProfileButton";
 import ProfileTabs from "./ProfileTabs";
 import DefaultProfile from "../Images/defult_profile.jpg";
-import { listByUser } from "../Posts/apiPost";
+import { listByUser } from "../posts/apiPost";
 
 class Profile extends Component {
     constructor() {
         super();
         this.state = {
-            user: { friends: []},
+            user: { friends: [] },
             redirectToSignin: false,
             friends: false,
             error: "",
@@ -84,23 +84,23 @@ class Profile extends Component {
 
         const photoUrl = user._id
             ? `${process.env.REACT_APP_API_URL}/user/photo/${
-                  user._id
-              }?${new Date().getTime()}`
-            : {DefaultProfile};
+            user._id
+            }?${new Date().getTime()}`
+            : { DefaultProfile };
 
-            const coverPhotoUrl = user._id
+        const coverPhotoUrl = user._id
             ? `${process.env.REACT_APP_API_URL}/user/coverPhoto/${
-                  user._id
-              }?${new Date().getTime()}`
-            : {DefaultProfile};
+            user._id
+            }?${new Date().getTime()}`
+            : { DefaultProfile };
 
         return (
-            <div className= "container">
-                 <Cover
-                 url= {photoUrl}
-                 coverUrl={coverPhotoUrl}
-                 user={user}/>
-                 {/* <Avatar
+            <div className="container">
+                <Cover
+                    url={photoUrl}
+                    coverUrl={coverPhotoUrl}
+                    user={user} />
+                {/* <Avatar
                     name={user.name}
                     url= {photoUrl}     
                     onError={i => (i.target.src = `${DefaultProfile}`)}
@@ -126,29 +126,29 @@ class Profile extends Component {
                         </div>
 
                         {isAuthenticated().user &&
-                        isAuthenticated().user._id === user._id ? (
-                            <div className="1">
-                                <Link
-                                    className="btn"
-                                    to={`/post/create`}
-                                >
-                                    Create Post
+                            isAuthenticated().user._id === user._id ? (
+                                <div className="1">
+                                    <Link
+                                        className="btn"
+                                        to={`/post/create`}
+                                    >
+                                        Create Post
                                 </Link>
 
-                                <Link
-                                    className="btn "
-                                    to={`/user/edit/${user._id}`}
-                                >
-                                    Edit Profile
+                                    <Link
+                                        className="btn "
+                                        to={`/user/edit/${user._id}`}
+                                    >
+                                        Edit Profile
                                 </Link>
-                                <DeleteUser userId={user._id} />
-                            </div>
-                        ) : (
-                            <FriendProfileButton
-                                friends={this.state.friends}
-                                onButtonClick={this.clickFriendwButton}
-                            />
-                        )}
+                                    <DeleteUser userId={user._id} />
+                                </div>
+                            ) : (
+                                <FriendProfileButton
+                                    friends={this.state.friends}
+                                    onButtonClick={this.clickFriendwButton}
+                                />
+                            )}
 
                         <div>
                             {isAuthenticated().user &&

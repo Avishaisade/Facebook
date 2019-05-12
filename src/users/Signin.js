@@ -11,7 +11,7 @@ class Signin extends Component {
             error: "",
             redirectToReferer: false,
             loading: false,
-            
+
         };
     }
 
@@ -20,7 +20,7 @@ class Signin extends Component {
         this.setState({ [name]: event.target.value });
     };
 
-    
+
 
     handleSubmit = event => {
         event.preventDefault();
@@ -32,18 +32,18 @@ class Signin extends Component {
         };
         // console.log(user);
 
-        
-            signin(user).then(data => {
-                if (data.error) {
-                    this.setState({ error: data.error, loading: false });
-                } else {
-                    // authenticate
-                    authenticate(data, () => {
-                        this.setState({ redirectToReferer: true });
-                    });
-                }
-            });
-        
+
+        signin(user).then(data => {
+            if (data.error) {
+                this.setState({ error: data.error, loading: false });
+            } else {
+                // authenticate
+                authenticate(data, () => {
+                    this.setState({ redirectToReferer: true });
+                });
+            }
+        });
+
         signin(user).then(data => {
             if (data.error) this.setState({ error: data.error });
             else
@@ -57,35 +57,41 @@ class Signin extends Component {
         });
     }
 
-    signinForm = (email, password,) => (
+    signinForm = (email, password, ) => (
         <form>
             <div className="form-group">
-                <label className="text-muted">Email</label>
-                <input
-                    onChange={this.handleChange("email")}
-                    type="email"
-                    className="form-control"
-                    value={email}
-                />
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="pb-4"><label for="email">Email or Phone</label></td>
+                            <td class="pb-4"><label for="pass">Password</label></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input
+                                    onChange={this.handleChange("email")}
+                                    type="email"
+                                    name="email"
+                                    value={email}
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    onChange={this.handleChange("password")}
+                                    type="password"
+                                    name="pass"
+                                    value={password}
+                                />
+                            </td>
+                            <td>
+                                <button onClick={this.handleSubmit} className="login-btn">Log In</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div className="form-group">
-                <label className="text-muted">Password</label>
-                <input
-                    onChange={this.handleChange("password")}
-                    type="password"
-                    className="form-control"
-                    value={password}
-                />
-            </div>
-
-            <button
-                onClick={this.handleSubmit}
-                className="btn"
-            >
-                Submit
-            </button>
         </form>
-         );
+    );
 
     render() {
         const {
@@ -99,29 +105,18 @@ class Signin extends Component {
         if (redirectToReferer) {
             return <Redirect to="/" />;
         }
-        
+
 
         return (
-            <div className="container">
-                <h2 className="">Sign In</h2>
-                
-                <div
-                    className="alert "
-                    style={{ display: error ? "" : "none" }}
-                >
-                    {error}
-                </div>
-
-                {loading ? (
-                    <div className="text-center">
-                        <h2>Loading...</h2>
+            <div className="headerLoggedOut">
+                <div className="container">
+                    <div className="fb-logo">
+                        <i></i>
                     </div>
-                ) : (
-                    ""
-                )}
-
-                {this.signinForm(email, password)}
-
+                    <div className="alert " style={{ display: error ? "" : "none" }}>{error}</div>
+                    {loading ? (<div className="text-center"><h2>Loading...</h2></div>) : ("")}
+                    {this.signinForm(email, password)}
+                </div>
             </div>
         );
     }

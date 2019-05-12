@@ -13,45 +13,54 @@ import FindPeople from "./users/FindPeople";
 
 const MainRouter = () => (
     <div>
-        <Header />
-       
-            <Switch>
+        <Switch>
             <Route
-                 exact 
-                 path="/" 
-                 component={Home} 
+                exact
+                path="/"
+                component={Home}
+            >
+                <Header />
+            </Route>
+            <Route
+                exact
+                path="/users"
+                component={Users}
+            >
+                <Header />
+            </Route>
+            <Route
+                exact
+                path="/signup/"
+                component={Signup}
             />
-            <Route 
-                exact 
-                path="/users" 
-                component={Users} 
-            />
-            <Route 
-                exact 
-                path="/signup/" 
-                component={Signup} 
-            />
-            <Route 
-                exact 
-                path="/signin" 
-                component={Signin} 
+            <Route
+                exact
+                path="/signin"
+                component={Signin}
             />
             <PrivateRoute
                 exact
                 path="/user/edit/:userId"
                 component={EditProfile}
-            />
-            <PrivateRoute 
-                exact 
-                path="/findpeople" 
-                component={FindPeople} />
+            >
+                <Header />
+            </PrivateRoute>
             <PrivateRoute
-                 exact 
-                 path="/user/:userId" 
-                 component={Profile}
-            /> 
-            </Switch>
-  </div>
+                exact
+                path="/findpeople"
+                component={FindPeople}
+            >
+                <Header />
+            </PrivateRoute>
+            <PrivateRoute
+                exact
+                path="/user/:userId"
+                component={Profile}
+            >
+                <Header />
+            </PrivateRoute>
+        </Switch>
+    </div>
 );
 
 

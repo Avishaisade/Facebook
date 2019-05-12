@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { signin, authenticate } from "../auth";
+import Signup from "./Signup";
 
 class Signin extends Component {
     constructor() {
@@ -108,15 +109,18 @@ class Signin extends Component {
 
 
         return (
-            <div className="headerLoggedOut">
-                <div className="container">
-                    <div className="fb-logo">
-                        <i></i>
+            <div>
+                <div className="headerLoggedOut">
+                    <div className="container">
+                        <div className="fb-logo">
+                            <i></i>
+                        </div>
+                        <div className="alert " style={{ display: error ? "" : "none" }}>{error}</div>
+                        {loading ? (<div className="text-center"><h2>Loading...</h2></div>) : ("")}
+                        {this.signinForm(email, password)}
                     </div>
-                    <div className="alert " style={{ display: error ? "" : "none" }}>{error}</div>
-                    {loading ? (<div className="text-center"><h2>Loading...</h2></div>) : ("")}
-                    {this.signinForm(email, password)}
                 </div>
+                <Signup />
             </div>
         );
     }

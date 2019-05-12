@@ -9,7 +9,7 @@ import Users from "./users/Users";
 import EditProfile from "./users/EditProfile";
 import PrivateRoute from "./auth/PrivateRoute";
 import FindPeople from "./users/FindPeople";
-
+import Footer from "./core/Footer";
 
 const MainRouter = () => (
     <div>
@@ -51,6 +51,7 @@ const MainRouter = () => (
                 component={Profile}
             />
         </Switch>
+        <Footer />
     </div>
 );
 

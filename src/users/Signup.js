@@ -11,7 +11,7 @@ class Signup extends Component {
             password: "",
             error: "",
             open: false,
-            
+
         };
     }
     handleChange = name => event => {
@@ -28,7 +28,7 @@ class Signup extends Component {
         };
         //  console.log(user);
 
-      
+
         signup(user).then(data => {
             if (data.error) this.setState({ error: data.error });
             else
@@ -40,44 +40,42 @@ class Signup extends Component {
                     open: true
                 });
         });
-        
+
     };
 
     signupForm = (name, email, password) => (
-        <form>
-            <div className="form-group">
-                <label className="text-muted">Name</label>
-                <input
-                    onChange={this.handleChange("name")}
-                    type="text"
-                    className="form-control"
-                    value={name}
-                />
-            </div>
-            <div className="form-group">
-                <label className="text-muted">Email</label>
-                <input
-                    onChange={this.handleChange("email")}
-                    type="email"
-                    className="form-control"
-                    value={email}
-                />
-            </div>
-            <div className="form-group">
-                <label className="text-muted">Password</label>
-                <input
-                    onChange={this.handleChange("password")}
-                    type="password"
-                    className="form-control"
-                    value={password}
-                />
-            </div>
+        <form className="form">
+            <input
+                onChange={this.handleChange("name")}
+                type="text"
+                className="full-input"
+                value={name}
+                placeholder="Full Name"
+            />
+            <input
+                onChange={this.handleChange("email")}
+                type="email"
+                className="full-input"
+                value={email}
+                placeholder="Email"
+            />
+            <input
+                onChange={this.handleChange("password")}
+                type="password"
+                className="full-input"
+                value={password}
+                placeholde="New Password"
+            />
+
+            <small>
+                By clicking Sign Up, you agree to our Terms, Data Policy and Cookies Policy. You may receive SMS Notifications from us and can opt out any time.
+            </small>
 
             <button
                 onClick={this.handleSubmit}
-                className="btn"
+                className="signUp-btn"
             >
-                Submit
+                Sign Up
             </button>
         </form>
     );
@@ -85,34 +83,36 @@ class Signup extends Component {
     render() {
         const { name, email, password, error, open } = this.state;
         return (
-            <div className="container">
-                <h2 className="form">Signup</h2>
+            <div className="SignUp">
+                <div className="globalContainer">
+                    <div className="float-right">
+                        <h1>
+                            Create a New Account
+                    <span className="freeText">It’s free and always will be.</span>
+                        </h1>
 
-                <div
-                    className="alert"
-                    style={{ display: error ? "" : "none" }}
-                >
-                    {error}
+                        <div
+                            className="alert"
+                            style={{ display: error ? "" : "none" }}
+                        >
+                            {error}
+                        </div>
+                        <div
+                            className="alert"
+                            style={{ display: open ? "" : "none" }}
+                        >
+                            New account is successfully created. Please {" "}
+
+                            <Link to="/signin">Sign In</Link>
+                        </div>
+
+
+                        {this.signupForm(name, email, password)}
+                    </div>
                 </div>
-                <div
-                    className="alert"
-                    style={{ display: open ? "" : "none" }}
-                >
-                    New account is successfully created. Please {" "}
-                    
-                    <Link to="/signin">Sign In</Link>
-                </div>
-
-
-                {this.signupForm(name, email, password)}
             </div>
         )
     };
 }
-
-
-
-
-
 
 export default Signup;

@@ -63,8 +63,8 @@ class Signin extends Component {
                 <table>
                     <tbody>
                         <tr>
-                            <td class="pb-4"><label for="email">Email or Phone</label></td>
-                            <td class="pb-4"><label for="pass">Password</label></td>
+                            <td class="pb-4"><label htmlFor="email">Email or Phone</label></td>
+                            <td class="pb-4"><label htmlFor="pass">Password</label></td>
                         </tr>
                         <tr>
                             <td>

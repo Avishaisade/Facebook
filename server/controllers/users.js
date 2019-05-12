@@ -74,6 +74,11 @@ exports.updateUser = (req, res, next) => {
             user.photo.data = fs.readFileSync(files.photo.path);
             user.photo.contentType = files.photo.type;
         }
+        if (files.coverPhoto) {
+            user.coverPhoto.data = fs.readFileSync(files.coverPhoto.path);
+            user.coverPhoto.contentType = files.coverPhoto.type;
+        }
+        
 
         user.save((err, result) => {
             if (err) {
@@ -93,6 +98,13 @@ exports.userPhoto = (req, res, next) => {
     if (req.profile.photo.data) {
         res.set(("Content-Type", req.profile.photo.contentType));
         return res.send(req.profile.photo.data);
+    }
+    next();
+};
+exports.userCoverPhoto = (req, res, next) => {
+    if (req.profile.coverPhoto.data) {
+        res.set(("Content-Type", req.profile.coverPhoto.contentType));
+        return res.send(req.profile.coverPhoto.data);
     }
     next();
 };

@@ -19,20 +19,20 @@ const Header = ({history}) => (
             >
                 Home
             </Link>
-            {/* <Link
+            <Link
                 className=""
                 style={isActive(history, "/users")}
                 to="/users"
             >
                 Users
-            </Link> */}
-            {/* <Link
+            </Link> 
+             <Link
                 className=""
                 style={isActive(history, `/post/create`)}
                 to={`/post/create`}
             >
                 Create Post
-            </Link> */}
+            </Link> 
 
             {!isAuthenticated() && (
                 <>
@@ -61,7 +61,6 @@ const Header = ({history}) => (
                     >
                         Find People
                     </Link>
-
                     <Link
                         to={`/user/${isAuthenticated().user._id}`}
                         style={isActive(

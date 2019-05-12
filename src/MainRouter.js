@@ -14,20 +14,26 @@ import FindPeople from "./users/FindPeople";
 const MainRouter = () => (
     <div>
         <Switch>
-            <Route
+            <PrivateRoute
                 exact
                 path="/"
-                component={Home}
-            >
-                <Header />
-            </Route>
-            <Route
+                render={props =>
+                    <div>
+                        <Header />
+                        <Home />
+                    </div>
+                }
+            />
+            <PrivateRoute
                 exact
                 path="/users"
-                component={Users}
-            >
-                <Header />
-            </Route>
+                render={props =>
+                    <div>
+                        <Header />
+                        <Users />
+                    </div>
+                }
+            />
             <Route
                 exact
                 path="/signup/"
@@ -42,23 +48,35 @@ const MainRouter = () => (
                 exact
                 path="/user/edit/:userId"
                 component={EditProfile}
-            >
-                <Header />
-            </PrivateRoute>
+                render={props =>
+                    <div>
+                        <Header />
+                        <EditProfile />
+                    </div>
+                }
+            />
             <PrivateRoute
                 exact
                 path="/findpeople"
                 component={FindPeople}
-            >
-                <Header />
-            </PrivateRoute>
+                render={props =>
+                    <div>
+                        <Header />
+                        <FindPeople />
+                    </div>
+                }
+            />
             <PrivateRoute
                 exact
                 path="/user/:userId"
                 component={Profile}
-            >
-                <Header />
-            </PrivateRoute>
+                render={props =>
+                    <div>
+                        <Header />
+                        <Profile />
+                    </div>
+                }
+            />
         </Switch>
     </div>
 );

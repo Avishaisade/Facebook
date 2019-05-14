@@ -1,12 +1,18 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { signout, isAuthenticated } from "../auth";
+import DefaultProfile from "../Images/defult_profile.jpg";
 
 const isActive = (history, path) => {
     if (history.location.pathname === path) return { color: "#ff9900" };
     else return { color: "#ffffff" };
 }
 
+const photoUrl = isAuthenticated().user._id
+            ? `${process.env.REACT_APP_API_URL}/user/photo/${
+                isAuthenticated().user._id 
+            }?${new Date().getTime()}`
+            : { DefaultProfile };
 const Header = ({ history }) => (
     <div>
         {isAuthenticated() && (
@@ -105,6 +111,14 @@ const Header = ({ history }) => (
                             )}
                         >
                             <span className="s-1">{`${isAuthenticated().user.name}`}</span>
+                            <img
+                            className="img-thumbnail"
+                            src={photoUrl}
+                            style={{ height: "50px", width: "auto" }}
+                            onError={i => (i.target.src = `${DefaultProfile}`)}
+                            alt={isAuthenticated().user.name}
+                        />
+
                         </Link>
 
                         <span className="s-1">Home</span>

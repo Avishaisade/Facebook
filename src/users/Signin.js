@@ -116,8 +116,7 @@ class Signin extends Component {
                             <i></i>
                         </div>
                         <div className="alert " style={{ display: error ? "" : "none" }}>{error}</div>
-                        {loading ? (<div className="text-center"><h2>Loading...</h2></div>) : ("")}
-                        {this.signinForm(email, password)}
+                        {loading ? (<div class="lds-facebook"><div></div><div></div><div></div></div>) : (this.signinForm(email, password))}
                     </div>
                 </div>
                 <Signup />

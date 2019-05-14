@@ -14,13 +14,6 @@ const Header = ({ history }) => (
                 <div className="inner-container">
                     <Link
                         className=""
-                        style={isActive(history, "/")}
-                        to="/"
-                    >
-                        Home
-            </Link>
-                    <Link
-                        className=""
                         style={isActive(history, "/users")}
                         to="/users"
                     >
@@ -61,15 +54,6 @@ const Header = ({ history }) => (
                             >
                                 Find People
                     </Link>
-                            <Link
-                                to={`/user/${isAuthenticated().user._id}`}
-                                style={isActive(
-                                    history,
-                                    `/user/${isAuthenticated().user._id}`
-                                )}
-                            >
-                                {`${isAuthenticated().user.name}`}
-                            </Link>
 
                             <span
                                 className=""
@@ -84,11 +68,47 @@ const Header = ({ history }) => (
 
                         </>
                     )}
-
-
-                    <div className="fb-logo"></div>
+                    <Link className="" style={isActive(history, "/")} to="/">
+                        <div className="fb-logo"></div>
+                    </Link>
                     <div className="searchBox">
+                        <input type="text" placeholder="Search"></input>
                         <button className="search-btn-wrapper" placeholdertext="Search" type="submit"><i className="search-icon"></i></button>
+                    </div>
+
+                    {/* Navigation - Right */}
+                    <div className="float-right r_menu">
+                        <div className="item">
+                            <div className="i arrow opacity-low"></div>
+                        </div>
+                        <div className="item">
+                            <div className="i question opacity-low"></div>
+                        </div>
+                    </div>
+                    <div className="float-right r_menu">
+                        <div className="item">
+                            <div className="i notif opacity-low"></div>
+                        </div>
+                        <div className="item">
+                            <div className="i msg opacity-low"></div>
+                        </div>
+                        <div className="item">
+                            <div className="i ff opacity-low"></div>
+                        </div>
+                    </div>
+                    <div className="float-right r_menu">
+                        <Link
+                            to={`/user/${isAuthenticated().user._id}`}
+                            style={isActive(
+                                history,
+                                `/user/${isAuthenticated().user._id}`
+                            )}
+                        >
+                            <span className="s-1">{`${isAuthenticated().user.name}`}</span>
+                        </Link>
+
+                        <span className="s-1">Home</span>
+                        <span className="s-1">Create</span>
                     </div>
                 </div>
             </div>

@@ -14,6 +14,7 @@ const Footer = ({ history }) => (
         </ul>
     </div>
 );
+
 export default withRouter(Footer);
 
 

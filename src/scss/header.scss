@@ -35,7 +35,7 @@
         box-sizing: border-box;
         height: 26px;
         left: -1px;
-        margin-left: 30px;
+        margin-left: 15px;
         margin-top: 0;
         max-width: 448px;
         overflow: hidden;
@@ -43,6 +43,7 @@
         padding-right: 48px;
         position: relative;
         top: -1px;
+        float: left;
     }
 
     .search-btn-wrapper {
@@ -74,5 +75,89 @@
         top: 4px;
         width: 14px;
         z-index: 2; 
+    }
+    
+    .r_menu {
+        padding: 0 5px 0 4px;
+        margin-left: 0;
+        display: inline-block;
+        padding: 0 9px;
+        vertical-align: top;
+        position: relative;
+        .item {
+            float: right;
+            margin: 0 2px;
+            padding: 0px 3px;
+            &:last-child {
+                padding:0px;
+            }
+        }
+        &:before {
+            content: '';
+            display: block;
+            height: 18px;
+            left: -1px;
+            position: absolute;
+            top: 5px;
+            width: 1px;
+            background: rgba(0, 0, 0, .1);
+        }
+    }
+
+    .i {
+        background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yP/r/IZFSOi34yXv.png);
+        background-repeat: no-repeat;
+        height: 24px;
+        width: 24px;
+        &.arrow {
+            background-size: 140px 836px;
+            background-position: -25px -294px;
+        }
+        &.question {
+            background-size: 140px 836px;
+            background-position: -50px -319px;
+        }
+        &.notif {
+            background-size: 140px 836px;
+            background-position: -100px -269px;
+        }
+        &.msg {
+            background-size: 140px 836px;
+            background-position: 0 -319px;  
+        }
+        &.ff {
+            background-size: 140px 836px;
+            background-position: -75px -294px;
+        }
+    }
+
+    .s-1 {
+        padding-right: 11px;
+        padding: 0 12px 1px;
+        background-color: transparent;
+        color: inherit;
+        display: inline-block;
+        font-size: 12px;
+        -webkit-font-smoothing: antialiased;
+        font-weight: bold;
+        height: 27px;
+        line-height: 28px;
+        padding: 0 10px 1px;
+        position: relative;
+        text-decoration: none;
+        vertical-align: top;
+        white-space: nowrap;
+        cursor: pointer;
+        &:hover {
+            border-radius: 2px;
+            color: inherit;
+            outline: none;
+            text-decoration: none;
+            z-index: 1;
+            background: rgba(0, 0, 0, .1);
+        }
+        img {
+            border-radius: 50%;
+        }
     }
 }

@@ -8,11 +8,16 @@ const isActive = (history, path) => {
     else return { color: "#ffffff" };
 }
 
-const photoUrl = isAuthenticated().user._id
-    ? `${process.env.REACT_APP_API_URL}/user/photo/${
-    isAuthenticated().user._id
-    }?${new Date().getTime()}`
-    : { DefaultProfile };
+
+let photoUrl = DefaultProfile;
+if (isAuthenticated()) {
+    photoUrl = isAuthenticated().user._id
+        ? `${process.env.REACT_APP_API_URL}/user/photo/${
+        isAuthenticated().user._id
+        }?${new Date().getTime()}`
+        : { DefaultProfile };
+}
+
 const Header = ({ history }) => (
     <div>
         {isAuthenticated() && (
@@ -100,7 +105,6 @@ const Header = ({ history }) => (
                                 <img
                                     className="img-thumbnail"
                                     src={photoUrl}
-                                    style={{ height: "50px", width: "auto" }}
                                     onError={i => (i.target.src = `${DefaultProfile}`)}
                                     alt={isAuthenticated().user.name}
                                 />
@@ -110,6 +114,7 @@ const Header = ({ history }) => (
 
                         <Link
                             to={`/`}
+                            className=""
                         >
                             <span className="s-1">Home</span>
                         </Link>

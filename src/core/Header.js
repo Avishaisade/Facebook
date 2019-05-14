@@ -9,29 +9,15 @@ const isActive = (history, path) => {
 }
 
 const photoUrl = isAuthenticated().user._id
-            ? `${process.env.REACT_APP_API_URL}/user/photo/${
-                isAuthenticated().user._id 
-            }?${new Date().getTime()}`
-            : { DefaultProfile };
+    ? `${process.env.REACT_APP_API_URL}/user/photo/${
+    isAuthenticated().user._id
+    }?${new Date().getTime()}`
+    : { DefaultProfile };
 const Header = ({ history }) => (
     <div>
         {isAuthenticated() && (
             <div className="header-fb">
                 <div className="inner-container">
-                    <Link
-                        className=""
-                        style={isActive(history, "/users")}
-                        to="/users"
-                    >
-                        Users
-            </Link>
-                    <Link
-                        className=""
-                        style={isActive(history, `/post/create`)}
-                        to={`/post/create`}
-                    >
-                        Create Post
-            </Link>
 
                     {!isAuthenticated() && (
                         <>
@@ -110,19 +96,32 @@ const Header = ({ history }) => (
                                 `/user/${isAuthenticated().user._id}`
                             )}
                         >
-                            <span className="s-1">{`${isAuthenticated().user.name}`}</span>
-                            <img
-                            className="img-thumbnail"
-                            src={photoUrl}
-                            style={{ height: "50px", width: "auto" }}
-                            onError={i => (i.target.src = `${DefaultProfile}`)}
-                            alt={isAuthenticated().user.name}
-                        />
-
+                            <span className="s-1">
+                                <img
+                                    className="img-thumbnail"
+                                    src={photoUrl}
+                                    style={{ height: "50px", width: "auto" }}
+                                    onError={i => (i.target.src = `${DefaultProfile}`)}
+                                    alt={isAuthenticated().user.name}
+                                />
+                                {`${isAuthenticated().user.name}`}
+                            </span>
                         </Link>
 
-                        <span className="s-1">Home</span>
-                        <span className="s-1">Create</span>
+                        <Link
+                            to={`/`}
+                        >
+                            <span className="s-1">Home</span>
+                        </Link>
+
+                        <Link
+                            className=""
+                            style={isActive(history, `/post/create`)}
+                            to={`/post/create`}
+                        >
+                            <span className="s-1">Create</span>
+                        </Link>
+
                     </div>
                 </div>
             </div>

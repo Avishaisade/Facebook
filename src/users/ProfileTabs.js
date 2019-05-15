@@ -4,16 +4,16 @@ import DefaultProfile from "../Images/defult_profile.jpg";
 
 class ProfileTabs extends Component {
     render() {
-        const { friends, posts } = this.props;
+        const { following, posts } = this.props;
         return (
             <div>
                 <div className="row">
                     <div className="col">
                         <h3 className="text">
-                            {friends.length} Friends
+                            {following.length} Friends
                         </h3>
                         <hr />
-                        {friends.map((person, i) => (
+                        {following.map((person, i) => (
                             <div key={i}>
                                 <div>
                                     <Link to={`/user/${person._id}`}>
@@ -43,22 +43,22 @@ class ProfileTabs extends Component {
                             </div>
                         ))}
                     </div>
-                    
-                    {/* <div className="col">
+
+                    <div className="col">
                         <h3 className="text">{posts.length} Posts</h3>
                         <hr />
-                        {posts.map((post, i) => (cv
+                        {posts.map((post, i) => (
                             <div key={i}>
                                 <div>
                                     <Link to={`/post/${post._id}`}>
                                         <div>
-                                            <p className="1">{post.title}</p>
+                                            <p className="lead">{post.title}</p>
                                         </div>
                                     </Link>
                                 </div>
                             </div>
                         ))}
-                    </div> */}
+                    </div>
                 </div>
             </div>
         );

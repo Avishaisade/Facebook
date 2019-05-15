@@ -73,7 +73,7 @@ class FindPeople extends Component {
                             onClick={() => this.clickFollow(user, i)}
                             className="btn btn-raised btn-info float-right btn-sm"
                         >
-                            Follow
+                            Add Friend
                         </button>
                     </div>
                 </div>

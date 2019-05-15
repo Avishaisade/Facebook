@@ -8,7 +8,7 @@ import DeleteUser from "./DeleteUser";
 import FriendProfileButton from "./FriendProfileButton";
 import ProfileTabs from "./ProfileTabs";
 import DefaultProfile from "../Images/defult_profile.jpg";
-import { listByUser } from "../Posts/apiPost";
+import { listByUser } from "../posts/apiPost";
 
 class Profile extends Component {
     constructor() {
@@ -52,22 +52,22 @@ class Profile extends Component {
             } else {
                 let following = this.checkFriend(data);
                 this.setState({ user: data, following });
-            //     this.loadPosts(data._id);
+                this.loadPosts(data._id);
             }
         });
     };
 
 
-    // loadPosts = userId => {
-    //     const token = isAuthenticated().token;
-    //     listByUser(userId, token).then(data => {
-    //         if (data.error) {
-    //             console.log(data.error);
-    //         } else {
-    //             this.setState({ posts: data });
-    //         }
-    //     });
-    // };
+    loadPosts = userId => {
+        const token = isAuthenticated().token;
+        listByUser(userId, token).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                this.setState({ posts: data });
+            }
+        });
+    };
 
     componentDidMount() {
         const userId = this.props.match.params.userId;

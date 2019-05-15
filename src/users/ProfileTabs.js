@@ -4,16 +4,20 @@ import DefaultProfile from "../Images/defult_profile.jpg";
 
 class ProfileTabs extends Component {
     render() {
-        const { following, posts } = this.props;
+        const { following, followers, posts } = this.props;
+
+        const friends= following.concat(followers)
+
+
         return (
             <div>
                 <div className="row">
                     <div className="col">
                         <h3 className="text">
-                            {following.length} Friends
+                            {friends.length} Friends
                         </h3>
                         <hr />
-                        {following.map((person, i) => (
+                        {friends.map((person, i) => (
                             <div key={i}>
                                 <div>
                                     <Link to={`/user/${person._id}`}>
@@ -42,7 +46,7 @@ class ProfileTabs extends Component {
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </div>  
 
                     <div className="col">
                         <h3 className="text">{posts.length} Posts</h3>
@@ -52,7 +56,7 @@ class ProfileTabs extends Component {
                                 <div>
                                     <Link to={`/post/${post._id}`}>
                                         <div>
-                                            <p className="lead">{post.title}</p>
+                                            <p className="1">{post.title}</p>
                                         </div>
                                     </Link>
                                 </div>

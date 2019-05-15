@@ -11,7 +11,6 @@ class NewPost extends Component {
             body: "",
             photo: "",
             error: "",
-            like:null,
             user: {},
             fileSize: 0,
             loading: false,

@@ -115,6 +115,7 @@ const Header = ({ history }) => (
                         <Link
                             to={`/`}
                             className=""
+                            style={isActive(history, `/`)}
                         >
                             <span className="s-1">Home</span>
                         </Link>

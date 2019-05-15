@@ -9,6 +9,7 @@ import FriendProfileButton from "./FriendProfileButton";
 import ProfileTabs from "./ProfileTabs";
 import DefaultProfile from "../Images/defult_profile.jpg";
 import { listByUser } from "../posts/apiPost";
+import NewPost from "../posts/newPost";
 
 class Profile extends Component {
     constructor() {
@@ -106,7 +107,7 @@ class Profile extends Component {
                     url= {photoUrl}     
                     onError={i => (i.target.src = `${DefaultProfile}`)}
                  /> */}
-                <h2 className="1">Profile</h2>
+                <NewPost/>
                 <div className="row">
                     {/* <div className="col">
                         <img

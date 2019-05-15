@@ -7,7 +7,6 @@ class NewPost extends Component {
     constructor() {
         super();
         this.state = {
-            title: "",
             body: "",
             photo: "",
             error: "",
@@ -24,16 +23,12 @@ class NewPost extends Component {
     }
 
     isValid = () => {
-        const { title, body, fileSize } = this.state;
+        const { body, fileSize } = this.state;
         if (fileSize > 100000) {
             this.setState({
                 error: "File size should be less than 100kb",
                 loading: false
             });
-            return false;
-        }
-        if (title.length === 0 || body.length === 0) {
-            this.setState({ error: "All fields are required", loading: false });
             return false;
         }
         return true;
@@ -62,7 +57,6 @@ class NewPost extends Component {
                 else {
                     this.setState({
                         loading: false,
-                        title: "",
                         body: "",
                         redirectToProfile: true
                     });
@@ -71,8 +65,18 @@ class NewPost extends Component {
         }
     };
 
-    newPostForm = (title, body) => (
+    newPostForm = ( body) => (
         <form>
+            
+
+            <div className="form-group">
+                <textarea
+                    onChange={this.handleChange("body")}
+                    type="text"
+                    className="form-control"
+                    value={body}
+                />
+            </div>
             <div className="form-group">
                 <label className="text-muted">Post Photo</label>
                 <input
@@ -82,29 +86,10 @@ class NewPost extends Component {
                     className="form-control"
                 />
             </div>
-            <div className="form-group">
-                <label className="text-muted">Title</label>
-                <input
-                    onChange={this.handleChange("title")}
-                    type="text"
-                    className="form-control"
-                    value={title}
-                />
-            </div>
-
-            <div className="form-group">
-                <label className="text-muted">Body</label>
-                <textarea
-                    onChange={this.handleChange("body")}
-                    type="text"
-                    className="form-control"
-                    value={body}
-                />
-            </div>
 
             <button
                 onClick={this.clickSubmit}
-                className="btn btn-raised btn-primary"
+                className="btn"
             >
                 Create Post
             </button>
@@ -113,7 +98,6 @@ class NewPost extends Component {
 
     render() {
         const {
-            title,
             body,
             photo,
             user,
@@ -128,23 +112,23 @@ class NewPost extends Component {
 
         return (
             <div className="container">
-                <h2 className="mt-5 mb-5">Create a new post</h2>
-                <div
-                    className="alert alert-danger"
+                <h2 className="mt">Create a new post</h2>
+                {/* <div
+                    className="alert"
                     style={{ display: error ? "" : "none" }}
                 >
                     {error}
-                </div>
+                </div> */}
 
                 {loading ? (
-                    <div className="jumbotron text-center">
+                    <div className="text">
                         <h2>Loading...</h2>
                     </div>
                 ) : (
                     ""
                 )}
 
-                {this.newPostForm(title, body)}
+                {this.newPostForm(body)}
             </div>
         );
     }

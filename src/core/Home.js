@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-class Home extends Component {
-    state = { isLoaded: false, user: {} };
+import React from "react";
+import Posts from "../posts/posts";
+import NewPost from "../posts/newPost";
 
-    render() {
-        return (
-            <div>
-                <h1>Home.</h1>
-               
-            </div>
 
-        );
-    }
-}
+const Home = () => (
+    <>
+        <NewPost/>
+        <div className="feed">
+            <Posts />
+        </div>
+    </>
+);
 
 export default Home;

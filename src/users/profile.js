@@ -9,14 +9,15 @@ import FriendProfileButton from "./FriendProfileButton";
 import ProfileTabs from "./ProfileTabs";
 import DefaultProfile from "../Images/defult_profile.jpg";
 import { listByUser } from "../posts/apiPost";
+import NewPost from "../posts/newPost";
 
 class Profile extends Component {
     constructor() {
         super();
         this.state = {
-            user: { friends: [] },
+            user: { following: [], followers: [] },
             redirectToSignin: false,
-            friends: false,
+            following: false,
             error: "",
             posts: []
         };
@@ -25,8 +26,8 @@ class Profile extends Component {
     // check friend
     checkFriend = user => {
         const jwt = isAuthenticated();
-        const match = user.friends.find(friend => {
-            return friend._id === jwt.user._id;
+        const match = user.followers.find(follower => {
+            return follower._id === jwt.user._id;
         });
         return match;
     };
@@ -39,7 +40,7 @@ class Profile extends Component {
             if (data.error) {
                 this.setState({ error: data.error });
             } else {
-                this.setState({ user: data, friends: !this.state.friends });
+                this.setState({ user: data, following: !this.state.following });
             }
         });
     };
@@ -50,12 +51,13 @@ class Profile extends Component {
             if (data.error) {
                 this.setState({ redirectToSignin: true });
             } else {
-                let friends = this.checkFriend(data);
-                this.setState({ user: data, friends });
+                let following = this.checkFriend(data);
+                this.setState({ user: data, following });
                 this.loadPosts(data._id);
             }
         });
     };
+
 
     loadPosts = userId => {
         const token = isAuthenticated().token;
@@ -105,7 +107,7 @@ class Profile extends Component {
                     url= {photoUrl}     
                     onError={i => (i.target.src = `${DefaultProfile}`)}
                  /> */}
-                <h2 className="1">Profile</h2>
+                <NewPost/>
                 <div className="row">
                     {/* <div className="col">
                         <img
@@ -145,8 +147,8 @@ class Profile extends Component {
                                 </div>
                             ) : (
                                 <FriendProfileButton
-                                    friends={this.state.friends}
-                                    onButtonClick={this.clickFriendwButton}
+                                    following={this.state.following}
+                                    onButtonClick={this.clickFriendButton}
                                 />
                             )}
 
@@ -167,7 +169,9 @@ class Profile extends Component {
                                             >
                                                 Edit Profile
                                             </Link>
-                                            <DeleteUser userId={user._id} />
+                                            <DeleteUser 
+                                                userId={user._id} 
+                                            />
                                         </div>
                                     </div>
                                 )}
@@ -181,7 +185,8 @@ class Profile extends Component {
                         <hr />
 
                         <ProfileTabs
-                            friends={user.friends}
+                            followers={user.followers}
+                            following={user.following}
                             posts={posts}
                         />
                     </div>

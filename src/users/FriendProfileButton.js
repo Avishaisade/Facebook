@@ -1,31 +1,31 @@
 import React, { Component } from "react";
-import { friend, unfriend } from "./apiUser";
+import { follow, unfollow } from "./apiUser";
 
-class FriendProfileButton extends Component {
-    friendClick = () => {
-        this.props.onButtonClick(friend);
+class FollowProfileButton extends Component {
+    followClick = () => {
+        this.props.onButtonClick(follow);
     };
 
-    unFriendClick = () => {
-        this.props.onButtonClick(unfriend);
+    unfollowClick = () => {
+        this.props.onButtonClick(unfollow);
     };
 
     render() {
         return (
             <div className="1">
-                {!this.props.friends ? (
+                {!this.props.following ? (
                     <button
-                        onClick={this.friendClick}
+                        onClick={this.followClick}
                         className="btn"
                     >
-                       Add Friend
+                        Add Friend
                     </button>
                 ) : (
                     <button
-                        onClick={this.unFriendClick}
-                        className="btn "
+                        onClick={this.unfollowClick}
+                        className="btn"
                     >
-                        unFriend
+                        UnFriend
                     </button>
                 )}
             </div>
@@ -33,4 +33,4 @@ class FriendProfileButton extends Component {
     }
 }
 
-export default FriendProfileButton;
+export default FollowProfileButton;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DefaultProfile from "../Images/defult_profile.jpg";
-
+import {updateUser } from "./apiUser";
 class Cover extends Component {
     render() {
         const user = this.props.user;

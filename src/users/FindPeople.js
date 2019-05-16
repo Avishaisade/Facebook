@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { findPeople, friend } from "./apiUser";
+import { findPeople, follow } from "./apiUser";
 import DefaultProfile from "../Images/defult_profile.jpg";
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth";
@@ -27,20 +27,20 @@ class FindPeople extends Component {
         });
     }
 
-    clickFriend = (user, i) => {
+    clickFollow = (user, i) => {
         const userId = isAuthenticated().user._id;
         const token = isAuthenticated().token;
 
-        friend(userId, token, user._id).then(data => {
+        follow(userId, token, user._id).then(data => {
             if (data.error) {
                 this.setState({ error: data.error });
             } else {
-                let tofriend = this.state.users;
-                tofriend.splice(i, 1);
+                let toFollow = this.state.users;
+                toFollow.splice(i, 1);
                 this.setState({
-                    users: tofriend,
+                    users: toFollow,
                     open: true,
-                    friendMessage:`You and ${user.name} are now friends`
+                    followMessage: `Following ${user.name}`
                 });
             }
         });
@@ -49,10 +49,10 @@ class FindPeople extends Component {
     renderUsers = users => (
         <div className="row">
             {users.map((user, i) => (
-                <div className="card " key={i}>
+                <div className="card col-md-4" key={i}>
                     <img
                         style={{ height: "200px", width: "auto" }}
-                        className="img"
+                        className="img-thumbnail"
                         src={`${process.env.REACT_APP_API_URL}/user/photo/${
                             user._id
                         }`}
@@ -64,16 +64,16 @@ class FindPeople extends Component {
                         <p className="card-text">{user.email}</p>
                         <Link
                             to={`/user/${user._id}`}
-                            className="btn"
+                            className="btn btn-raised btn-primary btn-sm"
                         >
                             View Profile
                         </Link>
 
                         <button
-                            onClick={() => this.clickFriend(user, i)}
+                            onClick={() => this.clickFollow(user, i)}
                             className="btn btn-raised btn-info float-right btn-sm"
                         >
-                            Add friend
+                            Add Friend
                         </button>
                     </div>
                 </div>
@@ -82,14 +82,13 @@ class FindPeople extends Component {
     );
 
     render() {
-        const { users, open, friendMessage } = this.state;
-        
+        const { users, open, followMessage } = this.state;
         return (
             <div className="container">
-                <h2 className="1">Find People</h2>
+                <h2 className="mt-5 mb-5">Find People</h2>
 
                 {open && (
-                    <div className="alert">{friendMessage}</div>
+                    <div className="alert alert-success">{followMessage}</div>
                 )}
 
                 {this.renderUsers(users)}

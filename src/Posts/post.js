@@ -24,12 +24,14 @@ class Post extends Component {
         }
         return (
             <div className="post">
-                <UserHeader user={user}></UserHeader>
+                <UserHeader 
+                    user={user}
+                />
                 <div className="postBody">
                     {post.body}
                 </div>
-                <Like></Like>
-                <Comment></Comment>
+                <Like/>
+                <Comment/>
             </div>
         );
     }

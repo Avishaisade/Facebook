@@ -1,29 +1,33 @@
-import React, { Component } from 'react';
-import Avatar from './avatar';
-import UserInfo from './userInfo';
-import TimeLabel from './timelabel';
+import React from 'react';
+import { Link } from "react-router-dom";
+import DefaultProfile from "../Images/defult_profile.jpg";
 
-class UserHeader extends Component {
-    constructor(props) {
-        super(props);
-        this.user = this.props.user;
-    }
 
-    render() {
-        const user = this.user;
-        user.avatarPic = user.avatarPic ? user.avatarPic : "https://i.pinimg.com/236x/d9/d1/3f/d9d13f399d9611c5c26f12545759162e--fb-profile-facebook-profile.jpg";
-        user.firstName = user.name;
-        user.lastName = user.name;
-        return (
-            <div className="UserHead">
-                <a href='/user'>
-                    <Avatar url={user.avatarPic} alt={user.firstName + " " + user.lastName} fullname={user.firstName + " " + user.lastName} online="true" />
-                    <UserInfo fullname={user.firstName + " " + user.lastName} />
-                    <TimeLabel dateAdded={Date.now()} />
-                </a>
-            </div>
-        );
-    }
+const UserHeader = (props) =>{
+    
+    const user = props;
+    const {_id, name} = user
+    const photoUrl= `${process.env.REACT_APP_API_URL}/user/photo/${_id}`;   
+    return(
+        <div>
+            <img
+                style={{
+                    borderRadius: "50%",
+                    border: "1px solid black"
+                }}
+                className=""
+                height="30px"
+                width="30px"
+                onError={i =>
+                    (i.target.src = `${DefaultProfile}`)
+                }
+                src={photoUrl}
+                alt={name}
+            />
+            <Link to={`/user/${_id}`}> {name}</Link>
+          
+</div>
+)
 }
 
 export default UserHeader;

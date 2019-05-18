@@ -1,5 +1,5 @@
 import React from "react";
-import Posts from "../posts/posts";
+import Timeline from "../core/Timeline";
 import NewPost from "../posts/newPost";
 
 
@@ -7,7 +7,7 @@ const Home = () => (
     <>
         <NewPost/>
         <div className="feed">
-            <Posts />
+            <Timeline />
         </div>
     </>
 );

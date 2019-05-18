@@ -134,7 +134,7 @@ class NewPost extends Component {
                     className="alert"
                     style={{ display: error ? "" : "none" }}
                 >
-                    {error}
+                    {/* {error} */}
                 </div>
 
                 {loading ? (

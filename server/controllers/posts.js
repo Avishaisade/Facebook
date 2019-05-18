@@ -8,7 +8,7 @@ exports.postById = (req, res, next, id) => {
         .populate("postedBy", "_id name")
         .populate("comments.postedBy", "_id name")
         .populate("postedBy", "_id name role")
-        .select("_id title body created likes comments photo")
+        .select("_id body created likes comments photo")
         .exec((err, post) => {
             if (err || !post) {
                 return res.status(400).json({
@@ -20,22 +20,16 @@ exports.postById = (req, res, next, id) => {
         });
 };
 
-// with pagination
 exports.getPosts = async (req, res) => {
     
-    const currentPage = req.query.page || 1;
-    const perPage = 6;
-    let totalItems;
-
-    const posts = await Post.find()
+   const posts = await Post.find()
         .countDocuments()
-        .then(count => {
-            totalItems = count;
+        .then(posts => {
             return Post.find()
                 .populate("comments", "text created")
                 .populate("comments.postedBy", "_id name")
                 .populate("postedBy", "_id name")
-                .select("_id title body created likes")             
+                .select("_id body created likes")             
         })
         .then(posts => {
             res.status(200).json(posts);
@@ -76,7 +70,7 @@ exports.createPost = (req, res, next) => {
 exports.postsByUser = (req, res) => {
     Post.find({ postedBy: req.profile._id })
         .populate("postedBy", "_id name")
-        .select("_id title body created likes")
+        .select("_id body created likes")
         .sort("_created")
         .exec((err, posts) => {
             if (err) {

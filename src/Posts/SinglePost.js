@@ -6,7 +6,9 @@ import { isAuthenticated } from "../auth";
 import Comment from "../comment/comment";
 
 class SinglePost extends Component {
-    state = {
+    constructor(props) {
+        super(props);
+    this.state = {
         post: "",
         redirectToHome: false,
         redirectToSignin: false,
@@ -14,15 +16,18 @@ class SinglePost extends Component {
         likes: 0,
         comments: []
     };
+    
+    }
 
     checkLike = likes => {
         const userId = isAuthenticated() && isAuthenticated().user._id;
         let match = likes.indexOf(userId) !== -1;
         return match;
     };
+    
 
     componentDidMount = () => {
-        const postId = this.props.match.params.postId;
+        const postId = this.props.postId
         singlePost(postId).then(data => {
             if (data.error) {
                 console.log(data.error);
@@ -95,18 +100,19 @@ class SinglePost extends Component {
                 
                 {like ? (
                     <h3 onClick={this.likeToggle}>
-                        <i
-                            className="fa fa-thumbs-up text-success bg-dark"
-                            style={{ padding: "10px", borderRadius: "50%" }}
+                        <img  
+                            src="https://img.icons8.com/windows/32/000000/facebook-like.png" 
+                            alt="like"
                         />{" "}
                         {likes} Like
                     </h3>
                 ) : (
                     <h3 onClick={this.likeToggle}>
-                        <i
-                            className="fa fa-thumbs-up text-warning bg-dark"
-                            style={{ padding: "10px", borderRadius: "50%" }}
+                       <img  
+                            src="https://img.icons8.com/windows/32/000000/facebook-like.png" 
+                            alt="like"
                         />{" "}
+
                         {likes} Like
                     </h3>
                 )}
@@ -118,12 +124,6 @@ class SinglePost extends Component {
                     on {new Date(post.created).toDateString()}
                 </p>
                 <div className="d-inline-block">
-                    <Link
-                        to={`/`}
-                        className="btn"
-                    >
-                        Back to posts
-                    </Link>
 
                     {isAuthenticated().user &&
                         isAuthenticated().user._id === post.postedBy._id && (
@@ -175,7 +175,6 @@ class SinglePost extends Component {
 
     render() {
         const { post, redirectToHome, redirectToSignin, comments } = this.state;
-
         if (redirectToHome) {
             return <Redirect to={`/`} />;
         } else if (redirectToSignin) {

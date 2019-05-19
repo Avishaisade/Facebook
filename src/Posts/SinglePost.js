@@ -90,8 +90,6 @@ class SinglePost extends Component {
     };
 
     renderPost = post => {
-        const posterId = post.postedBy ? `/user/${post.postedBy._id}` : "";
-        const posterName = post.postedBy ? post.postedBy.name : "Facebook User";
 
         return (
             <div className="card-body">

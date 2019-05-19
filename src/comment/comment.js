@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { comment, uncomment } from "../posts/apiPost";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-import DefaultProfile from "../Images/defult_profile.jpg";
 import UserHeader from "../users/userHeader";
 
 class Comment extends Component {

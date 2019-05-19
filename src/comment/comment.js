@@ -3,6 +3,7 @@ import { comment, uncomment } from "../posts/apiPost";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import DefaultProfile from "../Images/defult_profile.jpg";
+import UserHeader from "../users/userHeader";
 
 class Comment extends Component {
     state = {
@@ -83,68 +84,23 @@ class Comment extends Component {
 
         return (
             <div>
-                <form onSubmit={this.addComment}>
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            onChange={this.handleChange}
-                            value={this.state.text}
-                            className="form-control"
-                            placeholder="Leave a comment..."
-                        />
-                        <button className="btn">
-                            Post
-                        </button>
-                    </div>
-                </form>
 
-                <div
-                    className="alert"
-                    style={{ display: error ? "" : "none" }}
-                >
-                    {error}
-                </div>
-
-                <div className="col">
-                    <h3 className="text">{comments.length} Comments</h3>
-                    <hr />
+                <div>
                     {comments.map((comment, i) => (
                         <div key={i}>
                             <div>
-                                <Link to={`/user/${comment.postedBy._id}`}>
-                                    <img
-                                        style={{
-                                            borderRadius: "50%",
-                                            border: "1px solid black"
-                                        }}
-                                        className=""
-                                        height="30px"
-                                        width="30px"
-                                        onError={i =>
-                                            (i.target.src = `${DefaultProfile}`)
-                                        }
-                                        src={`${
-                                            process.env.REACT_APP_API_URL
-                                        }/user/photo/${comment.postedBy._id}`}
-                                        alt={comment.postedBy.name}
-                                    />
-                                </Link>
                                 <div>
-                                    <p className="lead">{comment.text}</p>
                                     <p className="">
                                         <Link
                                             to={`/user/${comment.postedBy._id}`}
                                         >
-                                            {comment.postedBy.name}{" "}
+                                            <UserHeader user={comment.postedBy} post={comment} />
+                                            <span className="_comment_t">{comment.text}</span>
                                         </Link>
-                                        on{" "}
-                                        {new Date(
-                                            comment.created
-                                        ).toDateString()}
                                         <span>
                                             {isAuthenticated().user &&
                                                 isAuthenticated().user._id ===
-                                                    comment.postedBy._id && (
+                                                comment.postedBy._id && (
                                                     <>
                                                         <span
                                                             onClick={() =>
@@ -152,9 +108,9 @@ class Comment extends Component {
                                                                     comment
                                                                 )
                                                             }
-                                                            className="text"
+                                                            className="_linker"
                                                         >
-                                                            Remove
+                                                            Delete
                                                         </span>
                                                     </>
                                                 )}
@@ -164,7 +120,31 @@ class Comment extends Component {
                             </div>
                         </div>
                     ))}
+
+                    <form onSubmit={this.addComment}>
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                onChange={this.handleChange}
+                                value={this.state.text}
+                                className="form-control"
+                                placeholder="Leave a comment..."
+                            />
+                            <button className="btn">
+                                Post
+                        </button>
+                        </div>
+                    </form>
+
                 </div>
+
+                <div
+                    className="alert"
+                    style={{ display: error ? "" : "none" }}
+                >
+                    {error}
+                </div>
+
             </div>
         );
     }

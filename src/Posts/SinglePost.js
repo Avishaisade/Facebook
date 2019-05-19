@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { singlePost} from "./apiPost";
+import { singlePost } from "./apiPost";
 import { Link, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 
@@ -20,7 +20,7 @@ class SinglePost extends Component {
             } else {
                 this.setState({
                     post: data,
-                   
+
                 });
             }
         });
@@ -35,7 +35,7 @@ class SinglePost extends Component {
         }
 
         return (
-            <div className="container">
+            <div className="singlePost clearfix-t">
                 <h2 className="display">{post.title}</h2>
 
                 {!post ? (
@@ -43,10 +43,10 @@ class SinglePost extends Component {
                         <h2>Loading...</h2>
                     </div>
                 ) : (
-                    this.renderPost(post)
-                )}
+                        this.renderPost(post)
+                    )}
 
-                
+
             </div>
         );
     }

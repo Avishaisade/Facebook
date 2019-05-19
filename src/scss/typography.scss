@@ -2,4 +2,12 @@ a, a:link {
     color: #365899;
     cursor: pointer;
     text-decoration: none;
+
+    &.link_sm {
+        color: #3578e5;
+
+        &:hover{
+            text-decoration: underline;
+        }
+    }
 }

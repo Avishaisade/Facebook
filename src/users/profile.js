@@ -10,6 +10,7 @@ import ProfileTabs from "./ProfileTabs";
 import DefaultProfile from "../Images/defult_profile.jpg";
 import { listByUser } from "../posts/apiPost";
 import NewPost from "../posts/newPost";
+import UserDetails from "./userDetails";
 
 class Profile extends Component {
     constructor() {
@@ -101,13 +102,15 @@ class Profile extends Component {
                 <Cover
                     url={photoUrl}
                     coverUrl={coverPhotoUrl}
-                    user={user} />
+                    user={user}
+                    followers={user.followers.length} />
                 {/* <Avatar
                     name={user.name}
                     url= {photoUrl}     
                     onError={i => (i.target.src = `${DefaultProfile}`)}
                  /> */}
-                <NewPost/>
+                <UserDetails user={user} />
+                <NewPost />
                 <div className="row">
                     {/* <div className="col">
                         <img
@@ -119,13 +122,6 @@ class Profile extends Component {
                     </div> */}
 
                     <div className="col">
-                        <div className="lead ">
-                            <p>Hello {user.name}</p>
-                            <p>Email: {user.email}</p>
-                            <p>{`Joined ${new Date(
-                                user.created
-                            ).toDateString()}`}</p>
-                        </div>
 
                         {isAuthenticated().user &&
                             isAuthenticated().user._id === user._id ? (
@@ -169,8 +165,8 @@ class Profile extends Component {
                                             >
                                                 Edit Profile
                                             </Link>
-                                            <DeleteUser 
-                                                userId={user._id} 
+                                            <DeleteUser
+                                                userId={user._id}
                                             />
                                         </div>
                                     </div>

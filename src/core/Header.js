@@ -44,13 +44,13 @@ const Header = ({ history }) => (
                     )}
                     {isAuthenticated() && (
                         <>
-                            <Link
+                            {/* <Link
                                 to={`/findpeople`}
                                 style={isActive(history, `/findpeople`)}
                                 className=""
                             >
                                 Find People
-                    </Link>
+                            </Link> */}
 
                             <span
                                 className=""
@@ -135,5 +135,4 @@ const Header = ({ history }) => (
     </div>
 );
 export default withRouter(Header);
-
 

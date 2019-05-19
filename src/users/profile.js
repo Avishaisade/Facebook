@@ -11,6 +11,7 @@ import DefaultProfile from "../Images/defult_profile.jpg";
 import { listByUser } from "../posts/apiPost";
 import NewPost from "../posts/newPost";
 import UserDetails from "./userDetails";
+import SinglePost from "../posts/SinglePost";
 
 class Profile extends Component {
     constructor() {
@@ -182,9 +183,18 @@ class Profile extends Component {
 
                         <ProfileTabs
                             followers={user.followers}
-                            following={user.following}
-                            posts={posts}
+                            following={user.following}                            
                         />
+                       <div className="col">
+                        <hr />
+                        {posts.map((post, i) => (
+                            <div key={i}>
+                                <SinglePost
+                                    postId={[post._id]}
+                                />
+                            </div>
+                        ))}
+                    </div>
                     </div>
                 </div>
             </div>

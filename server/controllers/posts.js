@@ -20,25 +20,15 @@ exports.postById = (req, res, next, id) => {
         });
 };
 
-// with pagination
 exports.getPosts = async (req, res) => {
     
-    const currentPage = req.query.page || 1;
-    const perPage = 6;
-    let totalItems;
-
-    const posts = await Post.find()
+   const posts = await Post.find()
         .countDocuments()
-        .then(count => {
-            totalItems = count;
+        .then(posts => {
             return Post.find()
-                .skip((currentPage - 1) * perPage)
                 .populate("comments", "text created")
                 .populate("comments.postedBy", "_id name")
                 .populate("postedBy", "_id name")
-                .select("_id body created likes")
-                .limit(perPage)
-                .sort({ created: -1 });
         })
         .then(posts => {
             res.status(200).json(posts);

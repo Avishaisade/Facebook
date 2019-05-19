@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 import { create } from "./apiPost";
 import { Redirect } from "react-router-dom";
@@ -92,9 +93,7 @@ class NewPost extends Component {
     render() {
         const {
             body,
-            photo,
             user,
-            error,
             loading,
             redirectToProfile
         } = this.state;
@@ -107,12 +106,12 @@ class NewPost extends Component {
             <div className="fbTimelineComposerUnit clearfix-t">
                 <div className="postMenu">
                     <div>
-                        <a>
+                        <Link to={`/`}>
                             <span className="c_post">
                                 <i className="icon"></i>
                                 Create Post
                             </span>
-                        </a>
+                        </Link>
                     </div>
                 </div>
 

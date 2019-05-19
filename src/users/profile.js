@@ -3,11 +3,10 @@ import { isAuthenticated } from "../auth";
 import { Redirect, Link } from "react-router-dom";
 import { read } from "./apiUser";
 import Cover from './cover';
-import Avatar from './avatar';
 import DeleteUser from "./DeleteUser";
 import FriendProfileButton from "./FriendProfileButton";
 import ProfileTabs from "./ProfileTabs";
-import DefaultProfile from "../Images/defult_profile.jpg";
+import DefaultProfile from "../Images/default_profile.png";
 import { listByUser } from "../posts/apiPost";
 import NewPost from "../posts/newPost";
 import UserDetails from "./userDetails";
@@ -183,18 +182,18 @@ class Profile extends Component {
 
                         <ProfileTabs
                             followers={user.followers}
-                            following={user.following}                            
+                            following={user.following}
                         />
-                       <div className="col">
-                        <hr />
-                        {posts.map((post, i) => (
-                            <div key={i}>
-                                <SinglePost
-                                    postId={[post._id]}
-                                />
-                            </div>
-                        ))}
-                    </div>
+                        <div className="col">
+                            <hr />
+                            {posts.map((post, i) => (
+                                <div key={i}>
+                                    <SinglePost
+                                        postId={[post._id]}
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

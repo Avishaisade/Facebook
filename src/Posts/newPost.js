@@ -4,6 +4,14 @@ import { create } from "./apiPost";
 import { Redirect } from "react-router-dom";
 import DefaultProfile from "../Images/defult_profile.jpg";
 
+let photoUrl = DefaultProfile;
+if (isAuthenticated()) {
+    photoUrl = isAuthenticated().user._id
+        ? `${process.env.REACT_APP_API_URL}/user/photo/${
+        isAuthenticated().user._id
+        }?${new Date().getTime()}`
+        : { DefaultProfile };
+}
 
 class NewPost extends Component {
     constructor() {
@@ -67,34 +75,17 @@ class NewPost extends Component {
         }
     };
 
-    newPostForm = ( body) => (
+    newPostForm = (body) => (
         <form>
-            
 
-            <div className="form-group">
-                <textarea
-                    onChange={this.handleChange("body")}
-                    type="text"
-                    className="form-control"
-                    value={body}
-                />
-            </div>
-            <div className="form-group">
-                <label className="text-muted">Post Photo</label>
-                <input
-                    onChange={this.handleChange("photo")}
-                    type="file"
-                    accept="image/*"
-                    className="form-control"
-                />
-            </div>
+            <textarea
+                onChange={this.handleChange("body")}
+                type="text"
+                className="c_post_txt"
+                value={body}
+                placeholder="What's on your mind?"
+            />
 
-            <button
-                onClick={this.clickSubmit}
-                className="btn"
-            >
-                Create Post
-            </button>
         </form>
     );
 
@@ -113,47 +104,59 @@ class NewPost extends Component {
         }
 
         return (
-            <div className="container">
-
-                <img
-                    style={{
-                        borderRadius: "50%",
-                        border: "1px solid black"
-                    }}
-                    className="float-left mr-2"
-                    height="30px"
-                    width="30px"
-                    onError={i =>
-                        (i.target.src = `${DefaultProfile}`)
-                    }
-                    src={`${
-                        process.env.REACT_APP_API_URL
-                    }/user/photo/${user._id}`}
-                    alt={user.name}
-                />
-                <div
-                    className="alert"
-                    style={{ display: error ? "" : "none" }}
-                >
-                    {/* {error} */}
+            <div className="fbTimelineComposerUnit clearfix-t">
+                <div className="postMenu">
+                    <div>
+                        <a>
+                            <span className="c_post">
+                                <i className="icon"></i>
+                                Create Post
+                            </span>
+                        </a>
+                    </div>
                 </div>
-                <h2 className="mt">Create a new post</h2>
-                {/* <div
-                    className="alert"
-                    style={{ display: error ? "" : "none" }}
-                >
-                    {error}
-                </div> */}
 
                 {loading ? (
                     <div className="text">
                         <h2>Loading...</h2>
                     </div>
                 ) : (
-                    ""
-                )}
+                        ""
+                    )}
 
-                {this.newPostForm(body)}
+                <div className="_1col">
+                    <img src={photoUrl} alt="User Picture" />
+                </div>
+                <div className="_2col">
+                    {this.newPostForm(body)}
+                </div>
+
+                <div className="footer">
+                    <ul>
+                        <li>
+                            <div className="btn">
+                                <i className="icon pic"></i>
+                                <span>Photo/Video</span>
+
+                                <input
+                                    onChange={this.handleChange("photo")}
+                                    type="file"
+                                    accept="image/*"
+                                />
+                            </div>
+                        </li>
+                        <li className="_right">
+                            <button
+                                className="btn"
+                                onClick={this.clickSubmit}
+                            >
+                                <i className="icon approve"></i>
+                                <span>Create Post</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         );
     }

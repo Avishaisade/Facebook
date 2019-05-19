@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { singlePost, remove, like, unlike } from "./apiPost";
-// import DefaultPost from "../images/";
 import { Link, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 import Comment from "../comment/comment";
@@ -182,14 +181,16 @@ class SinglePost extends Component {
         }
 
         return (
-            <div className="container">
+            <div className="singlePost clearfix-t">
+                <h2 className="display">{post.title}</h2>
+
                 {!post ? (
                     <div className="text">
                         <h2>Loading...</h2>
                     </div>
                 ) : (
-                    this.renderPost(post)
-                )}
+                        this.renderPost(post)
+                    )}
 
                 <Comment
                     postId={post._id}

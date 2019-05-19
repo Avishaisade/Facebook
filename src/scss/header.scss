@@ -7,6 +7,42 @@
     height: 43px;
     padding-top: 8px;
 
+    ._collapsed {
+        background-clip: padding-box;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, .15);
+        border-radius: 3px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
+        border-radius: 3px;
+
+        ul {
+            padding: 5px 0;
+            list-style-type: none;
+            margin: 0;
+
+            li {
+                overflow: hidden;
+                white-space: nowrap;
+
+                span {
+                    border: solid #fff;
+                    border-width: 1px 0;
+                    color: #1d2129;
+                    font-size: 12px;
+                    -webkit-font-smoothing: antialiased;
+                    font-weight: normal;
+                    line-height: 22px;
+                    padding: 0 12px;
+                    max-width: 300px;
+                    display: block;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+
     .inner-container {
         padding: 0;
         width: 900px;

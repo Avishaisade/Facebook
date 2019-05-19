@@ -114,6 +114,7 @@ class NewPost extends Component {
 
         return (
             <div className="container">
+<<<<<<< HEAD
                 <img
                     style={{
                         borderRadius: "50%",
@@ -136,6 +137,15 @@ class NewPost extends Component {
                 >
                     {/* {error} */}
                 </div>
+=======
+                <h2 className="mt">Create a new post</h2>
+                {/* <div
+                    className="alert"
+                    style={{ display: error ? "" : "none" }}
+                >
+                    {error}
+                </div> */}
+>>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d
 
                 {loading ? (
                     <div className="text">
@@ -144,6 +154,10 @@ class NewPost extends Component {
                 ) : (
                     ""
                 )}
+<<<<<<< HEAD
+=======
+
+>>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d
                 {this.newPostForm(body)}
             </div>
         );

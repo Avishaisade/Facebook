@@ -50,7 +50,11 @@ const Header = ({ history }) => (
                                 className=""
                             >
                                 Find People
+<<<<<<< HEAD
                             </Link> */}
+=======
+                    </Link>
+>>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d
 
                             <span
                                 className=""

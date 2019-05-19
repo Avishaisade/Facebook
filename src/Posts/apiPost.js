@@ -27,8 +27,13 @@ export const listByUser = (userId, token) => {
         })
         .catch(err => console.log(err));
 };
+<<<<<<< HEAD
 export const list = () => {
     return fetch(`${process.env.REACT_APP_API_URL}/posts/`, {
+=======
+export const list = page => {
+    return fetch(`${process.env.REACT_APP_API_URL}/posts/?page=${page}`, {
+>>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d
         method: "GET"
     })
         .then(response => {
@@ -45,6 +50,7 @@ export const singlePost = postId => {
             return response.json();
         })
         .catch(err => console.log(err));
+<<<<<<< HEAD
 };
 
 export const remove = (postId, token) => {
@@ -141,3 +147,6 @@ export const uncomment = (userId, token, postId, comment) => {
         })
         .catch(err => console.log(err));
 };
+=======
+};
+>>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d

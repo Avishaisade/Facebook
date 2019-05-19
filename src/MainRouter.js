@@ -28,11 +28,19 @@ const MainRouter = () => (
                 path="/post/create" 
                 component={NewPost} 
             />
+<<<<<<< HEAD
             <Route
                  exact 
                  path="/post/:postId" 
                  component={SinglePost} 
             />
+=======
+            {/* <Route
+                 exact 
+                 path="/post/:postId" 
+                 component={SinglePost} 
+            /> */}
+>>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d
             <PrivateRoute
                 exact
                 path="/post/edit/:postId"

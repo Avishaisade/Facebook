@@ -18,6 +18,7 @@ mongoose
 mongoose.connection.on("error", err => {
     console.log(`DB connection error: ${err.message}`);
 });
+mongoose.set('useFindAndModify', false);
 
 // routes requirement
 const postRoutes = require("./Routes/posts.route");

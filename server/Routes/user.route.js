@@ -5,11 +5,11 @@ const {
     getUser,
     updateUser,
     deleteUser,
-    userCoverPhoto,
     userPhoto,
-    addFriend,
+    userCoverPhoto,
+    addFollowing,
     addFollower,
-    removeFriend,
+    removeFollowing,
     removeFollower,
     findPeople,
     hasAuthorization
@@ -19,8 +19,8 @@ const { requireSignin } = require("../controllers/auth");
 const route = Router();
 
 
-route.put("/user/friends", requireSignin, addFriend, addFollower);
-route.put("/user/unfriends", requireSignin, removeFriend, removeFollower);
+route.put("/user/follow", requireSignin, addFollowing, addFollower);
+route.put("/user/unfollow", requireSignin, removeFollowing, removeFollower);
 
 route.get("/users", allUsers);
 route.get("/user/:userId", getUser);
@@ -30,10 +30,11 @@ route.delete("/user/:userId", requireSignin, hasAuthorization, deleteUser);
 route.get("/user/photo/:userId", userPhoto);
 route.get("/user/coverPhoto/:userId", userCoverPhoto);
 
-// who to follow
+// find friends
 route.get("/user/findpeople/:userId", requireSignin, findPeople);
 
 // any route containing :userId, our app will first execute userByID()
 route.param("userId", userById);
 
 module.exports = route;
+

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
 import { singlePost, remove, like, unlike } from "./apiPost";
 // import DefaultPost from "../images/";
 import { Link, Redirect } from "react-router-dom";
@@ -10,14 +9,6 @@ class SinglePost extends Component {
     constructor(props) {
         super(props);
     this.state = {
-=======
-import { singlePost} from "./apiPost";
-import { Link, Redirect } from "react-router-dom";
-import { isAuthenticated } from "../auth";
-
-class SinglePost extends Component {
-    state = {
->>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d
         post: "",
         redirectToHome: false,
         redirectToSignin: false,
@@ -25,7 +16,6 @@ class SinglePost extends Component {
         likes: 0,
         comments: []
     };
-<<<<<<< HEAD
     
     }
 
@@ -38,17 +28,12 @@ class SinglePost extends Component {
 
     componentDidMount = () => {
         const postId = this.props.postId
-=======
-    componentDidMount = () => {
-        const postId = this.props.match.params.postId;
->>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d
         singlePost(postId).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
                 this.setState({
                     post: data,
-<<<<<<< HEAD
                     likes: data.likes.length,
                     like: this.checkLike(data.likes),
                     comments: data.comments
@@ -78,14 +63,10 @@ class SinglePost extends Component {
                 this.setState({
                     like: !this.state.like,
                     likes: data.likes.length
-=======
-                   
->>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d
                 });
             }
         });
     };
-<<<<<<< HEAD
 
     deletePost = () => {
         const postId = this.props.match.params.postId;
@@ -194,11 +175,6 @@ class SinglePost extends Component {
 
     render() {
         const { post, redirectToHome, redirectToSignin, comments } = this.state;
-=======
-    render() {
-        const { post, redirectToHome, redirectToSignin, comments } = this.state;
-
->>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d
         if (redirectToHome) {
             return <Redirect to={`/`} />;
         } else if (redirectToSignin) {
@@ -207,11 +183,6 @@ class SinglePost extends Component {
 
         return (
             <div className="container">
-<<<<<<< HEAD
-=======
-                <h2 className="display">{post.title}</h2>
-
->>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d
                 {!post ? (
                     <div className="text">
                         <h2>Loading...</h2>
@@ -220,24 +191,14 @@ class SinglePost extends Component {
                     this.renderPost(post)
                 )}
 
-<<<<<<< HEAD
                 <Comment
                     postId={post._id}
                     comments={comments.reverse()}
                     updateComments={this.updateComments}
                 />
-=======
-                
->>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d
             </div>
         );
     }
 }
 
-<<<<<<< HEAD
 export default SinglePost;
-=======
-export default SinglePost;
-
-
->>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d

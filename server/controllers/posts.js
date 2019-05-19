@@ -29,13 +29,6 @@ exports.getPosts = async (req, res) => {
                 .populate("comments", "text created")
                 .populate("comments.postedBy", "_id name")
                 .populate("postedBy", "_id name")
-<<<<<<< HEAD
-                .select("_id body created likes")             
-=======
-                .select("_id body created likes")
-                .limit(perPage)
-                .sort({ created: -1 });
->>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d
         })
         .then(posts => {
             res.status(200).json(posts);

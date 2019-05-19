@@ -1,21 +1,14 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
 import { singlePost, update } from "./apiPost";
 import { isAuthenticated } from "../auth";
 import { Redirect } from "react-router-dom";
 
-=======
->>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d
 
 class EditPost extends Component {
     constructor() {
         super();
         this.state = {
             id: "",
-<<<<<<< HEAD
-=======
-            title: "",
->>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d
             body: "",
             redirectToProfile: false,
             error: "",
@@ -23,7 +16,6 @@ class EditPost extends Component {
             loading: false
         };
     }
-<<<<<<< HEAD
 
     init = postId => {
         singlePost(postId).then(data => {
@@ -173,11 +165,3 @@ class EditPost extends Component {
 }
 
 export default EditPost;
-=======
-}
-
-
-
-
-    export default EditPost;
->>>>>>> b13d7e46a26203cdaf64209c5d9e60f68dabbc7d

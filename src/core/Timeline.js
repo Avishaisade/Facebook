@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { list } from "../posts/apiPost";
+import {listOfUsers } from "../posts/apiPost";
 import SinglePost from "../posts/SinglePost";
 
 class Timeline extends Component {
@@ -11,7 +11,7 @@ class Timeline extends Component {
     }
 
     loadPosts =() => {
-        list().then(data => {
+        listOfUsers ().then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
@@ -23,7 +23,6 @@ class Timeline extends Component {
     componentDidMount() {
         this.loadPosts(this.state.posts);
     }
-
     renderPosts = posts => {
         return (
             <div className="col">

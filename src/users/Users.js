@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { list } from "./apiUser";
+import { getUsers } from "./apiUser";
 import { Link } from "react-router-dom";
 import DefaultProfile from "../Images/defult_profile.jpg";
 
@@ -12,7 +12,7 @@ class Users extends Component {
     }
 
     componentDidMount() {
-        list().then(data => {
+        getUsers().then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {

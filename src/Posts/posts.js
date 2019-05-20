@@ -1,8 +1,15 @@
 import React, { Component } from "react";
+import {listOfUsers } from "./apiPost";
+import { Link } from "./node_modules/react-router-dom";
+import UserHeader from "../users/userHeader";
+// import DefaultProfile from "../Images/defult_profile.jpg";
+import moment from './node_modules/moment';
+import SinglePost from './SinglePost';
 import { list } from "./apiPost";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 import UserHeader from "../users/userHeader";
 import moment from 'moment';
+
 
 
 class Posts extends Component {
@@ -13,8 +20,8 @@ class Posts extends Component {
         };
     }
 
-    loadPosts = () => {
-        list().then(data => {
+    loadPosts =() => {
+        listOfUsers().then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {

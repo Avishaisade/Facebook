@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { singlePost, update } from "./apiPost";
+import React, { Component } from "./node_modules/react";
+import { singlePost, updatePost } from "./apiPost";
 import { isAuthenticated } from "../auth";
-import { Redirect } from "react-router-dom";
+import { Redirect } from "./node_modules/react-router-dom";
 
 
 class EditPost extends Component {
@@ -71,7 +71,7 @@ class EditPost extends Component {
             const postId = this.props.match.params.postId;
             const token = isAuthenticated().token;
 
-            update(postId, token, this.postData).then(data => {
+            updatePost(postId, token, this.postData).then(data => {
                 if (data.error) this.setState({ error: data.error });
                 else {
                     this.setState({
@@ -124,7 +124,7 @@ class EditPost extends Component {
         } = this.state;
 
         if (redirectToProfile) {
-            return <Redirect to={`/user/${isAuthenticated().user._id}`} />;
+            return <Redirect to={`/users/${isAuthenticated().user._id}`} />;
         }
 
         return (

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { singlePost, remove, like, unlike } from "./apiPost";
-import { Link, Redirect } from "react-router-dom";
+import React, { Component } from "./node_modules/react";
+import { singlePost, removePost , like, unlike } from "./apiPost";
+import { Link, Redirect } from "./node_modules/react-router-dom";
 import { isAuthenticated } from "../auth";
 import Comment from "../comment/comment";
 import UserHeader from "../users/userHeader";
@@ -71,7 +71,7 @@ class SinglePost extends Component {
     deletePost = () => {
         const postId = this.props.match.params.postId;
         const token = isAuthenticated().token;
-        remove(postId, token).then(data => {
+        removePost (postId, token).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
@@ -91,6 +91,11 @@ class SinglePost extends Component {
 
     renderPost = post => {
 
+        const posterId = post.postedBy ? `/users/${post.postedBy._id}/posts` : "";
+        const posterName = post.postedBy ? post.postedBy.name : " Unknown";
+
+        const { like, likes } = this.state;
+
         return (
             <div className="card-body">
                 <UserHeader user={post.postedBy} post={post} />
@@ -102,7 +107,7 @@ class SinglePost extends Component {
                         isAuthenticated().user._id === post.postedBy._id && (
                             <>
                                 <Link
-                                    to={`/post/edit/${post._id}`}
+                                    to={`/posts/${post._id}`}
                                     className="btn"
                                 >
                                     Update Post

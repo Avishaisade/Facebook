@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
 import { Redirect, Link } from "react-router-dom";
-import { read } from "./apiUser";
+import {listByUser } from "../posts/apiPost";
 import Cover from './cover';
 import DeleteUser from "./DeleteUser";
 import FriendProfileButton from "./FriendProfileButton";
 import ProfileTabs from "./ProfileTabs";
-import DefaultProfile from "../Images/default_profile.png";
-import { listByUser } from "../posts/apiPost";
+import {getUsersbyId} from "./apiUser";
 import NewPost from "../posts/newPost";
 import UserDetails from "./userDetails";
 import SinglePost from "../posts/SinglePost";
@@ -45,10 +44,10 @@ class Profile extends Component {
             }
         });
     };
-
+// read
     init = userId => {
         const token = isAuthenticated().token;
-        read(userId, token).then(data => {
+        getUsersbyId(userId, token).then(data => {
             if (data.error) {
                 this.setState({ redirectToSignin: true });
             } else {
@@ -59,7 +58,7 @@ class Profile extends Component {
         });
     };
 
-
+    // listByUser
     loadPosts = userId => {
         const token = isAuthenticated().token;
         listByUser(userId, token).then(data => {
@@ -85,55 +84,33 @@ class Profile extends Component {
         const { redirectToSignin, user, posts } = this.state;
         if (redirectToSignin) return <Redirect to="/signin" />;
 
-        const photoUrl = user._id
-            ? `${process.env.REACT_APP_API_URL}/user/photo/${
-            user._id
-            }?${new Date().getTime()}`
-            : { DefaultProfile };
-
-        const coverPhotoUrl = user._id
-            ? `${process.env.REACT_APP_API_URL}/user/coverPhoto/${
-            user._id
-            }?${new Date().getTime()}`
-            : { DefaultProfile };
+        // const photoUrl = getProfilePhoto( isAuthenticated().user._id); 
+        // const coverPhotoUrl = getCoverPhoto( isAuthenticated().user._id); 
 
         return (
             <div className="globalContainer">
                 <Cover
-                    url={photoUrl}
-                    coverUrl={coverPhotoUrl}
+                    // photoUrl={photoUrl}
+                    // coverUrl={coverPhotoUrl}
                     user={user}
                     followers={user.followers.length} />
-                {/* <Avatar
-                    name={user.name}
-                    url= {photoUrl}     
-                    onError={i => (i.target.src = `${DefaultProfile}`)}
-                 /> */}
                 <UserDetails user={user} />
-                <NewPost />
                 <div className="row">
-                    {/* <div className="col">
-                        <img
-                            className="img-thumbnail"
-                            src={photoUrl}
-                            onError={i => (i.target.src = `${DefaultProfile}`)}
-                            alt={user.name}
-                        />
-                    </div> */}
 
                     <div className="col">
 
                         {isAuthenticated().user &&
                             isAuthenticated().user._id === user._id ? (
                                 <div className="1">
+                                     <NewPost />
                                     <Link
                                         className="btn"
-                                        to={`/post/create`}
+                                        to={`/posts/${isAuthenticated().user._id}`}
                                     >
                                         Create Post
                                 </Link>
 
-                                    <Link
+                                    <Link 
                                         className="btn "
                                         to={`/user/edit/${user._id}`}
                                     >
@@ -151,7 +128,7 @@ class Profile extends Component {
                         <div>
                             {isAuthenticated().user &&
                                 isAuthenticated().user.role === "admin" && (
-                                    <div class="1">
+                                    <div className="1">
                                         <div className="card-body">
                                             <h5 className="card-title">
                                                 Admin
@@ -161,7 +138,7 @@ class Profile extends Component {
                                             </p>
                                             <Link
                                                 className="btn"
-                                                to={`/user/edit/${user._id}`}
+                                                to={`/users/${user._id}`}
                                             >
                                                 Edit Profile
                                             </Link>

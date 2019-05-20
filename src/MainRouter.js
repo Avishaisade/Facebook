@@ -31,14 +31,9 @@ const MainRouter = () => (
 
             <Route
                  exact 
-                 path="/post/:postId" 
+                 path="/post/:postId" D
                  component={SinglePost} 
             />
-            {/* <Route
-                 exact 
-                 path="/post/:postId" 
-                 component={SinglePost} 
-            /> */}
 
             <PrivateRoute
                 exact
@@ -72,7 +67,7 @@ const MainRouter = () => (
             />
             <PrivateRoute
                 exact
-                path="/user/:userId"
+                path="/users/:userId"
                 component={Profile}
             />
         </Switch>

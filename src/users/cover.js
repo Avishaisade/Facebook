@@ -1,34 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { updateUser } from "./apiUser";
+import {getProfilePhoto ,getCoverPhoto} from "./apiUser";
 import DefaultProfile from "../Images/default_profile.png";
+
 class Cover extends Component {
 
     render() {
         const user = this.props.user;
-        // console.log(user);
+        const photoUrl = getProfilePhoto(user._id); 
+        const coverPhotoUrl = getCoverPhoto(user._id); 
+        let coverPhoto= coverPhotoUrl;
+            if(!coverPhoto)
+            {coverPhoto= DefaultProfile}
         return (
             <div className="coverHeaderContainer">
-                {/* <form>
-                    <div className="form-group">
-                    <label className="text-muted">Profile Photo</label>
-                    <input
-                        // onChange={this.handleChange("photo")}
-                        type="file"
-                        accept="image/*"
-                        className="form-control"
-                    />
-                     </div>
-                     <button
-                    onClick={this.clickSubmit}
-                    className="btn"
-                >
-                    Update
-                </button>
-                </form> */}
                 <div className="userCoverContainer">
                     <div className="coverImage">
                         <img
-                            src={this.props.coverUrl}
+                            src={coverPhoto}
                             alt={user.name}
                             onError={i => (i.target.src = `${"https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2017/08/facebook-cover-photo-header.jpg"}`)}
                         />
@@ -41,14 +31,35 @@ class Cover extends Component {
                     </div>
                     <div className="headerMenu">
                         <ul className="_6_7 clearfix">
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">Timeline</a></div></li>
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">About</a></div></li>
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">Friends <span class="_gs6">{this.props.followers}</span></a></div></li>
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">Photos</a></div></li>
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">Archive</a></div></li>
+                            <li>
+                                <div className="_6a _6-6 _9rx _6-7">
+                                    <a className="_9ry _p" href="#">Timeline</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="_6a _6-6 _9rx _6-7">
+                                    <a className="_9ry _p" href="#">About</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="_6a _6-6 _9rx _6-7">
+                                    <a className="_9ry _p" href="#">Friends 
+                                        <span className="_gs6">{this.props.followers}</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="_6a _6-6 _9rx _6-7">
+                                    <a className="_9ry _p" href="#">Photos</a>
+                                </div>
+                            </li>
+                            <li><div className="_6a _6-6 _9rx _6-7">
+                                <a className="_9ry _p" href="#">Archive</a>
+                                </div>
+                            </li>
                         </ul>
                         <img className="profilePicThumb"
-                            src={this.props.url}
+                            src={photoUrl }
                             alt={user.name}
                             onError={i => (i.target.src = `${DefaultProfile}`)}
                         />
@@ -61,7 +72,7 @@ class Cover extends Component {
                                 </span>
                             </h1>
                         </div>
-                        <div class="_actionBar">
+                        <div className="_actionBar">
                             <Link to={`/user/edit/${user._id}`}><i className="userIcon_2 edit"></i> Edit Profile</Link>
                         </div>
                     </div>

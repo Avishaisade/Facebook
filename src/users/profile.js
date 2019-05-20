@@ -69,11 +69,6 @@ class Profile extends Component {
             }
         });
     };
-    loadNewPost= userId =>{
-        if(userId===isAuthenticated().user._id){
-            return <NewPost />
-        }else{return null;}
-    }
 
     componentDidMount() {
         const userId = this.props.match.params.userId;

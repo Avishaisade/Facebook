@@ -159,18 +159,18 @@ class Profile extends Component {
 
                         <ProfileTabs
                             followers={user.followers}
-                            following={user.following}                            
+                            following={user.following}
                         />
-                       <div className="col">
-                        <hr />
-                        {posts.map((post, i) => (
-                            <div key={i}>
-                                <SinglePost
-                                    postId={[post._id]}
-                                />
-                            </div>
-                        ))}
-                    </div>
+                        <div className="col">
+                            <hr />
+                            {posts.map((post, i) => (
+                                <div key={i}>
+                                    <SinglePost
+                                        postId={[post._id]}
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

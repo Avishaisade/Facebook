@@ -1,4 +1,4 @@
-a, a:link {
+a, a:link, ._linker {
     color: #365899;
     cursor: pointer;
     text-decoration: none;
@@ -11,3 +11,5 @@ a, a:link {
         }
     }
 }
+
+.pointer {cursor:pointer;}

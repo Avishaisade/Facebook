@@ -2,7 +2,6 @@ import React  from 'react';
 import DefaultProfile from "../Images/defult_profile.jpg";
 import {getProfilePhoto} from "../users/apiUser";
 
-
 const Avatar= (props)=> {
 
     const {_id, name}= props;
@@ -17,13 +16,12 @@ const Avatar= (props)=> {
                     alt={name}
                     />
             </div>
-        );
+        );           
 }
-    
+
 
 export default Avatar;
 
 
 
-  
-                
+

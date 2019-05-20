@@ -3,19 +3,20 @@ import { singlePost, removePost , like, unlike } from "./apiPost";
 import { Link, Redirect } from "./node_modules/react-router-dom";
 import { isAuthenticated } from "../auth";
 import Comment from "../comment/comment";
+import UserHeader from "../users/userHeader";
 
 class SinglePost extends Component {
     constructor(props) {
         super(props);
-    this.state = {
-        post: "",
-        redirectToHome: false,
-        redirectToSignin: false,
-        like: false,
-        likes: 0,
-        comments: []
-    };
-    
+        this.state = {
+            post: "",
+            redirectToHome: false,
+            redirectToSignin: false,
+            like: false,
+            likes: 0,
+            comments: []
+        };
+
     }
 
     checkLike = likes => {
@@ -23,7 +24,7 @@ class SinglePost extends Component {
         let match = likes.indexOf(userId) !== -1;
         return match;
     };
-    
+
 
     componentDidMount = () => {
         const postId = this.props.postId
@@ -89,6 +90,7 @@ class SinglePost extends Component {
     };
 
     renderPost = post => {
+
         const posterId = post.postedBy ? `/users/${post.postedBy._id}/posts` : "";
         const posterName = post.postedBy ? post.postedBy.name : " Unknown";
 
@@ -96,32 +98,9 @@ class SinglePost extends Component {
 
         return (
             <div className="card-body">
-                
-                {like ? (
-                    <h3 onClick={this.likeToggle}>
-                        <img  
-                            src="https://img.icons8.com/windows/32/000000/facebook-like.png" 
-                            alt="like"
-                        />{" "}
-                        {likes} Like
-                    </h3>
-                ) : (
-                    <h3 onClick={this.likeToggle}>
-                       <img  
-                            src="https://img.icons8.com/windows/32/000000/facebook-like.png" 
-                            alt="like"
-                        />{" "}
+                <UserHeader user={post.postedBy} post={post} />
+                <div className="body">{post.body}</div>
 
-                        {likes} Like
-                    </h3>
-                )}
-
-                <p className="card-text">{post.body}</p>
-                <br />
-                <p className="font-italic mark">
-                    Posted by <Link to={`${posterId}`}>{posterName} </Link>
-                    on {new Date(post.created).toDateString()}
-                </p>
                 <div className="d-inline-block">
 
                     {isAuthenticated().user &&
@@ -172,6 +151,28 @@ class SinglePost extends Component {
         );
     };
 
+    renderLikes = post => {
+        const { like, likes } = this.state;
+
+        return (
+            <div className="_l pointer">
+                {
+                    like ? (
+                        <span className="_likeTxt" onClick={this.likeToggle}>
+                            <i className="postsIcon like"></i>
+                            {likes} Like
+                    </span>
+                    ) : (
+                            <span onClick={this.likeToggle}>
+                                <i class="postsIcon like"></i>
+                                {likes} Like
+                    </span>
+                        )
+                }
+            </div>
+        );
+    };
+
     render() {
         const { post, redirectToHome, redirectToSignin, comments } = this.state;
         if (redirectToHome) {
@@ -182,7 +183,6 @@ class SinglePost extends Component {
 
         return (
             <div className="singlePost clearfix-t">
-                <h2 className="display">{post.title}</h2>
 
                 {!post ? (
                     <div className="text">
@@ -192,11 +192,24 @@ class SinglePost extends Component {
                         this.renderPost(post)
                     )}
 
-                <Comment
-                    postId={post._id}
-                    comments={comments.reverse()}
-                    updateComments={this.updateComments}
-                />
+                <div className="_soc">
+                    {this.renderLikes(post)}
+                    <span className="_link _c pointer">
+                        {
+                            comments.length <= 0 ?
+                                "Be the first one to comment" :
+                                comments.length + " Comments"
+                        }
+                    </span>
+                </div>
+
+                <div className="_com_list">
+                    <Comment
+                        postId={post._id}
+                        comments={comments.reverse()}
+                        updateComments={this.updateComments}
+                    />
+                </div>
             </div>
         );
     }

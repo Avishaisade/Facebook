@@ -28,6 +28,7 @@
         height: 40px;
         border-radius: 50%;
         overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, .1);
     }
 
     .userAvatarContainer {
@@ -43,14 +44,20 @@
     font-weight: bold;
     text-decoration: none;
     display:inline;
-    padding: 5px 10px 0px;
+    padding: 0px 10px 0px;
+    
+    span {
+        margin-bottom: 2px;
+        padding-right: 22px;
+        display:block;
+    }
 }
 
 .timeLabel {
     font-size: 12px;
     color: #616770;
     display: block;
-    padding: 0px 50px;
+    font-weight: normal;
 }
 
 .onlineTag {
@@ -119,7 +126,6 @@ User page grid
     border-radius: 100%;
     background: rgba(0, 0, 0, .15);
     background-color: #fff;
-    border: 1px inset #d3d6db;
 }
 
 .userInfoCover {

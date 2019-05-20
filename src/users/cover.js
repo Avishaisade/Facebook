@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import DefaultProfile from "../Images/defult_profile.jpg";
 import { updateUser } from "./apiUser";
 import {getProfilePhoto ,getCoverPhoto} from "./apiUser";
-// import Avatar from './avatar';
+import DefaultProfile from "../Images/default_profile.png";
+
 class Cover extends Component {
 
     render() {
@@ -20,7 +20,7 @@ class Cover extends Component {
                         <img
                             src={coverPhoto}
                             alt={user.name}
-                            onError={i => (i.target.src = `${"https://woodfordoil.com/wp-content/uploads/2018/02/placeholder.jpg"}`)}
+                            onError={i => (i.target.src = `${"https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2017/08/facebook-cover-photo-header.jpg"}`)}
                         />
                         <div className="coverBorder"></div>
                     </div>

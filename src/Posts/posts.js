@@ -1,11 +1,15 @@
-import React, { Component } from "./node_modules/react";
+import React, { Component } from "react";
 import {listOfUsers } from "./apiPost";
-// import DefaultPost from "../images/mountains.jpg";
 import { Link } from "./node_modules/react-router-dom";
 import UserHeader from "../users/userHeader";
 // import DefaultProfile from "../Images/defult_profile.jpg";
 import moment from './node_modules/moment';
 import SinglePost from './SinglePost';
+import { list } from "./apiPost";
+import { Link } from "react-router-dom"
+import UserHeader from "../users/userHeader";
+import moment from 'moment';
+
 
 
 class Posts extends Component {
@@ -45,9 +49,9 @@ class Posts extends Component {
                         <div className="card" key={i}>
                             <div className="card-body">
                                 <UserHeader
-                                    _id= {posterId}
-                                    name= {posterName}
-                                    />
+                                    _id={posterId}
+                                    name={posterName}
+                                />
                                 <span className="timeLabel">
                                     {moment(post.created).startOf('minute').fromNow()}
                                 </span>
@@ -56,7 +60,7 @@ class Posts extends Component {
                                 </p>
                                 <br />
                                 <p className="1">
-                                  
+
                                 </p>
                                 <Link
                                     to={`/post/${post._id}`}
@@ -74,13 +78,13 @@ class Posts extends Component {
     };
 
     render() {
-        const { posts} = this.state;
+        const { posts } = this.state;
         return (
             <div className="container">
-                
+
                 {this.renderPosts(posts)}
 
-               
+
             </div>
         );
     }

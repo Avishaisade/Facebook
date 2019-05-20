@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
 import { Redirect, Link } from "react-router-dom";
-import { read } from "./apiUser";
+import { getPostsByUserId } from "./apiUser";
 import Cover from './cover';
 import Avatar from './avatar';
 import DeleteUser from "./DeleteUser";
@@ -49,7 +49,7 @@ class Profile extends Component {
 
     init = userId => {
         const token = isAuthenticated().token;
-        read(userId, token).then(data => {
+        getPostsByUserId(userId, token).then(data => {
             if (data.error) {
                 this.setState({ redirectToSignin: true });
             } else {
@@ -105,22 +105,9 @@ class Profile extends Component {
                     coverUrl={coverPhotoUrl}
                     user={user}
                     followers={user.followers.length} />
-                {/* <Avatar
-                    name={user.name}
-                    url= {photoUrl}     
-                    onError={i => (i.target.src = `${DefaultProfile}`)}
-                 /> */}
                 <UserDetails user={user} />
                 <NewPost />
                 <div className="row">
-                    {/* <div className="col">
-                        <img
-                            className="img-thumbnail"
-                            src={photoUrl}
-                            onError={i => (i.target.src = `${DefaultProfile}`)}
-                            alt={user.name}
-                        />
-                    </div> */}
 
                     <div className="col">
 
@@ -129,14 +116,14 @@ class Profile extends Component {
                                 <div className="1">
                                     <Link
                                         className="btn"
-                                        to={`/post/create`}
+                                        to={`/posts/${isAuthenticated().user._id}`}
                                     >
                                         Create Post
                                 </Link>
 
-                                    <Link
+                                    <Link 
                                         className="btn "
-                                        to={`/user/edit/${user._id}`}
+                                        to={`/users/${user._id}`}
                                     >
                                         Edit Profile
                                 </Link>
@@ -152,7 +139,7 @@ class Profile extends Component {
                         <div>
                             {isAuthenticated().user &&
                                 isAuthenticated().user.role === "admin" && (
-                                    <div class="1">
+                                    <div className="1">
                                         <div className="card-body">
                                             <h5 className="card-title">
                                                 Admin
@@ -162,7 +149,7 @@ class Profile extends Component {
                                             </p>
                                             <Link
                                                 className="btn"
-                                                to={`/user/edit/${user._id}`}
+                                                to={`/users/${user._id}`}
                                             >
                                                 Edit Profile
                                             </Link>

@@ -9,23 +9,6 @@ class Cover extends Component {
         // console.log(user);
         return (
             <div className="coverHeaderContainer">
-                {/* <form>
-                    <div className="form-group">
-                    <label className="text-muted">Profile Photo</label>
-                    <input
-                        // onChange={this.handleChange("photo")}
-                        type="file"
-                        accept="image/*"
-                        className="form-control"
-                    />
-                     </div>
-                     <button
-                    onClick={this.clickSubmit}
-                    className="btn"
-                >
-                    Update
-                </button>
-                </form> */}
                 <div className="userCoverContainer">
                     <div className="coverImage">
                         <img
@@ -42,11 +25,32 @@ class Cover extends Component {
                     </div>
                     <div className="headerMenu">
                         <ul className="_6_7 clearfix">
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">Timeline</a></div></li>
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">About</a></div></li>
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">Friends <span class="_gs6">{this.props.followers}</span></a></div></li>
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">Photos</a></div></li>
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">Archive</a></div></li>
+                            <li>
+                                <div className="_6a _6-6 _9rx _6-7">
+                                    <a className="_9ry _p" href="#">Timeline</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="_6a _6-6 _9rx _6-7">
+                                    <a className="_9ry _p" href="#">About</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="_6a _6-6 _9rx _6-7">
+                                    <a className="_9ry _p" href="#">Friends 
+                                        <span className="_gs6">{this.props.followers}</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="_6a _6-6 _9rx _6-7">
+                                    <a className="_9ry _p" href="#">Photos</a>
+                                </div>
+                            </li>
+                            <li><div className="_6a _6-6 _9rx _6-7">
+                                <a className="_9ry _p" href="#">Archive</a>
+                                </div>
+                            </li>
                         </ul>
                         <img className="profilePicThumb"
                             src={this.props.url}
@@ -62,7 +66,7 @@ class Cover extends Component {
                                 </span>
                             </h1>
                         </div>
-                        <div class="_actionBar">
+                        <div className="_actionBar">
                             <Link to={`/user/edit/${user._id}`}><i className="userIcon_2 edit"></i> Edit Profile</Link>
                         </div>
                     </div>

@@ -7,7 +7,7 @@ import DefaultProfile from "../Images/defult_profile.jpg";
 let photoUrl = DefaultProfile;
 if (isAuthenticated()) {
     photoUrl = isAuthenticated().user._id
-        ? `${process.env.REACT_APP_API_URL}/user/photo/${
+        ? `${process.env.REACT_APP_API_URL}/users/${isAuthenticated().user._id}/photo${
         isAuthenticated().user._id
         }?${new Date().getTime()}`
         : { DefaultProfile };
@@ -100,7 +100,7 @@ class NewPost extends Component {
         } = this.state;
 
         if (redirectToProfile) {
-            return <Redirect to={`/user/${user._id}`} />;
+            return <Redirect to={`/users/${user._id}`} />;
         }
 
         return (
@@ -125,7 +125,10 @@ class NewPost extends Component {
                     )}
 
                 <div className="_1col">
-                    <img src={photoUrl} alt="User Picture" />
+                    <img 
+                        src={photoUrl} 
+                        alt="UserPicture" 
+                />
                 </div>
                 <div className="_2col">
                     {this.newPostForm(body)}

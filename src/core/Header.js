@@ -12,12 +12,14 @@ const isActive = (history, path) => {
 let photoUrl = DefaultProfile;
 if (isAuthenticated()) {
     photoUrl = isAuthenticated().user._id
-        ? `${process.env.REACT_APP_API_URL}/user/photo/${
+        ? `${process.env.REACT_APP_API_URL}/users/${isAuthenticated().user._id}/photo/${
         isAuthenticated().user._id
         }?${new Date().getTime()}`
         : { DefaultProfile };
 }
 
+// const friends= isAuthenticated().user.following.concat(isAuthenticated().user.followers)
+console.log(isAuthenticated())
 const Header = ({ history }) => (
     <div>
         {isAuthenticated() && (
@@ -65,7 +67,9 @@ const Header = ({ history }) => (
 
                         </>
                     )}
-                    <Link className="" style={isActive(history, "/")} to="/">
+                    <Link className="" 
+                        style={isActive(history, "/")} 
+                        to="/">
                         <div className="fb-logo"></div>
                     </Link>
                     <div className="searchBox">
@@ -95,10 +99,10 @@ const Header = ({ history }) => (
                     </div>
                     <div className="float-right r_menu">
                         <Link
-                            to={`/user/${isAuthenticated().user._id}`}
+                            to={`/users/${isAuthenticated().user._id}`}
                             style={isActive(
                                 history,
-                                `/user/${isAuthenticated().user._id}`
+                                `/users/${isAuthenticated().user._id}`
                             )}
                         >
                             <span className="s-1">

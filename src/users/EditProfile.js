@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
-import { read, update, updateUser } from "./apiUser";
+import { getPostsByUserId, update, updateUser } from "./apiUser";
 import { Redirect } from "react-router-dom";
 import DefaultProfile from "../Images/defult_profile.jpg";
 
@@ -23,7 +23,7 @@ class EditProfile extends Component {
 
     init = userId => {
         const token = isAuthenticated().token;
-        read(userId, token).then(data => {
+        getPostsByUserId(userId, token).then(data => {
             if (data.error) {
                 this.setState({ redirectToProfile: true });
             } else {

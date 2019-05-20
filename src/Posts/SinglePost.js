@@ -89,7 +89,7 @@ class SinglePost extends Component {
     };
 
     renderPost = post => {
-        const posterId = post.postedBy ? `/user/${post.postedBy._id}` : "";
+        const posterId = post.postedBy ? `/users/${post.postedBy._id}/posts` : "";
         const posterName = post.postedBy ? post.postedBy.name : " Unknown";
 
         const { like, likes } = this.state;
@@ -128,7 +128,7 @@ class SinglePost extends Component {
                         isAuthenticated().user._id === post.postedBy._id && (
                             <>
                                 <Link
-                                    to={`/post/edit/${post._id}`}
+                                    to={`/posts/${post._id}`}
                                     className="btn"
                                 >
                                     Update Post

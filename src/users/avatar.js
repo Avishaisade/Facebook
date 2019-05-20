@@ -3,7 +3,7 @@ import DefaultProfile from "../Images/defult_profile.jpg";
 
 const Avatar= (_id, name)=> {
     // const {_id, name} = props
-    const photoUrl= `${process.env.REACT_APP_API_URL}/user/photo/${_id}`;
+    const photoUrl= `${process.env.REACT_APP_API_URL}/users/${_id}/photo`;
         return (
             <div className="userAvatarContainer">
                 <img

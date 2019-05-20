@@ -23,26 +23,27 @@ const router = express.Router();
 router.get("/posts", getPosts);
 
 // like unlike
-router.put("/post/like", requireSignin, like);
-router.put("/post/unlike", requireSignin, unlike);
+router.put("/posts/:postId/like", requireSignin, like);
+router.put("/posts/:postId/unlike", requireSignin, unlike);
 
 // comments
-router.put("/post/comment", requireSignin, comment);
-router.put("/post/uncomment", requireSignin, uncomment);
+router.put("/posts/:postId/comment", requireSignin, comment);
+router.put("/posts/:postId/uncomment", requireSignin, uncomment);
 
 // post routes
 router.post(
-    "/post/new/:userId",
+    "/posts/:userId",
     requireSignin,
     createPost,
     createPostValidator
 );
-router.get("/posts/by/:userId", requireSignin, postsByUser);
-router.get("/post/:postId", singlePost);
-router.put("/post/:postId", requireSignin, isPoster, updatePost);
-router.delete("/post/:postId", requireSignin, isPoster, deletePost);
+
+router.get("/users/:userId/posts", requireSignin, postsByUser);
+router.get("/posts/:postId", singlePost);
+router.put("/posts/:postId", requireSignin, isPoster, updatePost);
+router.delete("/posts/:postId", requireSignin, isPoster, deletePost);
 // photo
-router.get("/post/photo/:postId", photo);
+router.get("/posts/:postId/photo", photo);
 
 // any route containing :userId, our app will first execute userById()
 router.param("userId", userById);

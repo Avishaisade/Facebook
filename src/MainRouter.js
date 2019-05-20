@@ -72,7 +72,7 @@ const MainRouter = () => (
             />
             <PrivateRoute
                 exact
-                path="/user/:userId"
+                path="/users/:userId"
                 component={Profile}
             />
         </Switch>

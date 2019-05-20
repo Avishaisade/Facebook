@@ -111,7 +111,7 @@ class Comment extends Component {
                     {comments.map((comment, i) => (
                         <div key={i}>
                             <div>
-                                <Link to={`/user/${comment.postedBy._id}`}>
+                                <Link to={`/users/${comment.postedBy._id}`}>
                                     <img
                                         style={{
                                             borderRadius: "50%",
@@ -125,7 +125,7 @@ class Comment extends Component {
                                         }
                                         src={`${
                                             process.env.REACT_APP_API_URL
-                                        }/user/photo/${comment.postedBy._id}`}
+                                        }/users/${comment.postedBy._id}/photo`}
                                         alt={comment.postedBy.name}
                                     />
                                 </Link>
@@ -133,7 +133,7 @@ class Comment extends Component {
                                     <p className="lead">{comment.text}</p>
                                     <p className="">
                                         <Link
-                                            to={`/user/${comment.postedBy._id}`}
+                                            to={`/users/${comment.postedBy._id}`}
                                         >
                                             {comment.postedBy.name}{" "}
                                         </Link>

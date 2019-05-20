@@ -1,6 +1,6 @@
 const API = process.env.REACT_APP_API_URL;
 
-export const create = (userId, token, post) => {
+export const createPost = (userId, token, post) => {
     return fetch(`${API}/posts/${userId}/`, {
         method: "POST",
         headers: {
@@ -29,7 +29,7 @@ export const listByUser = (userId, token) => {
         })
         .catch(err => console.log(err));
 };
-export const list = () => {
+export const listOfUsers = () => {
     return fetch(`${API}/posts/`, {
         method: "GET"
     })
@@ -47,7 +47,7 @@ export const singlePost = postId => {
         .catch(err => console.log(err));
 };
 
-export const remove = (postId, token) => {
+export const removePost = (postId, token) => {
     return fetch(`${API}/posts/${postId}`, {
         method: "DELETE",
         headers: {
@@ -62,7 +62,7 @@ export const remove = (postId, token) => {
         .catch(err => console.log(err));
 };
 
-export const update = (postId, token, post) => {
+export const updatePost = (postId, token, post) => {
     console.log(postId, token, post);
     return fetch(`${API}/posts/${postId}`, {
         method: "PUT",
@@ -79,7 +79,7 @@ export const update = (postId, token, post) => {
 };
 
 export const like = (userId, token, postId) => {
-    return fetch(`${API}/posts/:postId/like`, {
+    return fetch(`${API}/posts/${postId}/like`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -95,7 +95,7 @@ export const like = (userId, token, postId) => {
 };
 
 export const unlike = (userId, token, postId) => {
-    return fetch(`${API}/posts/:postId/unlike`, {
+    return fetch(`${API}/posts/${postId}/unlike`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -111,7 +111,7 @@ export const unlike = (userId, token, postId) => {
 };
 
 export const comment = (userId, token, postId, comment) => {
-    return fetch(`${API}/posts/:postId/comment`, {
+    return fetch(`${API}/posts/${postId}/comment`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -127,7 +127,7 @@ export const comment = (userId, token, postId, comment) => {
 };
 
 export const uncomment = (userId, token, postId, comment) => {
-    return fetch(`${API}/posts/:postId/uncomment`, {
+    return fetch(`${API}/posts/${postId}/uncomment`, {
         method: "PUT",
         headers: {
             Accept: "application/json",

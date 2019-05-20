@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { singlePost, update } from "./apiPost";
+import { singlePost, updatePost } from "./apiPost";
 import { isAuthenticated } from "../auth";
 import { Redirect } from "react-router-dom";
 
@@ -71,7 +71,7 @@ class EditPost extends Component {
             const postId = this.props.match.params.postId;
             const token = isAuthenticated().token;
 
-            update(postId, token, this.postData).then(data => {
+            updatePost(postId, token, this.postData).then(data => {
                 if (data.error) this.setState({ error: data.error });
                 else {
                     this.setState({

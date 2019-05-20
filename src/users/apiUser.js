@@ -1,5 +1,7 @@
-export const getPostsByUserId = (userId, token) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
+const API = process.env.REACT_APP_API_URL;
+
+export const getUsersbyId = (userId, token) => {
+    return fetch(`${API}/users/${userId}`, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -13,9 +15,9 @@ export const getPostsByUserId = (userId, token) => {
         .catch(err => console.log(err));
 };
 
-export const update = (userId, token, user) => {
+export const updateUserById = (userId, token, user) => {
     console.log("USER DATA UPDATE: ", user);
-    return fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
+    return fetch(`${API}/users/${userId}`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -30,7 +32,7 @@ export const update = (userId, token, user) => {
 };
 
 export const remove = (userId, token) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
+    return fetch(`${API}/users/${userId}`, {
         method: "DELETE",
         headers: {
             Accept: "application/json",
@@ -43,9 +45,9 @@ export const remove = (userId, token) => {
         })
         .catch(err => console.log(err));
 };
-
-export const list = () => {
-    return fetch(`${process.env.REACT_APP_API_URL}/users`, {
+// list
+export const getUsers = () => {
+    return fetch(`${API}/users`, {
         method: "GET"
     })
         .then(response => {
@@ -54,7 +56,7 @@ export const list = () => {
         .catch(err => console.log(err));
 };
 
-export const updateUser = (user, next) => {
+export const updateUserToken = (user, next) => {
     if (typeof window !== "undefined") {
         if (localStorage.getItem("jwt")) {
             let auth = JSON.parse(localStorage.getItem("jwt"));
@@ -66,7 +68,7 @@ export const updateUser = (user, next) => {
 };
 
 export const follow = (userId, token, followId) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/users/${userId}/follow`, {
+    return fetch(`${API}/users/${userId}/follow`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -82,7 +84,7 @@ export const follow = (userId, token, followId) => {
 };
 
 export const unfollow = (userId, token, unfollowId) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/users/${userId}/unfollow`, {
+    return fetch(`${API}/users/${userId}/unfollow`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -98,7 +100,7 @@ export const unfollow = (userId, token, unfollowId) => {
 };
 
 export const findPeople = (userId, token) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/users/${userId}/findpeople`, {
+    return fetch(`${API}/users/${userId}/findpeople`, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -111,3 +113,13 @@ export const findPeople = (userId, token) => {
         })
         .catch(err => console.log(err));
 };
+
+export const getProfilePhoto = (userId) => {
+    return `${API}/users/${userId}/photo`
+}
+
+
+export const getCoverPhoto = (userId) => {
+    return `${API}/users/${userId}/coverPhoto`
+}
+

@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
-import { create } from "./apiPost";
+import { createPost } from "./apiPost";
 import { Redirect } from "react-router-dom";
 import DefaultProfile from "../Images/defult_profile.jpg";
+import Avatar from "../users/avatar";
 
-let photoUrl = DefaultProfile;
-if (isAuthenticated()) {
-    photoUrl = isAuthenticated().user._id
-        ? `${process.env.REACT_APP_API_URL}/users/${isAuthenticated().user._id}/photo${
-        isAuthenticated().user._id
-        }?${new Date().getTime()}`
-        : { DefaultProfile };
-}
+// let photoUrl = DefaultProfile;
+// if (isAuthenticated()) {
+//     photoUrl = isAuthenticated().user._id
+//         ? `${process.env.REACT_APP_API_URL}/users/${isAuthenticated().user._id}/photo${
+//         isAuthenticated().user._id
+//         }?${new Date().getTime()}`
+//         : { DefaultProfile };
+// }
 
 class NewPost extends Component {
     constructor() {
@@ -62,7 +63,7 @@ class NewPost extends Component {
             const userId = isAuthenticated().user._id;
             const token = isAuthenticated().token;
 
-            create(userId, token, this.postData).then(data => {
+            createPost(userId, token, this.postData).then(data => {
                 if (data.error) this.setState({ error: data.error });
                 else {
                     this.setState({
@@ -98,11 +99,10 @@ class NewPost extends Component {
             loading,
             redirectToProfile
         } = this.state;
-
+        
         if (redirectToProfile) {
             return <Redirect to={`/users/${user._id}`} />;
         }
-
         return (
             <div className="fbTimelineComposerUnit clearfix-t">
                 <div className="postMenu">
@@ -125,10 +125,10 @@ class NewPost extends Component {
                     )}
 
                 <div className="_1col">
-                    <img 
-                        src={photoUrl} 
-                        alt="UserPicture" 
-                />
+                    <Avatar
+                     _id={this.state.user._id}
+                     name={this.state.user.name}
+                    />
                 </div>
                 <div className="_2col">
                     {this.newPostForm(body)}

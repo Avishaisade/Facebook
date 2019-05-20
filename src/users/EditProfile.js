@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
-import { getPostsByUserId, update, updateUser } from "./apiUser";
+import { getUsersbyId, updateUserById , updateUserToken, getProfilePhoto } from "./apiUser";
 import { Redirect } from "react-router-dom";
 import DefaultProfile from "../Images/defult_profile.jpg";
 
@@ -23,7 +23,7 @@ class EditProfile extends Component {
 
     init = userId => {
         const token = isAuthenticated().token;
-        getPostsByUserId(userId, token).then(data => {
+        getUsersbyId(userId, token).then(data => {
             if (data.error) {
                 this.setState({ redirectToProfile: true });
             } else {
@@ -93,7 +93,7 @@ class EditProfile extends Component {
             const userId = this.props.match.params.userId;
             const token = isAuthenticated().token;
 
-            update(userId, token, this.userData).then(data => {
+            updateUserById (userId, token, this.userData).then(data => {
                 if (data.error) {
                     this.setState({ error: data.error });
                 } else if (isAuthenticated().user.role === "admin") {
@@ -101,7 +101,7 @@ class EditProfile extends Component {
                         redirectToProfile: true
                     });
                 } else {
-                    updateUser(data, () => {
+                    updateUserToken(data, () => {
                         this.setState({
                             redirectToProfile: true
                         });
@@ -191,14 +191,10 @@ class EditProfile extends Component {
         } = this.state;
 
         if (redirectToProfile) {
-            return <Redirect to={`/user/${id}`} />;
+            return <Redirect to={`/users/${id}`} />;
         }
 
-        const photoUrl = id
-            ? `${
-                  process.env.REACT_APP_API_URL
-              }/user/photo/${id}?${new Date().getTime()}`
-            : DefaultProfile;
+        const photoUrl = getProfilePhoto(id);
         return (
             <div className="container">
                 <h2 className="1">Edit Profile</h2>

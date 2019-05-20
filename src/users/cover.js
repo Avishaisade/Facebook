@@ -2,17 +2,25 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import DefaultProfile from "../Images/defult_profile.jpg";
 import { updateUser } from "./apiUser";
+import {getProfilePhoto ,getCoverPhoto} from "./apiUser";
+// import Avatar from './avatar';
 class Cover extends Component {
 
     render() {
         const user = this.props.user;
-        // console.log(user);
+        const photoUrl = getProfilePhoto(user._id); 
+        const coverPhotoUrl = getCoverPhoto(user._id); 
+
+        console.log(user);
+        let coverPhoto= coverPhotoUrl;
+            if(!coverPhoto)
+            {coverPhoto= DefaultProfile}
         return (
             <div className="coverHeaderContainer">
                 <div className="userCoverContainer">
                     <div className="coverImage">
                         <img
-                            src={this.props.coverUrl}
+                            src={coverPhoto}
                             alt={user.name}
                             onError={i => (i.target.src = `${"https://woodfordoil.com/wp-content/uploads/2018/02/placeholder.jpg"}`)}
                         />
@@ -53,7 +61,7 @@ class Cover extends Component {
                             </li>
                         </ul>
                         <img className="profilePicThumb"
-                            src={this.props.url}
+                            src={photoUrl }
                             alt={user.name}
                             onError={i => (i.target.src = `${DefaultProfile}`)}
                         />

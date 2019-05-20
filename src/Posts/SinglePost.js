@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { singlePost, remove, like, unlike } from "./apiPost";
+import { singlePost, removePost , like, unlike } from "./apiPost";
 import { Link, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 import Comment from "../comment/comment";
@@ -70,7 +70,7 @@ class SinglePost extends Component {
     deletePost = () => {
         const postId = this.props.match.params.postId;
         const token = isAuthenticated().token;
-        remove(postId, token).then(data => {
+        removePost (postId, token).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {

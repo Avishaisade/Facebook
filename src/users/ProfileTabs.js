@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import DefaultProfile from "../Images/defult_profile.jpg";
+import {getProfilePhoto} from "../users/apiUser";
 
 class ProfileTabs extends Component {
     render() {
@@ -20,7 +21,7 @@ class ProfileTabs extends Component {
                         {friends.map((person, i) => (
                             <div key={i}>
                                 <div>
-                                    <Link to={`/user/${person._id}`}>
+                                    <Link to={`/users/${person._id}`}>
                                         <img
                                             style={{
                                                 borderRadius: "50%",
@@ -32,9 +33,7 @@ class ProfileTabs extends Component {
                                             onError={i =>
                                                 (i.target.src = `${DefaultProfile}`)
                                             }
-                                            src={`${
-                                                process.env.REACT_APP_API_URL
-                                            }/user/photo/${person._id}`}
+                                            src={getProfilePhoto(person._id)}
                                             alt={person.name}
                                         />
                                         <div>

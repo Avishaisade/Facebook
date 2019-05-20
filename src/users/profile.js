@@ -1,17 +1,15 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
 import { Redirect, Link } from "react-router-dom";
-import { getPostsByUserId } from "./apiUser";
+import {listByUser } from "../Posts/apiPost";
 import Cover from './cover';
-import Avatar from './avatar';
 import DeleteUser from "./DeleteUser";
 import FriendProfileButton from "./FriendProfileButton";
 import ProfileTabs from "./ProfileTabs";
-import DefaultProfile from "../Images/defult_profile.jpg";
-import { listByUser } from "../posts/apiPost";
-import NewPost from "../posts/newPost";
+import {getUsersbyId} from "./apiUser";
+import NewPost from "../Posts/newPost";
 import UserDetails from "./userDetails";
-import SinglePost from "../posts/SinglePost";
+import SinglePost from "../Posts/SinglePost";
 
 class Profile extends Component {
     constructor() {
@@ -46,10 +44,10 @@ class Profile extends Component {
             }
         });
     };
-
+// read
     init = userId => {
         const token = isAuthenticated().token;
-        getPostsByUserId(userId, token).then(data => {
+        getUsersbyId(userId, token).then(data => {
             if (data.error) {
                 this.setState({ redirectToSignin: true });
             } else {
@@ -60,7 +58,7 @@ class Profile extends Component {
         });
     };
 
-
+    // listByUser
     loadPosts = userId => {
         const token = isAuthenticated().token;
         listByUser(userId, token).then(data => {
@@ -71,6 +69,11 @@ class Profile extends Component {
             }
         });
     };
+    loadNewPost= userId =>{
+        if(userId===isAuthenticated().user._id){
+            return <NewPost />
+        }else{return null;}
+    }
 
     componentDidMount() {
         const userId = this.props.match.params.userId;
@@ -86,27 +89,17 @@ class Profile extends Component {
         const { redirectToSignin, user, posts } = this.state;
         if (redirectToSignin) return <Redirect to="/signin" />;
 
-        const photoUrl = user._id
-            ? `${process.env.REACT_APP_API_URL}/user/photo/${
-            user._id
-            }?${new Date().getTime()}`
-            : { DefaultProfile };
-
-        const coverPhotoUrl = user._id
-            ? `${process.env.REACT_APP_API_URL}/user/coverPhoto/${
-            user._id
-            }?${new Date().getTime()}`
-            : { DefaultProfile };
+        // const photoUrl = getProfilePhoto( isAuthenticated().user._id); 
+        // const coverPhotoUrl = getCoverPhoto( isAuthenticated().user._id); 
 
         return (
             <div className="globalContainer">
                 <Cover
-                    url={photoUrl}
-                    coverUrl={coverPhotoUrl}
+                    // photoUrl={photoUrl}
+                    // coverUrl={coverPhotoUrl}
                     user={user}
                     followers={user.followers.length} />
                 <UserDetails user={user} />
-                <NewPost />
                 <div className="row">
 
                     <div className="col">
@@ -114,6 +107,7 @@ class Profile extends Component {
                         {isAuthenticated().user &&
                             isAuthenticated().user._id === user._id ? (
                                 <div className="1">
+                                     <NewPost />
                                     <Link
                                         className="btn"
                                         to={`/posts/${isAuthenticated().user._id}`}
@@ -123,7 +117,7 @@ class Profile extends Component {
 
                                     <Link 
                                         className="btn "
-                                        to={`/users/${user._id}`}
+                                        to={`/user/edit/${user._id}`}
                                     >
                                         Edit Profile
                                 </Link>

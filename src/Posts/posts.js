@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { list } from "./apiPost";
+import {listOfUsers } from "./apiPost";
 // import DefaultPost from "../images/mountains.jpg";
 import { Link } from "react-router-dom";
 import UserHeader from "../users/userHeader";
@@ -17,7 +17,7 @@ class Posts extends Component {
     }
 
     loadPosts =() => {
-        list().then(data => {
+        listOfUsers().then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {

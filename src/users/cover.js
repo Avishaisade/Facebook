@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { updateUser } from "./apiUser";
 import {getProfilePhoto ,getCoverPhoto} from "./apiUser";
 import DefaultProfile from "../Images/default_profile.png";
 
@@ -9,7 +8,8 @@ class Cover extends Component {
     render() {
         const user = this.props.user;
         const photoUrl = getProfilePhoto(user._id); 
-        const coverPhotoUrl = getCoverPhoto(user._id); 
+        const coverPhotoUrl = getCoverPhoto(user._id);
+         
         let coverPhoto= coverPhotoUrl;
             if(!coverPhoto)
             {coverPhoto= DefaultProfile}

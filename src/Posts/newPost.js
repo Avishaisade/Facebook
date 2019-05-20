@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "./node_modules/react";
+import { Link } from "./node_modules/react-router-dom";
 import { isAuthenticated } from "../auth";
 import { createPost } from "./apiPost";
 import { Redirect } from "./node_modules/react-router-dom";

@@ -1,6 +1,6 @@
-import React, { Component } from "./node_modules/react";
+import React, { Component } from "react";
 import { singlePost, removePost , like, unlike } from "./apiPost";
-import { Link, Redirect } from "./node_modules/react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 import Comment from "../comment/comment";
 import UserHeader from "../users/userHeader";
@@ -91,9 +91,6 @@ class SinglePost extends Component {
 
     renderPost = post => {
 
-        const posterId = post.postedBy ? `/users/${post.postedBy._id}/posts` : "";
-        const posterName = post.postedBy ? post.postedBy.name : " Unknown";
-
         const { like, likes } = this.state;
 
         return (
@@ -124,7 +121,7 @@ class SinglePost extends Component {
                     <div>
                         {isAuthenticated().user &&
                             isAuthenticated().user.role === "admin" && (
-                                <div class="card">
+                                <div className="card">
                                     <div className="card-body">
                                         <h5 className="card-title">Admin</h5>
                                         <p className="text">
@@ -163,10 +160,10 @@ class SinglePost extends Component {
                             {likes} Like
                     </span>
                     ) : (
-                            <span onClick={this.likeToggle}>
-                                <i class="postsIcon like"></i>
-                                {likes} Like
-                    </span>
+                        <span onClick={this.likeToggle}>
+                            <i className="postsIcon like"></i>
+                            {likes} Like
+                        </span>
                         )
                 }
             </div>

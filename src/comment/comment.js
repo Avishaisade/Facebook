@@ -88,30 +88,15 @@ class Comment extends Component {
                     {comments.map((comment, i) => (
                         <div key={i}>
                             <div>
-                                <Link to={`/users/${comment.postedBy._id}`}>
-                                    <img
-                                        style={{
-                                            borderRadius: "50%",
-                                            border: "1px solid black"
-                                        }}
-                                        className=""
-                                        height="30px"
-                                        width="30px"
-                                        onError={i =>
-                                            (i.target.src = `${DefaultProfile}`)
-                                        }
-                                        src={`${
-                                            process.env.REACT_APP_API_URL
-                                        }/users/${comment.postedBy._id}/photo`}
-                                        alt={comment.postedBy.name}
-                                    />
-                                </Link>
+                                <Link to={`/users/${comment.postedBy._id}`}/>
                                 <div>
                                     <p className="">
                                         <Link
                                             to={`/users/${comment.postedBy._id}`}
                                         >
-                                            <UserHeader user={comment.postedBy} post={comment} />
+                                            <UserHeader
+                                                 user={comment.postedBy} 
+                                                 post={comment} />
                                             <span className="_comment_t">{comment.text}</span>
                                         </Link>
                                         <span>

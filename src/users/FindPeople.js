@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { findPeople, follow, getProfilePhoto } from "./apiUser";
-import DefaultProfile from "../Images/defult_profile.jpg";
+import { findPeople, follow} from "./apiUser";
+import UserPicture from './UserPicture'
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 
@@ -26,6 +26,7 @@ class FindPeople extends Component {
             }
         });
     }
+    
 
     clickFollow = (user, i) => {
         const userId = isAuthenticated().user._id;
@@ -50,11 +51,11 @@ class FindPeople extends Component {
         <div className="row">
             {users.map((user, i) => (
                 <div className="card col-md-4" key={i}>
-                    <img
-                        style={{ height: "200px", width: "auto" }}
+                    <UserPicture
                         className="img-thumbnail"
-                        src={getProfilePhoto(user._id)}
-                        alt={user.name}
+                        style={{ height: "200px", width: "auto" }}
+                        id={user._id}
+                        name={user.name}
                     />
                     <div className="card-body">
                         <h5 className="card-title">{user.name}</h5>

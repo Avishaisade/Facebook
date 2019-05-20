@@ -4,6 +4,7 @@ import DefaultProfile from "../Images/default_profile.png";
 import TimeLabel from "./timelabel";
 
 
+
 const UserHeader = (props) =>{
     
     const user = props;
@@ -23,7 +24,9 @@ const UserHeader = (props) =>{
             />
             <Link className="UserInfo" to={`/user/${_id}`}>
                 <span>{name}</span>
-                <TimeLabel post={props.post} />
+                {/* <TimeLabel 
+                    post={props.post} 
+                /> */}
             </Link>
         </div>
     )

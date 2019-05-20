@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import {listOfUsers } from "./apiPost";
-import { Link } from "./node_modules/react-router-dom";
-import UserHeader from "../users/userHeader";
-// import DefaultProfile from "../Images/defult_profile.jpg";
-import moment from './node_modules/moment';
-import SinglePost from './SinglePost';
-import { list } from "./apiPost";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import UserHeader from "../users/userHeader";
 import moment from 'moment';
-
-
 
 class Posts extends Component {
     constructor() {
@@ -39,7 +31,7 @@ class Posts extends Component {
             <div className="row">
                 {posts.map((post, i) => {
                     const posterId = post.postedBy
-                        ? `/user/${post.postedBy._id}`
+                        ? `/users/${post.postedBy._id}`
                         : "";
                     const posterName = post.postedBy
                         ? post.postedBy.name

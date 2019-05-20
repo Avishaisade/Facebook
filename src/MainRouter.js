@@ -10,9 +10,9 @@ import EditProfile from "./users/EditProfile";
 import PrivateRoute from "./auth/PrivateRoute";
 import FindPeople from "./users/FindPeople";
 import Footer from "./core/Footer";
-import NewPost from "./Posts/newPost";
-import EditPost from "./Posts/EditPost";
-import SinglePost from "./Posts/SinglePost";
+import NewPost from "./posts/newPost";
+import EditPost from "./posts/EditPost";
+import SinglePost from "./posts/SinglePost";
 
 const MainRouter = () => (
     <div>

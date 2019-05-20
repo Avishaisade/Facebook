@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from "./node_modules/react";
 import {listOfUsers } from "./apiPost";
 // import DefaultPost from "../images/mountains.jpg";
-import { Link } from "react-router-dom";
+import { Link } from "./node_modules/react-router-dom";
 import UserHeader from "../users/userHeader";
 // import DefaultProfile from "../Images/defult_profile.jpg";
-import moment from 'moment';
+import moment from './node_modules/moment';
 import SinglePost from './SinglePost';
 
 

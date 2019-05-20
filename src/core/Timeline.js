@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import {listOfUsers } from "../Posts/apiPost";
-import SinglePost from "../Posts/SinglePost";
+import {listOfUsers } from "../posts/apiPost";
+import SinglePost from "../posts/SinglePost";
 
 class Timeline extends Component {
     constructor() {

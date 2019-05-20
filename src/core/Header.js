@@ -9,13 +9,11 @@ const isActive = (history, path) => {
 }
 
 // const friends= isAuthenticated().user.following.concat(isAuthenticated().user.followers)
-console.log(isAuthenticated())
 const Header = ({ history }) => (
     <div>
         {isAuthenticated() && (
             <div className="header-fb">
                 <div className="inner-container">
-
                     {!isAuthenticated() && (
                         <>
                             <Link

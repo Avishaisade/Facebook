@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from "./node_modules/react";
 import { singlePost, removePost , like, unlike } from "./apiPost";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect } from "./node_modules/react-router-dom";
 import { isAuthenticated } from "../auth";
 import Comment from "../comment/comment";
 

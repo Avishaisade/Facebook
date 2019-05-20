@@ -9,7 +9,6 @@ const Avatar= (props)=> {
     let photoUrl= getProfilePhoto(_id);
     if(!photoUrl)
     {photoUrl= DefaultProfile}
-    console.log(_id);
         return (
             <div className="userAvatarContainer">
                 <img

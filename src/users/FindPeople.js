@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { findPeople, follow } from "./apiUser";
+import { findPeople, follow, getProfilePhoto } from "./apiUser";
 import DefaultProfile from "../Images/defult_profile.jpg";
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth";
@@ -40,7 +40,7 @@ class FindPeople extends Component {
                 this.setState({
                     users: toFollow,
                     open: true,
-                    followMessage: `Following ${user.name}`
+                    followMessage: `You are now friends with ${user.name}`
                 });
             }
         });
@@ -53,10 +53,7 @@ class FindPeople extends Component {
                     <img
                         style={{ height: "200px", width: "auto" }}
                         className="img-thumbnail"
-                        src={`${process.env.REACT_APP_API_URL}/user/photo/${
-                            user._id
-                        }`}
-                        onError={i => (i.target.src = `${DefaultProfile}`)}
+                        src={getProfilePhoto(user._id)}
                         alt={user.name}
                     />
                     <div className="card-body">

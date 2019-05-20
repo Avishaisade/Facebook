@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from "./node_modules/react";
 import { isAuthenticated } from "../auth";
 import { createPost } from "./apiPost";
-import { Redirect } from "react-router-dom";
-import DefaultProfile from "../Images/defult_profile.jpg";
+import { Redirect } from "./node_modules/react-router-dom";
 import Avatar from "../users/avatar";
 
 // let photoUrl = DefaultProfile;

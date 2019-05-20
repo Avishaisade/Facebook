@@ -10,8 +10,6 @@ class Cover extends Component {
         const user = this.props.user;
         const photoUrl = getProfilePhoto(user._id); 
         const coverPhotoUrl = getCoverPhoto(user._id); 
-
-        console.log(user);
         let coverPhoto= coverPhotoUrl;
             if(!coverPhoto)
             {coverPhoto= DefaultProfile}

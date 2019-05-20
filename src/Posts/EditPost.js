@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from "./node_modules/react";
 import { singlePost, updatePost } from "./apiPost";
 import { isAuthenticated } from "../auth";
-import { Redirect } from "react-router-dom";
+import { Redirect } from "./node_modules/react-router-dom";
 
 
 class EditPost extends Component {

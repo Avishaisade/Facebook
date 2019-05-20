@@ -42,29 +42,7 @@ const Header = ({ history }) => (
                         </Link>
                         </>
                     )}
-                    {isAuthenticated() && (
-                        <>
-                            {/* <Link
-                                to={`/findpeople`}
-                                style={isActive(history, `/findpeople`)}
-                                className=""
-                            >
-                                Find People
-                            </Link> */}
 
-                            <span
-                                className=""
-                                style={
-                                    (isActive(history, "/signup"),
-                                        { cursor: "pointer", color: "#fff" })
-                                }
-                                onClick={() => signout(() => history.push("/"))}
-                            >
-                                Sign Out
-                    </span>
-
-                        </>
-                    )}
                     <Link className="" style={isActive(history, "/")} to="/">
                         <div className="fb-logo"></div>
                     </Link>
@@ -75,9 +53,30 @@ const Header = ({ history }) => (
 
                     {/* Navigation - Right */}
                     <div className="float-right r_menu">
-                        <div className="item">
-                            <div className="i arrow opacity-low"></div>
-                        </div>
+                        {isAuthenticated() && (
+                            <>
+                                <div className="item">
+                                    <label className="dropdown pointer">
+                                        <i className="i arrow _block opacity-low"></i>
+                                        <input type="checkbox" className="dd-input" id="test" />
+                                        <ul className="dd-menu">
+                                            <li>
+                                                <Link onClick={() => signout(() => history.push("/"))}>Log Out</Link>
+                                            </li>
+                                            <li>
+                                                {/* <Link
+                                to={`/findpeople`}
+                                style={isActive(history, `/findpeople`)}
+                                className=""
+                            >
+                                Find People
+                            </Link> */}
+                                            </li>
+                                        </ul>
+                                    </label>
+                                </div>
+                            </>
+                        )}
                         <div className="item">
                             <div className="i question opacity-low"></div>
                         </div>

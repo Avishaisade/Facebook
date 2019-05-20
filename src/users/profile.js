@@ -5,11 +5,11 @@ import { read } from "./apiUser";
 import Cover from './cover';
 import DeleteUser from "./DeleteUser";
 import FriendProfileButton from "./FriendProfileButton";
-import ProfileTabs from "./ProfileTabs";
 import DefaultProfile from "../Images/default_profile.png";
 import { listByUser } from "../posts/apiPost";
 import NewPost from "../posts/newPost";
 import UserDetails from "./userDetails";
+import FriendsTab from "./userFriendsTab";
 import SinglePost from "../posts/SinglePost";
 
 class Profile extends Component {
@@ -99,46 +99,40 @@ class Profile extends Component {
 
         return (
             <div className="globalContainer">
+                {/* Cover Area */}
                 <Cover
                     url={photoUrl}
                     coverUrl={coverPhotoUrl}
                     user={user}
                     followers={user.followers.length} />
-                {/* <Avatar
-                    name={user.name}
-                    url= {photoUrl}     
-                    onError={i => (i.target.src = `${DefaultProfile}`)}
-                 /> */}
-                <UserDetails user={user} />
-                <NewPost />
+
+                <div className="col-320 float-left">
+                    {/* Details Tab */}
+                    <UserDetails user={user} />
+                    {/* Friends Tab */}
+                    <FriendsTab followers={user.followers} following={user.following} />
+                </div>
+
+                <div className="col-530 float-right">
+                    {/* Post Creation */}
+                    <NewPost />
+                    {/* Posts */}
+                    {posts.map((post, i) => (
+                        <div key={i}>
+                            <SinglePost
+                                postId={[post._id]}
+                            />
+                        </div>
+                    ))}
+                </div>
+
                 <div className="row">
-                    {/* <div className="col">
-                        <img
-                            className="img-thumbnail"
-                            src={photoUrl}
-                            onError={i => (i.target.src = `${DefaultProfile}`)}
-                            alt={user.name}
-                        />
-                    </div> */}
 
                     <div className="col">
 
                         {isAuthenticated().user &&
                             isAuthenticated().user._id === user._id ? (
                                 <div className="1">
-                                    <Link
-                                        className="btn"
-                                        to={`/post/create`}
-                                    >
-                                        Create Post
-                                </Link>
-
-                                    <Link
-                                        className="btn "
-                                        to={`/user/edit/${user._id}`}
-                                    >
-                                        Edit Profile
-                                </Link>
                                     <DeleteUser userId={user._id} />
                                 </div>
                             ) : (
@@ -171,28 +165,6 @@ class Profile extends Component {
                                         </div>
                                     </div>
                                 )}
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <hr />
-                        <p className="lead">{user.about}</p>
-                        <hr />
-
-                        <ProfileTabs
-                            followers={user.followers}
-                            following={user.following}
-                        />
-                        <div className="col">
-                            <hr />
-                            {posts.map((post, i) => (
-                                <div key={i}>
-                                    <SinglePost
-                                        postId={[post._id]}
-                                    />
-                                </div>
-                            ))}
                         </div>
                     </div>
                 </div>

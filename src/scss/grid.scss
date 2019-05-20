@@ -1,4 +1,4 @@
-body {background: #e9ebee;}
+body {background: #e9ebee; }
 .globalContainer {
     margin: 0 auto;
     position: relative;
@@ -31,4 +31,13 @@ body {background: #e9ebee;}
 .clearfix-t {
     margin-top:12px;
     vertical-align: top;
+}
+.col-530 {
+    width: 530px;
+}
+.col-320 {
+    width: 320px;
+}
+._block {
+    display:block;
 }

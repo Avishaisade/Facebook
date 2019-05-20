@@ -92,29 +92,38 @@ class SinglePost extends Component {
     renderPost = post => {
 
         return (
-            <div className="card-body">
+            <div>
+                {isAuthenticated().user &&
+                    isAuthenticated().user._id === post.postedBy._id && (
+                        <>
+                            <label className="dropdown float-right">
+                                <i className="userIcon_3 dots _block pointer"></i>
+                                <input type="checkbox" className="dd-input" id="test" />
+                                <ul className="dd-menu">
+                                    <li>
+                                        <Link
+                                            to={`/post/edit/${post._id}`}
+                                        >
+                                            Edit Post
+                                </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            onClick={this.deleteConfirmed}
+                                        >
+                                            Delete Post
+                                </Link>
+                                    </li>
+                                </ul>
+
+                            </label>
+                        </>
+                    )}
+
                 <UserHeader user={post.postedBy} post={post} />
                 <div className="body">{post.body}</div>
 
                 <div className="d-inline-block">
-
-                    {isAuthenticated().user &&
-                        isAuthenticated().user._id === post.postedBy._id && (
-                            <>
-                                <Link
-                                    to={`/post/edit/${post._id}`}
-                                    className="btn"
-                                >
-                                    Update Post
-                                </Link>
-                                <button
-                                    onClick={this.deleteConfirmed}
-                                    className="btn"
-                                >
-                                    Delete Post
-                                </button>
-                            </>
-                        )}
 
                     <div>
                         {isAuthenticated().user &&

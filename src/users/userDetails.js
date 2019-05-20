@@ -7,6 +7,9 @@ export default function userDetails(props) {
             <div className="body">
                 <ul>
                     <li>
+                        {props.user.about}
+                    </li>
+                    <li>
                         <i className="userIcon rss"></i>
                         <a className="link_sm" href={`mailto:${props.user.email}`}>{props.user.email}</a>
                     </li>

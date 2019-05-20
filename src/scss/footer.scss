@@ -3,6 +3,9 @@
     margin: 0 auto;
     width: 980px;
     font-size: 12px;
+    height: 50px;
+    padding-top: calc(100vh - 250px);
+    margin-bottom: 60px;
 
     #contentCurve {
         border-bottom: 1px solid #dddfe2;

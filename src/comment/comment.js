@@ -94,26 +94,24 @@ class Comment extends Component {
                                             to={`/user/${comment.postedBy._id}`}
                                         >
                                             <UserHeader user={comment.postedBy} post={comment} />
-                                            <span className="_comment_t">{comment.text}</span>
+                                            <div className="_comment_t">{comment.text}</div>
                                         </Link>
-                                        <span>
-                                            {isAuthenticated().user &&
-                                                isAuthenticated().user._id ===
-                                                comment.postedBy._id && (
-                                                    <>
-                                                        <span
-                                                            onClick={() =>
-                                                                this.deleteConfirmed(
-                                                                    comment
-                                                                )
-                                                            }
-                                                            className="_linker"
-                                                        >
-                                                            Delete
+                                        {isAuthenticated().user &&
+                                            isAuthenticated().user._id ===
+                                            comment.postedBy._id && (
+                                                <>
+                                                    <span
+                                                        onClick={() =>
+                                                            this.deleteConfirmed(
+                                                                comment
+                                                            )
+                                                        }
+                                                        className="_linker mar_lr float-right t_sm"
+                                                    >
+                                                        Delete
                                                         </span>
-                                                    </>
-                                                )}
-                                        </span>
+                                                </>
+                                            )}
                                     </p>
                                 </div>
                             </div>
@@ -121,13 +119,13 @@ class Comment extends Component {
                     ))}
 
                     <form onSubmit={this.addComment}>
-                        <div className="form-group">
+                        <div className="comment">
                             <input
                                 type="text"
                                 onChange={this.handleChange}
                                 value={this.state.text}
-                                className="form-control"
-                                placeholder="Leave a comment..."
+                                className="_comment_input"
+                                placeholder="Write a comment..."
                             />
                             <button className="btn">
                                 Post

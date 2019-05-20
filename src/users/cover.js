@@ -41,11 +41,11 @@ class Cover extends Component {
                     </div>
                     <div className="headerMenu">
                         <ul className="_6_7 clearfix">
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">Timeline</a></div></li>
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">About</a></div></li>
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">Friends <span class="_gs6">{this.props.followers}</span></a></div></li>
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">Photos</a></div></li>
-                            <li><div className="_6a _6-6 _9rx _6-7"><a className="_9ry _p" href="#">Archive</a></div></li>
+                            <li><div className="_6a _6-6 _9rx _6-7"><Link className="_9ry _p" href={""}>Timeline</Link></div></li>
+                            <li><div className="_6a _6-6 _9rx _6-7"><Link className="_9ry _p" href={""}>About</Link></div></li>
+                            <li><div className="_6a _6-6 _9rx _6-7"><Link className="_9ry _p" href={""}>Friends <span class="_gs6">{this.props.followers}</span></Link></div></li>
+                            <li><div className="_6a _6-6 _9rx _6-7"><Link className="_9ry _p" href={""}>Photos</Link></div></li>
+                            <li><div className="_6a _6-6 _9rx _6-7"><Link className="_9ry _p" to={""}>Archive</Link></div></li>
                         </ul>
                         <img className="profilePicThumb"
                             src={this.props.url}
@@ -57,11 +57,12 @@ class Cover extends Component {
                         <div className="_2nlj _2xc6">
                             <h1 className="_2nlv">
                                 <span className="_2t_q" >
-                                    <a className="_2nlw _2nlv" href="">{user.name} </a>
+                                    <Link className="_2nlw _2nlv" to={""}>{user.name} </Link>
                                 </span>
                             </h1>
                         </div>
                         <div class="_actionBar">
+                            <Link to={`/user/edit/${user._id}`}><i className="userIcon_2 fb"></i> Add Friend</Link>
                             <Link to={`/user/edit/${user._id}`}><i className="userIcon_2 edit"></i> Edit Profile</Link>
                         </div>
                     </div>

@@ -78,9 +78,9 @@ class EditProfile extends Component {
     handleChange = name => event => {
         this.setState({ error: "" });
         const value =
-            name === "photo"||"coverPhoto" ? event.target.files[0] : event.target.value;
+            name === "photo" || "coverPhoto" ? event.target.files[0] : event.target.value;
 
-        const fileSize = name === "photo"||"coverPhoto" ? event.target.files[0].size : 0;
+        const fileSize = name === "photo" || "coverPhoto" ? event.target.files[0].size : 0;
         this.userData.set(name, value);
         this.setState({ [name]: value, fileSize });
     };
@@ -124,12 +124,12 @@ class EditProfile extends Component {
             </div>
             <div className="form-group">
                 <label className="text-muted">cover Photo</label>
-                    <input
-                        onChange={this.handleChange("coverPhoto")}
-                        type="file"
-                        accept="image/*"
-                        className="form-control"
-                    />
+                <input
+                    onChange={this.handleChange("coverPhoto")}
+                    type="file"
+                    accept="image/*"
+                    className="form-control"
+                />
             </div>
             <div className="form-group">
                 <label className="text-muted">Name</label>
@@ -196,8 +196,8 @@ class EditProfile extends Component {
 
         const photoUrl = id
             ? `${
-                  process.env.REACT_APP_API_URL
-              }/user/photo/${id}?${new Date().getTime()}`
+            process.env.REACT_APP_API_URL
+            }/user/photo/${id}?${new Date().getTime()}`
             : DefaultProfile;
         return (
             <div className="container">
@@ -214,8 +214,8 @@ class EditProfile extends Component {
                         <h2>Loading...</h2>
                     </div>
                 ) : (
-                    ""
-                )}
+                        ""
+                    )}
 
                 <img
                     style={{ height: "200px", width: "auto" }}

@@ -199,6 +199,8 @@ User page grid
             text-shadow: none;
             vertical-align: middle;
             bottom: 40px;
+
+            &:hover {    background-color: #ebedf0; }
         }
     }
 }

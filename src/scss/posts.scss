@@ -131,6 +131,13 @@
                     position: relative;
                     border: 0;
                     padding: 0;
+                    input[type="file"] {
+                        top: 5px;
+                        display: block;
+                        position: absolute;
+                        opacity: 0;
+                        cursor:pointer;
+                    }
                     i {
                         height: 20px;
                         left: 9px;

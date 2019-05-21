@@ -1,3 +1,5 @@
+import { reject } from "q";
+
 const API = process.env.REACT_APP_API_URL;
 
 export const getUsersbyId = (userId, token) => {
@@ -115,7 +117,7 @@ export const findPeople = (userId, token) => {
 };
 
 export const getProfilePhoto = (userId) => {
-    return `${API}/users/${userId}/photo`
+    return `${API}/users/${userId}/photo`;
 }
 
 

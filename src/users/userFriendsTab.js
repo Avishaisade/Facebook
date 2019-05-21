@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import DefaultProfile from "../Images/default_profile.png";
+import UserPicture from "./UserPicture";
 
 export default function userFriendsTab(props) {
     const { following, followers } = props;
@@ -21,13 +21,7 @@ export default function userFriendsTab(props) {
                         <li>
                             <div style={{ position: 'relative' }}>
                                 <Link to={`/user/${person._id}`}>
-                                    <img onError={i =>
-                                        (i.target.src = `${DefaultProfile}`)
-                                    }
-                                        src={`${
-                                            process.env.REACT_APP_API_URL
-                                            }/user/photo/${person._id}`}
-                                        alt={person.name} />
+                                    {UserPicture(person._id, person.name)}
                                     <div className="_fr_name">{person.name}</div>
                                 </Link>
                             </div>

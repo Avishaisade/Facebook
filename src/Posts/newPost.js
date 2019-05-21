@@ -125,7 +125,6 @@ class NewPost extends Component {
                 <div className="_1col">
                     <Avatar
                         _id={this.state.user._id}
-                        name={this.state.user.name}
                     />
                 </div>
                 <div className="_2col">

@@ -88,14 +88,9 @@ class Comment extends Component {
                     {comments.map((comment, i) => (
                         <div key={i}>
                             <div>
-                                <Link to={`/users/${comment.postedBy._id}`} />
                                 <div>
-                                    <Link
-                                        to={`/users/${comment.postedBy._id}`}
-                                    >
-                                        <UserHeader user={comment.postedBy} post={comment} />
-                                        <div className="_comment_t">{comment.text}</div>
-                                    </Link>
+                                    <UserHeader user={comment.postedBy} post={comment} />
+                                    <div className="_comment_t">{comment.text}</div>
                                     {isAuthenticated().user &&
                                         isAuthenticated().user._id ===
                                         comment.postedBy._id && (

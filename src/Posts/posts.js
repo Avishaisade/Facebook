@@ -76,7 +76,6 @@ class Posts extends Component {
 
                 {this.renderPosts(posts)}
 
-
             </div>
         );
     }

@@ -1,22 +1,22 @@
-import React  from 'react';
+import React from 'react';
 import DefaultProfile from "../Images/defult_profile.jpg";
-import {getProfilePhoto} from "../users/apiUser";
+import { getProfilePhoto } from "../users/apiUser";
 
-const Avatar= (props)=> {
+const Avatar = (props) => {
 
-    const {_id, name}= props;
-    let photoUrl= getProfilePhoto(_id);
-    if(!photoUrl)
-    {photoUrl= DefaultProfile}
-        return (
-            <div className="userAvatarContainer">
-                <img
-                    className="Avatar" 
-                    src={photoUrl} 
-                    alt={name}
-                    />
-            </div>
-        );           
+    const { _id, name } = props;
+    let photoUrl = getProfilePhoto(_id);
+    if (!photoUrl) { photoUrl = DefaultProfile }
+    return (
+        <div className="userAvatarContainer">
+            <img
+                className="Avatar"
+                src={photoUrl}
+                alt={name}
+            />
+            {name !== "" ? name : ""}
+        </div>
+    );
 }
 
 

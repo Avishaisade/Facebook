@@ -123,6 +123,7 @@ class SinglePost extends Component {
                     )}
 
                 <UserHeader user={post.postedBy} post={post} />
+
                 <div className="body">{post.body}</div>
 
                 <div className="d-inline-block">

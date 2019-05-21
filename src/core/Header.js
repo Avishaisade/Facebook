@@ -91,10 +91,7 @@ const Header = ({ history }) => (
                             )}
                         >
                             <span className="s-1">
-                                <Avatar
-                                    _id={isAuthenticated().user._id}
-                                />
-                                {`${isAuthenticated().user.name}`}
+                                <Avatar _id={isAuthenticated().user._id} name={`${isAuthenticated().user.name}`} />
                             </span>
                         </Link>
 

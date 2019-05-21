@@ -90,30 +90,28 @@ class Comment extends Component {
                             <div>
                                 <Link to={`/users/${comment.postedBy._id}`} />
                                 <div>
-                                    <p className="">
-                                        <Link
-                                            to={`/users/${comment.postedBy._id}`}
-                                        >
-                                            <UserHeader user={comment.postedBy} post={comment} />
-                                            <div className="_comment_t">{comment.text}</div>
-                                        </Link>
-                                        {isAuthenticated().user &&
-                                            isAuthenticated().user._id ===
-                                            comment.postedBy._id && (
-                                                <>
-                                                    <span
-                                                        onClick={() =>
-                                                            this.deleteConfirmed(
-                                                                comment
-                                                            )
-                                                        }
-                                                        className="_linker mar_lr float-right t_sm"
-                                                    >
-                                                        Delete
+                                    <Link
+                                        to={`/users/${comment.postedBy._id}`}
+                                    >
+                                        <UserHeader user={comment.postedBy} post={comment} />
+                                        <div className="_comment_t">{comment.text}</div>
+                                    </Link>
+                                    {isAuthenticated().user &&
+                                        isAuthenticated().user._id ===
+                                        comment.postedBy._id && (
+                                            <>
+                                                <span
+                                                    onClick={() =>
+                                                        this.deleteConfirmed(
+                                                            comment
+                                                        )
+                                                    }
+                                                    className="_linker mar_lr float-right t_sm"
+                                                >
+                                                    Delete
                                                         </span>
-                                                </>
-                                            )}
-                                    </p>
+                                            </>
+                                        )}
                                 </div>
                             </div>
                         </div>

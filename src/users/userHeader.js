@@ -3,15 +3,13 @@ import { Link } from "react-router-dom";
 import DefaultProfile from "../Images/default_profile.png";
 import TimeLabel from "./timelabel";
 
-
-
 const UserHeader = (props) => {
 
-    const user = props;
+    const user = props.user;
     const { _id, name } = user
     const photoUrl = `${process.env.REACT_APP_API_URL}/users/${_id}/photo`;
     return (
-        <div>
+        <div className="UserHead">
             <img
                 className="Avatar"
                 height="30px"

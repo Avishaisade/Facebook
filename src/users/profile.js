@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
 import { Redirect, Link } from "react-router-dom";
-import { listByUser } from "../posts/apiPost";
+import { listByUser } from "../Posts/apiPost";
 import Cover from './cover';
 import DeleteUser from "./DeleteUser";
 import FriendProfileButton from "./FriendProfileButton";
 import { getUsersbyId } from "./apiUser";
-import NewPost from "../posts/newPost";
+import NewPost from "../Posts/newPost";
 import UserDetails from "./userDetails";
 import FriendsTab from "./userFriendsTab";
-import SinglePost from "../posts/SinglePost";
+import SinglePost from "../Posts/SinglePost";
 
 class Profile extends Component {
     constructor() {

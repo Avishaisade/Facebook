@@ -10,9 +10,9 @@ import EditProfile from "./users/EditProfile";
 import PrivateRoute from "./auth/PrivateRoute";
 import FindPeople from "./users/FindPeople";
 import Footer from "./core/Footer";
-import NewPost from "./posts/newPost";
-import EditPost from "./posts/EditPost";
-import SinglePost from "./posts/SinglePost";
+import NewPost from "./Posts/newPost";
+import EditPost from "./Posts/EditPost";
+import SinglePost from "./Posts/SinglePost";
 
 const MainRouter = () => (
     <div>
@@ -23,16 +23,16 @@ const MainRouter = () => (
                 path="/"
                 component={Home}
             />
-            <PrivateRoute 
-                exact 
-                path="/post/create" 
-                component={NewPost} 
+            <PrivateRoute
+                exact
+                path="/post/create"
+                component={NewPost}
             />
 
             <Route
-                 exact 
-                 path="/post/:postId" D
-                 component={SinglePost} 
+                exact
+                path="/post/:postId" D
+                component={SinglePost}
             />
 
             <PrivateRoute

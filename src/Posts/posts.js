@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {listOfUsers } from "./apiPost";
+import { listOfUsers } from "./apiPost";
 import { Link } from "react-router-dom";
 import UserHeader from "../users/userHeader";
 import moment from 'moment';
@@ -12,7 +12,7 @@ class Posts extends Component {
         };
     }
 
-    loadPosts =() => {
+    loadPosts = () => {
         listOfUsers().then(data => {
             if (data.error) {
                 console.log(data.error);

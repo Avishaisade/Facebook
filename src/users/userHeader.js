@@ -5,12 +5,12 @@ import TimeLabel from "./timelabel";
 
 
 
-const UserHeader = (props) =>{
-    
+const UserHeader = (props) => {
+
     const user = props;
-    const {_id, name} = user
-    const photoUrl= `${process.env.REACT_APP_API_URL}/users/${_id}/photo`;   
-    return(
+    const { _id, name } = user
+    const photoUrl = `${process.env.REACT_APP_API_URL}/users/${_id}/photo`;
+    return (
         <div>
             <img
                 className="Avatar"
@@ -24,9 +24,9 @@ const UserHeader = (props) =>{
             />
             <Link className="UserInfo" to={`/user/${_id}`}>
                 <span>{name}</span>
-                {/* <TimeLabel 
-                    post={props.post} 
-                /> */}
+                <TimeLabel
+                    post={props.post}
+                />
             </Link>
         </div>
     )

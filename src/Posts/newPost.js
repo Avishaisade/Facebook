@@ -1,8 +1,8 @@
-import React, { Component } from "./node_modules/react";
-import { Link } from "./node_modules/react-router-dom";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 import { createPost } from "./apiPost";
-import { Redirect } from "./node_modules/react-router-dom";
+import { Redirect } from "react-router-dom";
 import Avatar from "../users/avatar";
 
 // let photoUrl = DefaultProfile;
@@ -97,7 +97,7 @@ class NewPost extends Component {
             loading,
             redirectToProfile
         } = this.state;
-        
+
         if (redirectToProfile) {
             return <Redirect to={`/users/${user._id}`} />;
         }
@@ -124,8 +124,8 @@ class NewPost extends Component {
 
                 <div className="_1col">
                     <Avatar
-                     _id={this.state.user._id}
-                     name={this.state.user.name}
+                        _id={this.state.user._id}
+                        name={this.state.user.name}
                     />
                 </div>
                 <div className="_2col">

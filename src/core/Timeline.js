@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import {listOfUsers } from "../posts/apiPost";
-import SinglePost from "../posts/SinglePost";
+import { listOfUsers } from "../Posts/apiPost";
+import SinglePost from "../Posts/SinglePost";
 
 class Timeline extends Component {
     constructor() {
@@ -10,8 +10,8 @@ class Timeline extends Component {
         };
     }
 
-    loadPosts =() => {
-        listOfUsers ().then(data => {
+    loadPosts = () => {
+        listOfUsers().then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
@@ -35,23 +35,23 @@ class Timeline extends Component {
                     </div>
                 ))}
             </div>
-                
+
         );
     };
 
     render() {
-        const { posts} = this.state;
+        const { posts } = this.state;
         return (
             <div className="container">
-                
+
                 {this.renderPosts(posts)}
 
-                
+
             </div>
         );
     }
 }
-    
+
 export default Timeline;
 
 

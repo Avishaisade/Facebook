@@ -1,12 +1,12 @@
 import React from "react";
 import Timeline from "../core/Timeline";
-import Posts from "../posts/posts";
-import NewPost from "../posts/newPost";
+import Posts from "../Posts/posts";
+import NewPost from "../Posts/newPost";
 
 
 const Home = () => (
     <>
-        <NewPost/>
+        <NewPost />
         <div className="feed">
 
             <Timeline />

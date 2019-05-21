@@ -19,19 +19,19 @@ const { requireSignin } = require("../controllers/auth");
 const route = Router();
 
 
-route.put("/user/follow", requireSignin, addFollowing, addFollower);
-route.put("/user/unfollow", requireSignin, removeFollowing, removeFollower);
+route.put("/users/:userId/follow", requireSignin, addFollowing, addFollower);
+route.put("/users/:userId/unfollow", requireSignin, removeFollowing, removeFollower);
 
 route.get("/users", allUsers);
-route.get("/user/:userId", getUser);
-route.put("/user/:userId", requireSignin, hasAuthorization, updateUser);
-route.delete("/user/:userId", requireSignin, hasAuthorization, deleteUser);
+route.get("/users/:userId", getUser);
+route.put("/users/:userId", requireSignin, hasAuthorization, updateUser);
+route.delete("/users/:userId", requireSignin, hasAuthorization, deleteUser);
 // photo
-route.get("/user/photo/:userId", userPhoto);
-route.get("/user/coverPhoto/:userId", userCoverPhoto);
+route.get("/users/:userId/photo", userPhoto);
+route.get("/user/:userId/coverPhoto", userCoverPhoto);
 
 // find friends
-route.get("/user/findpeople/:userId", requireSignin, findPeople);
+route.get("/users/:userId/findpeople", requireSignin, findPeople);
 
 // any route containing :userId, our app will first execute userByID()
 route.param("userId", userById);

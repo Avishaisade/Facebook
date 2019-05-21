@@ -88,10 +88,11 @@ class Comment extends Component {
                     {comments.map((comment, i) => (
                         <div key={i}>
                             <div>
+                                <Link to={`/users/${comment.postedBy._id}`} />
                                 <div>
                                     <p className="">
                                         <Link
-                                            to={`/user/${comment.postedBy._id}`}
+                                            to={`/users/${comment.postedBy._id}`}
                                         >
                                             <UserHeader user={comment.postedBy} post={comment} />
                                             <div className="_comment_t">{comment.text}</div>

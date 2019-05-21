@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { list } from "./apiPost";
+import {listOfUsers } from "./apiPost";
 import { Link } from "react-router-dom";
 import UserHeader from "../users/userHeader";
 import moment from 'moment';
-
 
 class Posts extends Component {
     constructor() {
@@ -13,8 +12,8 @@ class Posts extends Component {
         };
     }
 
-    loadPosts = () => {
-        list().then(data => {
+    loadPosts =() => {
+        listOfUsers().then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
@@ -32,7 +31,7 @@ class Posts extends Component {
             <div className="row">
                 {posts.map((post, i) => {
                     const posterId = post.postedBy
-                        ? `/user/${post.postedBy._id}`
+                        ? `/users/${post.postedBy._id}`
                         : "";
                     const posterName = post.postedBy
                         ? post.postedBy.name

@@ -1,29 +1,19 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { signout, isAuthenticated } from "../auth";
-import DefaultProfile from "../Images/defult_profile.jpg";
+import Avatar from "../users/avatar";
 
 const isActive = (history, path) => {
     if (history.location.pathname === path) return { color: "#ff9900" };
     else return { color: "#ffffff" };
 }
 
-
-let photoUrl = DefaultProfile;
-if (isAuthenticated()) {
-    photoUrl = isAuthenticated().user._id
-        ? `${process.env.REACT_APP_API_URL}/user/photo/${
-        isAuthenticated().user._id
-        }?${new Date().getTime()}`
-        : { DefaultProfile };
-}
-
+// const friends= isAuthenticated().user.following.concat(isAuthenticated().user.followers)
 const Header = ({ history }) => (
     <div>
         {isAuthenticated() && (
             <div className="header-fb">
                 <div className="inner-container">
-
                     {!isAuthenticated() && (
                         <>
                             <Link
@@ -94,18 +84,15 @@ const Header = ({ history }) => (
                     </div>
                     <div className="float-right r_menu">
                         <Link
-                            to={`/user/${isAuthenticated().user._id}`}
+                            to={`/users/${isAuthenticated().user._id}`}
                             style={isActive(
                                 history,
-                                `/user/${isAuthenticated().user._id}`
+                                `/users/${isAuthenticated().user._id}`
                             )}
                         >
                             <span className="s-1">
-                                <img
-                                    className="img-thumbnail"
-                                    src={photoUrl}
-                                    onError={i => (i.target.src = `${DefaultProfile}`)}
-                                    alt={isAuthenticated().user.name}
+                                <Avatar
+                                    _id={isAuthenticated().user._id}
                                 />
                                 {`${isAuthenticated().user.name}`}
                             </span>

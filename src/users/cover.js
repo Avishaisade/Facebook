@@ -1,34 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { getProfilePhoto, getCoverPhoto } from "./apiUser";
 import DefaultProfile from "../Images/default_profile.png";
+
 class Cover extends Component {
 
     render() {
         const user = this.props.user;
-        // console.log(user);
+        const photoUrl = getProfilePhoto(user._id);
+        const coverPhotoUrl = getCoverPhoto(user._id);
+
+        let coverPhoto = coverPhotoUrl;
+        if (!coverPhoto) { coverPhoto = DefaultProfile }
         return (
             <div className="coverHeaderContainer">
-                {/* <form>
-                    <div className="form-group">
-                    <label className="text-muted">Profile Photo</label>
-                    <input
-                        // onChange={this.handleChange("photo")}
-                        type="file"
-                        accept="image/*"
-                        className="form-control"
-                    />
-                     </div>
-                     <button
-                    onClick={this.clickSubmit}
-                    className="btn"
-                >
-                    Update
-                </button>
-                </form> */}
                 <div className="userCoverContainer">
                     <div className="coverImage">
                         <img
-                            src={this.props.coverUrl}
+                            src={coverPhoto}
                             alt={user.name}
                             onError={i => (i.target.src = `${"https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2017/08/facebook-cover-photo-header.jpg"}`)}
                         />
@@ -48,7 +37,7 @@ class Cover extends Component {
                             <li><div className="_6a _6-6 _9rx _6-7"><Link className="_9ry _p" to={""}>Archive</Link></div></li>
                         </ul>
                         <img className="profilePicThumb"
-                            src={this.props.url}
+                            src={photoUrl}
                             alt={user.name}
                             onError={i => (i.target.src = `${DefaultProfile}`)}
                         />

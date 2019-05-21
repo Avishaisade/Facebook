@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { singlePost, remove, like, unlike } from "./apiPost";
+import { singlePost, removePost, like, unlike } from "./apiPost";
 import { Link, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 import Comment from "../comment/comment";
@@ -71,7 +71,7 @@ class SinglePost extends Component {
     deletePost = () => {
         const postId = this.props.match.params.postId;
         const token = isAuthenticated().token;
-        remove(postId, token).then(data => {
+        removePost(postId, token).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
@@ -90,6 +90,8 @@ class SinglePost extends Component {
     };
 
     renderPost = post => {
+
+        const { like, likes } = this.state;
 
         return (
             <div>
@@ -128,7 +130,7 @@ class SinglePost extends Component {
                     <div>
                         {isAuthenticated().user &&
                             isAuthenticated().user.role === "admin" && (
-                                <div class="card">
+                                <div className="card">
                                     <div className="card-body">
                                         <h5 className="card-title">Admin</h5>
                                         <p className="text">
@@ -168,9 +170,9 @@ class SinglePost extends Component {
                     </span>
                     ) : (
                             <span onClick={this.likeToggle}>
-                                <i class="postsIcon like"></i>
+                                <i className="postsIcon like"></i>
                                 {likes} Like
-                    </span>
+                        </span>
                         )
                 }
             </div>

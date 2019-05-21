@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
 import { Redirect, Link } from "react-router-dom";
-import { read } from "./apiUser";
+import { listByUser } from "../posts/apiPost";
 import Cover from './cover';
 import DeleteUser from "./DeleteUser";
 import FriendProfileButton from "./FriendProfileButton";
-import DefaultProfile from "../Images/default_profile.png";
-import { listByUser } from "../posts/apiPost";
+import { getUsersbyId } from "./apiUser";
 import NewPost from "../posts/newPost";
 import UserDetails from "./userDetails";
 import FriendsTab from "./userFriendsTab";
@@ -45,10 +44,10 @@ class Profile extends Component {
             }
         });
     };
-
+    // read
     init = userId => {
         const token = isAuthenticated().token;
-        read(userId, token).then(data => {
+        getUsersbyId(userId, token).then(data => {
             if (data.error) {
                 this.setState({ redirectToSignin: true });
             } else {
@@ -59,7 +58,7 @@ class Profile extends Component {
         });
     };
 
-
+    // listByUser
     loadPosts = userId => {
         const token = isAuthenticated().token;
         listByUser(userId, token).then(data => {
@@ -85,24 +84,15 @@ class Profile extends Component {
         const { redirectToSignin, user, posts } = this.state;
         if (redirectToSignin) return <Redirect to="/signin" />;
 
-        const photoUrl = user._id
-            ? `${process.env.REACT_APP_API_URL}/user/photo/${
-            user._id
-            }?${new Date().getTime()}`
-            : { DefaultProfile };
-
-        const coverPhotoUrl = user._id
-            ? `${process.env.REACT_APP_API_URL}/user/coverPhoto/${
-            user._id
-            }?${new Date().getTime()}`
-            : { DefaultProfile };
+        // const photoUrl = getProfilePhoto( isAuthenticated().user._id); 
+        // const coverPhotoUrl = getCoverPhoto( isAuthenticated().user._id); 
 
         return (
             <div className="globalContainer">
                 {/* Cover Area */}
                 <Cover
-                    url={photoUrl}
-                    coverUrl={coverPhotoUrl}
+                    // photoUrl={photoUrl}
+                    // coverUrl={coverPhotoUrl}
                     user={user}
                     followers={user.followers.length} />
 
@@ -145,7 +135,7 @@ class Profile extends Component {
                         <div>
                             {isAuthenticated().user &&
                                 isAuthenticated().user.role === "admin" && (
-                                    <div class="1">
+                                    <div className="1">
                                         <div className="card-body">
                                             <h5 className="card-title">
                                                 Admin
@@ -155,7 +145,7 @@ class Profile extends Component {
                                             </p>
                                             <Link
                                                 className="btn"
-                                                to={`/user/edit/${user._id}`}
+                                                to={`/users/${user._id}`}
                                             >
                                                 Edit Profile
                                             </Link>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { findPeople, follow } from "./apiUser";
-import DefaultProfile from "../Images/defult_profile.jpg";
+import { findPeople, follow} from "./apiUser";
+import UserPicture from './UserPicture'
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 
@@ -26,6 +26,7 @@ class FindPeople extends Component {
             }
         });
     }
+    
 
     clickFollow = (user, i) => {
         const userId = isAuthenticated().user._id;
@@ -40,7 +41,7 @@ class FindPeople extends Component {
                 this.setState({
                     users: toFollow,
                     open: true,
-                    followMessage: `Following ${user.name}`
+                    followMessage: `You are now friends with ${user.name}`
                 });
             }
         });
@@ -50,20 +51,17 @@ class FindPeople extends Component {
         <div className="row">
             {users.map((user, i) => (
                 <div className="card col-md-4" key={i}>
-                    <img
-                        style={{ height: "200px", width: "auto" }}
+                    <UserPicture
                         className="img-thumbnail"
-                        src={`${process.env.REACT_APP_API_URL}/user/photo/${
-                            user._id
-                        }`}
-                        onError={i => (i.target.src = `${DefaultProfile}`)}
-                        alt={user.name}
+                        style={{ height: "200px", width: "auto" }}
+                        id={user._id}
+                        name={user.name}
                     />
                     <div className="card-body">
                         <h5 className="card-title">{user.name}</h5>
                         <p className="card-text">{user.email}</p>
                         <Link
-                            to={`/user/${user._id}`}
+                            to={`/users/${user._id}`}
                             className="btn btn-raised btn-primary btn-sm"
                         >
                             View Profile

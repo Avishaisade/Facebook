@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
 import { Redirect, Link } from "react-router-dom";
-import {listByUser } from "../posts/apiPost";
+import { listByUser } from "../posts/apiPost";
 import Cover from './cover';
 import DeleteUser from "./DeleteUser";
 import FriendProfileButton from "./FriendProfileButton";
-import ProfileTabs from "./ProfileTabs";
-import {getUsersbyId} from "./apiUser";
+import { getUsersbyId } from "./apiUser";
 import NewPost from "../posts/newPost";
 import UserDetails from "./userDetails";
+import FriendsTab from "./userFriendsTab";
 import SinglePost from "../posts/SinglePost";
 
 class Profile extends Component {
@@ -44,7 +44,7 @@ class Profile extends Component {
             }
         });
     };
-// read
+    // read
     init = userId => {
         const token = isAuthenticated().token;
         getUsersbyId(userId, token).then(data => {
@@ -89,12 +89,33 @@ class Profile extends Component {
 
         return (
             <div className="globalContainer">
+                {/* Cover Area */}
                 <Cover
                     // photoUrl={photoUrl}
                     // coverUrl={coverPhotoUrl}
                     user={user}
                     followers={user.followers.length} />
-                <UserDetails user={user} />
+
+                <div className="col-320 float-left">
+                    {/* Details Tab */}
+                    <UserDetails user={user} />
+                    {/* Friends Tab */}
+                    <FriendsTab followers={user.followers} following={user.following} />
+                </div>
+
+                <div className="col-530 float-right">
+                    {/* Post Creation */}
+                    <NewPost />
+                    {/* Posts */}
+                    {posts.map((post, i) => (
+                        <div key={i}>
+                            <SinglePost
+                                postId={[post._id]}
+                            />
+                        </div>
+                    ))}
+                </div>
+
                 <div className="row">
 
                     <div className="col">
@@ -102,20 +123,6 @@ class Profile extends Component {
                         {isAuthenticated().user &&
                             isAuthenticated().user._id === user._id ? (
                                 <div className="1">
-                                     <NewPost />
-                                    <Link
-                                        className="btn"
-                                        to={`/posts/${isAuthenticated().user._id}`}
-                                    >
-                                        Create Post
-                                </Link>
-
-                                    <Link 
-                                        className="btn "
-                                        to={`/user/edit/${user._id}`}
-                                    >
-                                        Edit Profile
-                                </Link>
                                     <DeleteUser userId={user._id} />
                                 </div>
                             ) : (
@@ -148,28 +155,6 @@ class Profile extends Component {
                                         </div>
                                     </div>
                                 )}
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <hr />
-                        <p className="lead">{user.about}</p>
-                        <hr />
-
-                        <ProfileTabs
-                            followers={user.followers}
-                            following={user.following}
-                        />
-                        <div className="col">
-                            <hr />
-                            {posts.map((post, i) => (
-                                <div key={i}>
-                                    <SinglePost
-                                        postId={[post._id]}
-                                    />
-                                </div>
-                            ))}
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { singlePost, removePost , like, unlike } from "./apiPost";
+import { singlePost, removePost, like, unlike } from "./apiPost";
 import { Link, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 import Comment from "../comment/comment";
@@ -71,7 +71,7 @@ class SinglePost extends Component {
     deletePost = () => {
         const postId = this.props.match.params.postId;
         const token = isAuthenticated().token;
-        removePost (postId, token).then(data => {
+        removePost(postId, token).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
@@ -94,29 +94,38 @@ class SinglePost extends Component {
         const { like, likes } = this.state;
 
         return (
-            <div className="card-body">
+            <div>
+                {isAuthenticated().user &&
+                    isAuthenticated().user._id === post.postedBy._id && (
+                        <>
+                            <label className="dropdown float-right">
+                                <i className="userIcon_3 dots _block pointer"></i>
+                                <input type="checkbox" className="dd-input" id="test" />
+                                <ul className="dd-menu">
+                                    <li>
+                                        <Link
+                                            to={`/post/edit/${post._id}`}
+                                        >
+                                            Edit Post
+                                </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            onClick={this.deleteConfirmed}
+                                        >
+                                            Delete Post
+                                </Link>
+                                    </li>
+                                </ul>
+
+                            </label>
+                        </>
+                    )}
+
                 <UserHeader user={post.postedBy} post={post} />
                 <div className="body">{post.body}</div>
 
                 <div className="d-inline-block">
-
-                    {isAuthenticated().user &&
-                        isAuthenticated().user._id === post.postedBy._id && (
-                            <>
-                                <Link
-                                    to={`/posts/${post._id}`}
-                                    className="btn"
-                                >
-                                    Update Post
-                                </Link>
-                                <button
-                                    onClick={this.deleteConfirmed}
-                                    className="btn"
-                                >
-                                    Delete Post
-                                </button>
-                            </>
-                        )}
 
                     <div>
                         {isAuthenticated().user &&
@@ -160,9 +169,9 @@ class SinglePost extends Component {
                             {likes} Like
                     </span>
                     ) : (
-                        <span onClick={this.likeToggle}>
-                            <i className="postsIcon like"></i>
-                            {likes} Like
+                            <span onClick={this.likeToggle}>
+                                <i className="postsIcon like"></i>
+                                {likes} Like
                         </span>
                         )
                 }

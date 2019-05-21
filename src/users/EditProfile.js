@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
-import { getUsersbyId, updateUserById , updateUserToken, getProfilePhoto } from "./apiUser";
+import { getUsersbyId, updateUserById, updateUserToken, getProfilePhoto } from "./apiUser";
 import { Redirect } from "react-router-dom";
 import DefaultProfile from "../Images/defult_profile.jpg";
 
@@ -78,9 +78,9 @@ class EditProfile extends Component {
     handleChange = name => event => {
         this.setState({ error: "" });
         const value =
-            name === "photo"? event.target.files[0] : event.target.value;
+            name === "photo" ? event.target.files[0] : event.target.value;
 
-        const fileSize = name === "photo"? event.target.files[0].size : 0;
+        const fileSize = name === "photo" ? event.target.files[0].size : 0;
         this.userData.set(name, value);
         this.setState({ [name]: value, fileSize });
     };
@@ -93,7 +93,7 @@ class EditProfile extends Component {
             const userId = this.props.match.params.userId;
             const token = isAuthenticated().token;
 
-            updateUserById (userId, token, this.userData).then(data => {
+            updateUserById(userId, token, this.userData).then(data => {
                 if (data.error) {
                     this.setState({ error: data.error });
                 } else if (isAuthenticated().user.role === "admin") {
@@ -124,12 +124,12 @@ class EditProfile extends Component {
             </div>
             <div className="form-group">
                 <label className="text-muted">cover Photo</label>
-                    <input
-                        onChange={this.handleChange("coverPhoto")}
-                        type="file"
-                        accept="image/*"
-                        className="form-control"
-                    />
+                <input
+                    onChange={this.handleChange("coverPhoto")}
+                    type="file"
+                    accept="image/*"
+                    className="form-control"
+                />
             </div>
             <div className="form-group">
                 <label className="text-muted">Name</label>
@@ -210,8 +210,8 @@ class EditProfile extends Component {
                         <h2>Loading...</h2>
                     </div>
                 ) : (
-                    ""
-                )}
+                        ""
+                    )}
 
                 <img
                     style={{ height: "200px", width: "auto" }}

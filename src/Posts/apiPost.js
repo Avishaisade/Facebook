@@ -38,6 +38,21 @@ export const listOfUsers = () => {
         })
         .catch(err => console.log(err));
 };
+export const postByFriends = (userId, token) => {
+    return fetch(`${API}/users/${userId}/followers`, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
 
 export const singlePost = postId => {
     return fetch(`${API}/posts/${postId}`)

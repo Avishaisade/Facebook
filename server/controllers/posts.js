@@ -68,9 +68,9 @@ exports.createPost = (req, res, next) => {
 
 exports.postsByUser = (req, res) => {
     Post.find({ postedBy: req.profile._id })
+        .sort({created:-1})
         .populate("postedBy", "_id name")
         .select("_id body created likes")
-        .sort("_created")
         .exec((err, posts) => {
             if (err) {
                 return res.status(400).json({
@@ -80,6 +80,8 @@ exports.postsByUser = (req, res) => {
             res.json(posts);
         });
 };
+
+   
 
 exports.isPoster = (req, res, next) => {
     let sameUser =

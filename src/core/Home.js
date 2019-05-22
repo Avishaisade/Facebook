@@ -7,7 +7,6 @@ const Home = () => (
     <>
         <NewPost />
         <div className="feed">
-
             <Timeline />
         </div>
     </>

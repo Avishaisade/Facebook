@@ -2,6 +2,7 @@ const _ = require("lodash");
 const User = require("../models/users.model");
 const formidable = require("formidable");
 const fs = require("fs");
+const postsByUser = require("../models/users.model");
 
 exports.userById = (req, res, next, id) => {
     User.findById(id)
@@ -16,6 +17,29 @@ exports.userById = (req, res, next, id) => {
             req.profile = user; 
             next();
         });
+};
+const userById = (req, res, next, id) => {
+    User.findById(id)
+        .populate("following", "_id name")
+        .populate("followers", "_id name")
+        .exec((err, user) => {
+            if (err || !user) {
+                return res.status(400).json({
+                    error: "User not found"
+                });
+            }
+            req.profile = user; 
+            next();
+        });
+};
+exports.getFollowersByUserId= (req, res, next, id) =>{
+    const a= userById(id)
+        a.aggregate([
+        {$unwind: "$following"},
+        {$group: {_id: "$user_id" }},
+    ])
+   
+  
 };
 
 exports.hasAuthorization = (req, res, next) => {
@@ -194,3 +218,7 @@ exports.findPeople = (req, res) => {
         res.json(users);
     }).select("name");
 };
+
+// module.exports = {
+//     getFollowersByUserId
+// };

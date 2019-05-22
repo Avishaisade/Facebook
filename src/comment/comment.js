@@ -88,8 +88,15 @@ class Comment extends Component {
                         <div key={i}>
                             <div>
                                 <div>
-                                    <UserHeader user={comment.postedBy} post={comment} />
-                                    <div className="_comment_t">{comment.text}</div>
+                                {/* {console.log(comment)} */}
+                                    <UserHeader 
+                                        created={comment.created} 
+                                        _id={comment.postedBy._id} 
+                                        name={comment.postedBy.name} 
+                                    />
+                                    <div className="_comment_t">
+                                        {comment.text}
+                                    </div>
                                     {isAuthenticated().user &&
                                         isAuthenticated().user._id ===
                                         comment.postedBy._id && (

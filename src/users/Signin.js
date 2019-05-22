@@ -64,8 +64,8 @@ class Signin extends Component {
                 <table>
                     <tbody>
                         <tr>
-                            <td class="pb-4"><label htmlFor="email">Email or Phone</label></td>
-                            <td class="pb-4"><label htmlFor="pass">Password</label></td>
+                            <td className="pb-4"><label htmlFor="email">Email or Phone</label></td>
+                            <td className="pb-4"><label htmlFor="pass">Password</label></td>
                         </tr>
                         <tr>
                             <td>
@@ -116,7 +116,7 @@ class Signin extends Component {
                             <i></i>
                         </div>
                         <div className="alert " style={{ display: error ? "" : "none" }}>{error}</div>
-                        {loading ? (<div class="lds-facebook"><div></div><div></div><div></div></div>) : (this.signinForm(email, password))}
+                        {loading ? (<div className="lds-facebook"><div></div><div></div><div></div></div>) : (this.signinForm(email, password))}
                     </div>
                 </div>
                 <Signup />

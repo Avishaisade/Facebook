@@ -28,7 +28,7 @@ route.put("/users/:userId", requireSignin, hasAuthorization, updateUser);
 route.delete("/users/:userId", requireSignin, hasAuthorization, deleteUser);
 // photo
 route.get("/users/:userId/photo", userPhoto);
-route.get("/user/:userId/coverPhoto", userCoverPhoto);
+route.get("/users/:userId/coverPhoto", userCoverPhoto);
 
 // find friends
 route.get("/users/:userId/findpeople", requireSignin, findPeople);

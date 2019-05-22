@@ -8,7 +8,7 @@ export default function userFriendsTab(props) {
 
     return (
         <div className="userDetails clearfix-t">
-            <img class="img" src="https://static.xx.fbcdn.net/rsrc.php/v3/yv/r/gfh6ZI4vOdW.png" alt="" width="20" height="20" />
+            <img className="img" src="https://static.xx.fbcdn.net/rsrc.php/v3/yv/r/gfh6ZI4vOdW.png" alt="" width="20" height="20" />
             <span className="title ver_top">
                 &nbsp; Friends  ·  <span className="muted ver_top">{friends.length}</span>
             </span>
@@ -18,7 +18,7 @@ export default function userFriendsTab(props) {
             <div className="body friends">
                 <ul>
                     {friends.map((person, i) => (
-                        <li>
+                        <li key={i}>
                             <div style={{ position: 'relative' }}>
                                 <Link to={`/user/${person._id}`}>
                                     {UserPicture(person._id, person.name)}

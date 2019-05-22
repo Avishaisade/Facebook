@@ -33,7 +33,9 @@ const Header = ({ history }) => (
                         </>
                     )}
 
-                    <Link className="" style={isActive(history, "/")} to="/">
+                    <Link 
+                        style={isActive(history, "/")} 
+                        to="/">
                         <div className="fb-logo"></div>
                     </Link>
                     <div className="searchBox">
@@ -51,7 +53,10 @@ const Header = ({ history }) => (
                                         <input type="checkbox" className="dd-input" id="test" />
                                         <ul className="dd-menu">
                                             <li>
-                                                <Link onClick={() => signout(() => history.push("/"))}>Log Out</Link>
+                                                <span 
+                                                    onClick={() => signout(() => history.push("/"))}
+                                                >Log Out
+                                                </span>
                                             </li>
                                             <li>
                                                 {/* <Link

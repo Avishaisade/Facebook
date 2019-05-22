@@ -1,11 +1,13 @@
 import React from 'react';
 import moment from 'moment';
 
-const TimeLabel= (props)=> {  
-    const postCreated = props.post.created
+const TimeLabel= (props)=> { 
+    const postCreated = props.post
          return (
             postCreated?
-            <span className="timeLabel">{moment(postCreated).startOf('minute').fromNow()}</span>
+            <span className="timeLabel">
+                {moment(postCreated).startOf('minute').fromNow()}
+            </span>
             : null
         );
     }

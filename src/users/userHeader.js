@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import DefaultProfile from "../Images/default_profile.png";
 import TimeLabel from "./timelabel";
+import {getProfilePhoto} from "./apiUser"
 
 const UserHeader = (props) => {
 
-    const user = props.user;
-    const { _id, name } = user
-    const photoUrl = `${process.env.REACT_APP_API_URL}/users/${_id}/photo`;
+    const {_id, name} = props;
+    const photoUrl = getProfilePhoto(_id)
+    // console.log(props.post.created);
+
     return (
         <div className="UserHead">
             <img
@@ -23,7 +25,7 @@ const UserHeader = (props) => {
             <Link className="UserInfo" to={`/user/${_id}`}>
                 <span>{name}</span>
                 <TimeLabel
-                    post={props.post}
+                    post={props.created}
                 />
             </Link>
         </div>

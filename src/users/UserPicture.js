@@ -9,6 +9,9 @@ const UserPicture = (id, name) => {
         <img
             src={Photo}
             alt={name}
+            onError={i =>
+                (i.target.src = `${DefaultProfile}`)
+            }
         />
     );
 }

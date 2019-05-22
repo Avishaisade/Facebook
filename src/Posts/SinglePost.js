@@ -92,7 +92,6 @@ class SinglePost extends Component {
     renderPost = post => {
 
         const { like, likes } = this.state;
-
         return (
             <div>
                 {isAuthenticated().user &&
@@ -112,9 +111,10 @@ class SinglePost extends Component {
                                     <li>
                                         <Link
                                             onClick={this.deleteConfirmed}
+                                            to={""}
                                         >
                                             Delete Post
-                                </Link>
+                                        </Link>
                                     </li>
                                 </ul>
 
@@ -122,7 +122,11 @@ class SinglePost extends Component {
                         </>
                     )}
 
-                <UserHeader user={post.postedBy} post={post} />
+                <UserHeader 
+                     _id={post.postedBy._id}
+                     name={post.postedBy.name}
+                     created={post.created} 
+                    />
 
                 <div className="body">{post.body}</div>
 
@@ -215,6 +219,7 @@ class SinglePost extends Component {
                         postId={post._id}
                         comments={comments.reverse()}
                         updateComments={this.updateComments}
+                        
                     />
                 </div>
             </div>

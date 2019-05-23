@@ -82,33 +82,34 @@ class Profile extends Component {
 
     render() {
         const { redirectToSignin, user, posts } = this.state;
+       
         if (redirectToSignin) return <Redirect to="/signin" />;
 
-        // const photoUrl = getProfilePhoto( isAuthenticated().user._id); 
-        // const coverPhotoUrl = getCoverPhoto( isAuthenticated().user._id); 
-
-        return (
+        return(
             <div className="globalContainer">
                 {/* Cover Area */}
-                <Cover
-                    // photoUrl={photoUrl}
-                    // coverUrl={coverPhotoUrl}
+                <Cover                  
                     user={user}
-                    followers={user.followers.length} />
+                />
 
                 <div className="col-320 float-left">
                     {/* Details Tab */}
-                    <UserDetails user={user} />
+                    <UserDetails 
+                        user={user} 
+                    />
                     {/* Friends Tab */}
-                    <FriendsTab followers={user.followers} following={user.following} />
+                    <FriendsTab
+                        followers={user.followers} 
+                        following={user.following} 
+                     />
                 </div>
 
                 <div className="col-530 float-right">
-                    {/* Post Creation */}
-                    <NewPost />
+                <NewPost />
                     {/* Posts */}
                     {posts.map((post, i) => (
                         <div key={i}>
+                            
                             <SinglePost
                                 postId={[post._id]}
                             />
@@ -123,7 +124,11 @@ class Profile extends Component {
                         {isAuthenticated().user &&
                             isAuthenticated().user._id === user._id ? (
                                 <div className="1">
-                                    <DeleteUser userId={user._id} />
+                                    {/* Post Creation */}
+                                    
+                                    <DeleteUser 
+                                        userId={user._id} 
+                                    />
                                 </div>
                             ) : (
                                 <FriendProfileButton

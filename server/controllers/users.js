@@ -18,10 +18,10 @@ exports.userById = (req, res, next, id) => {
             next();
         });
 };
-const userById = (req, res, next, id) => {
+exports.followingById = (req, res, next, id) => {
     User.findById(id)
-        .populate("following", "_id name")
-        .populate("followers", "_id name")
+        .populate("following")
+        .populate("followers")
         .exec((err, user) => {
             if (err || !user) {
                 return res.status(400).json({
@@ -29,18 +29,11 @@ const userById = (req, res, next, id) => {
                 });
             }
             req.profile = user; 
+            console.log(user);
             next();
         });
 };
-exports.getFollowersByUserId= (req, res, next, id) =>{
-    const a= userById(id)
-        a.aggregate([
-        {$unwind: "$following"},
-        {$group: {_id: "$user_id" }},
-    ])
-   
-  
-};
+
 
 exports.hasAuthorization = (req, res, next) => {
     let sameUser = req.profile && req.auth && req.profile._id == req.auth._id;

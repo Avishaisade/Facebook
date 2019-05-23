@@ -39,7 +39,7 @@ export const listOfUsers = () => {
         .catch(err => console.log(err));
 };
 export const postByFriends = (userId, token) => {
-    return fetch(`${API}/users/${userId}/followers`, {
+    return fetch(`${API}/users/${userId}/following/posts`, {
         method: "GET",
         headers: {
             Accept: "application/json",

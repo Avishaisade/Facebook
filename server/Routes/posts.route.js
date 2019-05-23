@@ -12,7 +12,8 @@ const {
     like,
     unlike,
     comment,
-    uncomment
+    uncomment,
+    followingByUser
 } = require("../controllers/posts");
 
 
@@ -41,9 +42,9 @@ router.post(
 );
 
 router.get(
-    "/users/:userId/followers", 
+    "/users/:userId/following/posts", 
     requireSignin,
-    // getFollowersByUserId,
+    // followingByUser
     postsByUser
     );
 

@@ -5,14 +5,6 @@ import { createPost } from "./apiPost";
 import { Redirect } from "react-router-dom";
 import Avatar from "../users/avatar";
 
-// let photoUrl = DefaultProfile;
-// if (isAuthenticated()) {
-//     photoUrl = isAuthenticated().user._id
-//         ? `${process.env.REACT_APP_API_URL}/users/${isAuthenticated().user._id}/photo${
-//         isAuthenticated().user._id
-//         }?${new Date().getTime()}`
-//         : { DefaultProfile };
-// }
 
 class NewPost extends Component {
     constructor() {
@@ -44,6 +36,9 @@ class NewPost extends Component {
         }
         return true;
     };
+    isPoster= () =>{
+        if(isAuthenticated().user.id)
+    }
 
     handleChange = name => event => {
         this.setState({ error: "" });
@@ -84,7 +79,9 @@ class NewPost extends Component {
                 type="text"
                 className="c_post_txt"
                 value={body}
-                placeholder="What's on your mind?"
+                placeholder={?
+                            "What's on your mind?":
+                            "Write Somting "}
             />
 
         </form>

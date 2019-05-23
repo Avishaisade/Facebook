@@ -5,10 +5,10 @@ import NewPost from "../Posts/newPost";
 
 const Home = () => (
     <>
-        <NewPost />
-        <div className="feed">
-            <Timeline />
-        </div>
+    <NewPost />
+    <div className="feed">
+        <Timeline />
+    </div>
     </>
 );
 

@@ -8,10 +8,23 @@ class Timeline extends Component {
         super();
         this.state = {
             posts: [],
+            // following:[]
         };
     }
     
-    
+    // loadFollowing = () => {
+    //     const userId = isAuthenticated().user._id;
+    //     const token = isAuthenticated().token;  
+    //     followingbyUser(userId).then(data => {
+    //         if (data.error) {
+    //             console.log(data.error);
+    //         } else {
+    //             this.setState({ posts: data });
+    //             console.log(data);
+                
+    //         }
+    //     });
+    // };
     loadPosts = () => {
         const userId = isAuthenticated().user._id;
         const token = isAuthenticated().token;  
@@ -20,6 +33,7 @@ class Timeline extends Component {
                 console.log(data.error);
             } else {
                 this.setState({ posts: data });
+                console.log(data);
                 
             }
         });
@@ -49,7 +63,7 @@ class Timeline extends Component {
 
     render() {
         const { posts } = this.state;
-        console.log(posts);
+        // console.log(isAuthenticated().user);
         return (
             <div className="container">
 

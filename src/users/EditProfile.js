@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
-import { getUsersbyId, updateUserById, updateUserToken, getProfilePhoto } from "./apiUser";
+import { getUsersbyId, updateUserById, updateUserToken} from "./apiUser";
 import { Redirect } from "react-router-dom";
-import DefaultProfile from "../Images/defult_profile.jpg";
+import UserPicture from "./UserPicture";
 
 
 class EditProfile extends Component {
@@ -194,7 +194,6 @@ class EditProfile extends Component {
             return <Redirect to={`/users/${id}`} />;
         }
 
-        const photoUrl = getProfilePhoto(id);
         return (
             <div className="container">
                 <h2 className="1">Edit Profile</h2>
@@ -212,14 +211,12 @@ class EditProfile extends Component {
                 ) : (
                         ""
                     )}
-
-                <img
-                    style={{ height: "200px", width: "auto" }}
+                 <UserPicture
                     className="img-thumbnail"
-                    src={photoUrl}
-                    onError={i => (i.target.src = `${DefaultProfile}`)}
-                    alt={name}
-                />
+                    style={{ height: "200px", width: "auto" }}
+                    id={id}
+                    name={name}
+                />              
 
                 {/* {isAuthenticated().user.role === "admin" &&
                     this.signupForm(name, email, password, about)} */}

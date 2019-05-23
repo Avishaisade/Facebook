@@ -2,6 +2,7 @@ const Post = require("../models/post.model");
 const formidable = require("formidable");
 const fs = require("fs");
 const _ = require("lodash");
+const followingById = require('./users');
 
 exports.postById = (req, res, next, id) => {
     Post.findById(id)
@@ -71,6 +72,21 @@ exports.postsByUser = (req, res) => {
         .sort({created:-1})
         .populate("postedBy", "_id name")
         .select("_id body created likes")
+        .exec((err, posts) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                });
+            }
+            res.json(posts);
+        });
+};
+exports.followingByUser = (req, res,id) => {
+    const a=followingById(id)
+    a.find({ postedBy: req.profile._id })
+        .sort({created:-1})
+        .populate("following")
+        .select("following")
         .exec((err, posts) => {
             if (err) {
                 return res.status(400).json({

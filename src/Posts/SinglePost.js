@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { singlePost, removePost, like, unlike } from "./apiPost";
+import {removePost, like, unlike } from "./apiPost";
 import { Link, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 import Comment from "../comment/comment";
@@ -27,9 +27,8 @@ class SinglePost extends Component {
 
 
     componentDidMount = () => {
-        const postId = this.props.postId
-        singlePost(postId).then(data => {
-            if (data.error) {
+        const data = this.props.post;
+             if (data.error) {
                 console.log(data.error);
             } else {
                 this.setState({
@@ -39,7 +38,6 @@ class SinglePost extends Component {
                     comments: data.comments
                 });
             }
-        });
     };
 
     updateComments = comments => {
@@ -91,7 +89,6 @@ class SinglePost extends Component {
 
     renderPost = post => {
 
-        const { like, likes } = this.state;
         return (
             <div>
                 {isAuthenticated().user &&

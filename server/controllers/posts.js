@@ -71,7 +71,7 @@ exports.postsByUser = (req, res) => {
     Post.find({ postedBy: req.profile._id })
         .sort({created:-1})
         .populate("postedBy", "_id name")
-        .select("_id body created likes")
+        .select("_id body created likes comments")
         .exec((err, posts) => {
             if (err) {
                 return res.status(400).json({

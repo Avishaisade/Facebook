@@ -16,7 +16,9 @@ export default function userFriendsTab(props) {
             <span className="title ver_top">
                 &nbsp; Friends  ·  <span className="muted ver_top">{friends.length}</span>
             </span>
-            <Link className="linker float-right t_sm" to={""}>
+            <Link 
+                className="linker float-right t_sm" 
+                to={""}>
                 Find Friends
             </Link>
             <div className="body friends">
@@ -24,7 +26,8 @@ export default function userFriendsTab(props) {
                     {friends.map((person, i) => (
                         <li key={i}>
                             <div style={{ position: 'relative' }}>
-                                <Link to={`/users/${person._id}`}>
+                                <Link 
+                                    to={`/users/${person._id}`}>
                                     {UserPicture(person._id, person.name)}
                                     <div className="_fr_name">{person.name}</div>
                                 </Link>

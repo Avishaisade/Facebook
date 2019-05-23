@@ -109,9 +109,9 @@ class Profile extends Component {
                     {/* Posts */}
                     {posts.map((post, i) => (
                         <div key={i}>
-                            
+                            {console.log(post)}
                             <SinglePost
-                                postId={[post._id]}
+                                post={post}
                             />
                         </div>
                     ))}

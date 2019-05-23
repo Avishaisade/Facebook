@@ -36,9 +36,6 @@ class NewPost extends Component {
         }
         return true;
     };
-    isPoster= () =>{
-        if(isAuthenticated().user.id)
-    }
 
     handleChange = name => event => {
         this.setState({ error: "" });
@@ -79,9 +76,7 @@ class NewPost extends Component {
                 type="text"
                 className="c_post_txt"
                 value={body}
-                placeholder={?
-                            "What's on your mind?":
-                            "Write Somting "}
+                placeholder="What's on your mind?"
             />
 
         </form>

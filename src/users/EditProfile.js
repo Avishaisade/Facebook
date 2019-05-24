@@ -17,7 +17,11 @@ class EditProfile extends Component {
             error: "",
             fileSize: 0,
             loading: false,
-            about: ""
+            about: "",
+            company: "",
+            country:"",
+            city:"",
+            birthday:null
         };
     }
 
@@ -32,7 +36,11 @@ class EditProfile extends Component {
                     name: data.name,
                     email: data.email,
                     error: "",
-                    about: data.about
+                    about: data.about,
+                    company:data.company,
+                    country:data.country,
+                    city:data.city,
+                    birthday: data.birthday
                 });
             }
         });
@@ -111,7 +119,7 @@ class EditProfile extends Component {
         }
     };
 
-    signupForm = (name, email, password, about) => (
+    signupForm = (name, email, password, about, company,country, city,birthday) => (
         <form>
             <div className="form-group">
                 <label className="text-muted">Profile Photo</label>
@@ -140,6 +148,43 @@ class EditProfile extends Component {
                     value={name}
                 />
             </div>
+            <div className="form-group">
+                <label className="text-muted">company</label>
+                <input
+                    onChange={this.handleChange("company")}
+                    type="text"
+                    className="form-control"
+                    value={company}
+                />
+            </div>
+            <div className="form-group">
+                <label className="text-muted">country</label>
+                <input
+                    onChange={this.handleChange("country")}
+                    type="text"
+                    className="form-control"
+                    value={country}
+                />
+            </div>
+            <div className="form-group">
+                <label className="text-muted">city</label>
+                <input
+                    onChange={this.handleChange("city")}
+                    type="text"
+                    className="form-control"
+                    value={city}
+                />
+            </div>
+            <div className="form-group">
+                <label className="text-muted">Birthday</label>
+                <input
+                    onChange={this.handleChange("birthday")}
+                    type="date"
+                    className="form-control"
+                    value={birthday}
+                />
+            </div>
+
             <div className="form-group">
                 <label className="text-muted">Email</label>
                 <input

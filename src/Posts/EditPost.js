@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { singlePost, updatePost } from "./apiPost";
 import { isAuthenticated } from "../auth";
 import { Redirect } from "react-router-dom";
+import PostPhoto from "./postPhoto";
 
 
 class EditPost extends Component {
@@ -143,6 +144,7 @@ class EditPost extends Component {
                 ) : (
                     ""
                 )}
+                {PostPhoto(id)}
 
                 {/* <img
                     style={{ height: "200px", width: "auto" }}

@@ -9,6 +9,18 @@ const userSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    company: {
+        type: String,
+        trim: true,
+    },
+    country: {
+        type: String,
+        trim: true,
+    },
+    city: {
+        type: String,
+        trim: true,
+    },
     email: {
         type: String,
         trim: true,
@@ -23,6 +35,7 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    birthday: Date,
     updated: Date,
     photo: {
         data: Buffer,

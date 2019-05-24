@@ -18,7 +18,7 @@ export default function userFriendsTab(props) {
             </span>
             <Link 
                 className="linker float-right t_sm" 
-                to={""}>
+                to={"/findFriends"}>
                 Find Friends
             </Link>
             <div className="body friends">

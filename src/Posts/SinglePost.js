@@ -4,19 +4,21 @@ import { Link, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 import Comment from "../comment/comment";
 import UserHeader from "../users/userHeader";
+import PostPhoto from "./postPhoto";
+
 
 class SinglePost extends Component {
     constructor(props) {
         super(props);
         this.state = {
             post: "",
+            postId:"",
             redirectToHome: false,
             redirectToSignin: false,
             like: false,
             likes: 0,
             comments: []
         };
-
     }
 
     checkLike = likes => {
@@ -25,13 +27,14 @@ class SinglePost extends Component {
         return match;
     };
 
-
     componentDidMount = () => {
         const data = this.props.post;
              if (data.error) {
                 console.log(data.error);
             } else {
+                // console.log(data);
                 this.setState({
+                    postId:data._id,
                     post: data,
                     likes: data.likes.length,
                     like: this.checkLike(data.likes),
@@ -88,7 +91,6 @@ class SinglePost extends Component {
     };
 
     renderPost = post => {
-
         return (
             <div>
                 {isAuthenticated().user &&
@@ -102,19 +104,18 @@ class SinglePost extends Component {
                                         <Link
                                             to={`/post/edit/${post._id}`}
                                         >
-                                            Edit Post
-                                </Link>
+                                        Edit Post
+                                        </Link>
                                     </li>
                                     <li>
                                         <Link
-                                            onClick={this.deleteConfirmed}
-                                            to={""}
+                                        onClick={this.deleteConfirmed}
+                                        to={""}
                                         >
-                                            Delete Post
+                                        Delete Post
                                         </Link>
                                     </li>
                                 </ul>
-
                             </label>
                         </>
                     )}
@@ -125,11 +126,16 @@ class SinglePost extends Component {
                      created={post.created} 
                     />
 
-                <div className="body">{post.body}</div>
+                <div className="body">
+                    {post.body}
+                </div>
+
+                <div className="post-pic">
+                    {PostPhoto(this.state.postId)}
+                </div>
 
                 <div className="d-inline-block">
-
-                    <div>
+                   <div>
                         {isAuthenticated().user &&
                             isAuthenticated().user.role === "admin" && (
                                 <div className="card">
@@ -139,16 +145,16 @@ class SinglePost extends Component {
                                             Edit/Delete as an Admin
                                         </p>
                                         <Link
-                                            to={`/post/edit/${post._id}`}
-                                            className="btn"
+                                        to={`/post/edit/${post._id}`}
+                                        className="btn"
                                         >
-                                            Update Post
+                                        Update Post
                                         </Link>
                                         <button
-                                            onClick={this.deleteConfirmed}
-                                            className="btn"
-                                        >
-                                            Delete Post
+                                        onClick={this.deleteConfirmed}
+                                        className="btn"
+                                         >
+                                        Delete Post
                                         </button>
                                     </div>
                                 </div>

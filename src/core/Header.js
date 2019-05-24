@@ -40,7 +40,12 @@ const Header = ({ history }) => (
                     </Link>
                     <div className="searchBox">
                         <input type="text" placeholder="Search"></input>
-                        <button className="search-btn-wrapper" placeholdertext="Search" type="submit"><i className="search-icon"></i></button>
+                        <button 
+                            className="search-btn-wrapper" 
+                            placeholdertext="Search" 
+                            type="submit">
+                            <i className="search-icon"></i>
+                        </button>
                     </div>
 
                     {/* Navigation - Right */}
@@ -96,7 +101,10 @@ const Header = ({ history }) => (
                             )}
                         >
                             <span className="s-1">
-                                <Avatar _id={isAuthenticated().user._id} name={`${isAuthenticated().user.name}`} />
+                                <Avatar
+                                    _id={isAuthenticated().user._id} 
+                                    name={`${isAuthenticated().user.name}`} 
+                                 />
                             </span>
                         </Link>
 

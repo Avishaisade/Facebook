@@ -39,7 +39,7 @@ export const listOfUsers = () => {
         .catch(err => console.log(err));
 };
 export const postByFriends = (userId, token) => {
-    return fetch(`${API}/users/${userId}/following/posts`, {
+    return fetch(`${API}/users/${userId}/friends/posts`, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -156,3 +156,8 @@ export const uncomment = (userId, token, postId, comment) => {
         })
         .catch(err => console.log(err));
 };
+
+export const getPostPhoto = (postId) => {
+    return `${API}/posts/${postId}/photo`;
+}
+

@@ -62,7 +62,7 @@ const MainRouter = () => (
             />
             <PrivateRoute
                 exact
-                path="/findpeople"
+                path="/findFriends"
                 component={FindPeople}
             />
             <PrivateRoute

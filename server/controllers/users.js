@@ -2,7 +2,7 @@ const _ = require("lodash");
 const User = require("../models/users.model");
 const formidable = require("formidable");
 const fs = require("fs");
-const postsByUser = require("../models/users.model");
+// const postsByUser = require("../models/users.model");
 
 exports.userById = (req, res, next, id) => {
     User.findById(id)
@@ -18,22 +18,6 @@ exports.userById = (req, res, next, id) => {
             next();
         });
 };
-exports.followingById = (req, res, next, id) => {
-    User.findById(id)
-        .populate("following")
-        .populate("followers")
-        .exec((err, user) => {
-            if (err || !user) {
-                return res.status(400).json({
-                    error: "User not found"
-                });
-            }
-            req.profile = user; 
-            console.log(user);
-            next();
-        });
-};
-
 
 exports.hasAuthorization = (req, res, next) => {
     let sameUser = req.profile && req.auth && req.profile._id == req.auth._id;

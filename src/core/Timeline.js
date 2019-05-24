@@ -18,6 +18,7 @@ class Timeline extends Component {
             if (data.error) {
                 console.log(data.error);
             } else {
+                // console.log(data);
                 this.setState({ posts: data });              
             }
         });

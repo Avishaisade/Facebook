@@ -13,12 +13,11 @@ const {
     unlike,
     comment,
     uncomment,
-    followingByUser
 } = require("../controllers/posts");
 
 
 const { requireSignin } = require("../controllers/auth");
-const { userById, getFollowersByUserId } = require("../controllers/users");
+const { userById, friendsByUser, } = require("../controllers/users");
 const { createPostValidator } = require("../controllers/Validator");
 
 const router = express.Router();
@@ -42,10 +41,9 @@ router.post(
 );
 
 router.get(
-    "/users/:userId/following/posts", 
+    "/users/:userId/friends/posts", 
     requireSignin,
-    // followingByUser
-    postsByUser
+    getPosts
     );
 
 router.get("/users/:userId/posts", requireSignin, postsByUser);

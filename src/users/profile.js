@@ -81,11 +81,11 @@ class Profile extends Component {
         const userId = this.props.match.params.userId;
         this.init(userId);
     }
-    componentWillUpdate(){
-        const userId = this.props.match.params.userId;
-        this.init(userId);
+    // componentWillUpdate(){
+    //     const userId = this.props.match.params.userId;
+    //     this.init(userId);
       
-    }
+    // }
 
     componentWillReceiveProps(props) {
         const userId = props.match.params.userId;

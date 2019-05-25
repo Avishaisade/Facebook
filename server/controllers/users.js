@@ -36,7 +36,7 @@ async function getUsers(query) {
 
 
 exports.hasAuthorization = (req, res, next) => {
-    let sameUser = req.profile && req.auth && req.profile._id == req.auth._id;
+    let sameUser = req.profile && req.auth && req.profile._id === req.auth._id;
     let adminUser = req.profile && req.auth && req.auth.role === "admin";
 
     const authorized = sameUser || adminUser;

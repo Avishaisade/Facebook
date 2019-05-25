@@ -11,9 +11,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // db
-const DB_URI = process.env.DB_URI || 'mongodb://localhost:27017/facebook';
 mongoose
-    .connect(DB_URI , { useNewUrlParser: true })
+    .connect(process.env.MONGO_URI, { useNewUrlParser: true })
     .then(() => console.log("DB Connected"));
 
 mongoose.connection.on("error", err => {

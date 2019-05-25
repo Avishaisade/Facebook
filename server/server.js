@@ -5,7 +5,6 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const expressValidator = require("express-validator");
-const path = require("path");
 const fs = require("fs");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -13,7 +12,7 @@ dotenv.config();
 
 // db
 mongoose
-    .connect(process.env.MONGO_URI, { useNewUrlParser: true })
+    .connect(process.env.MONGO_URI|| 'localhost://27017', { useNewUrlParser: true })
     .then(() => console.log("DB Connected"));
 
 mongoose.connection.on("error", err => {
@@ -48,17 +47,12 @@ app.use(cors({origin: 'http://localhost:3000',}));
 app.use(postRoutes);
 app.use(authRoutes);
 app.use(userRoutes);
+app.use(express.static('build'));
 app.use(function(err, req, res, next) {
     if (err.name === "UnauthorizedError") {
         res.status(401).json({ error: "Unauthorized!" });
     }
 });
-if(process.env.NODE_ENV ==='production'){
-app.use(express.static('./build'));
-app.get('*',(req,res)=>{
-    res.sendFile(path.join(__dirname,'build','index.html'));
-});
-}
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {

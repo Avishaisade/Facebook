@@ -2,7 +2,6 @@ import React from "react";
 
 export default function userDetails(props) {
     const {about,email,company,created,city,country,birthday}= props.user;
-    console.log(props.user);
     return (
         <div className="userDetails clearfix-t">
             <span className="title">Intro</span>

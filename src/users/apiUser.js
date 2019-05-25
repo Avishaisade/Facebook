@@ -14,6 +14,19 @@ export const getUsersbyId = (userId, token) => {
         })
         .catch(err => console.log(err));
 };
+export const searchUsers = (query) => {
+    return fetch(`${API}/users/search/${query}`, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        }
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
 
 export const updateUserById = (userId, token, user) => {
     console.log("USER DATA UPDATE: ", user);

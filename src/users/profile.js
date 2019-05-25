@@ -10,6 +10,7 @@ import NewPost from "../Posts/newPost";
 import UserDetails from "./userDetails";
 import FriendsTab from "./userFriendsTab";
 import SinglePost from "../Posts/SinglePost";
+import PostOnFriends from "../Posts/PostOnFriends";
 
 class Profile extends Component {
     constructor() {
@@ -19,8 +20,9 @@ class Profile extends Component {
             redirectToSignin: false,
             following: false,
             error: "",
-            posts: []
-        };
+            posts: [],
+            userProfile:false
+        };    
     }
 
     // check friend
@@ -46,22 +48,21 @@ class Profile extends Component {
     };
     // read
     init = userId => {
-        const token = isAuthenticated().token;
-        getUsersbyId(userId, token).then(data => {
+        getUsersbyId(userId).then(data => {
             if (data.error) {
                 this.setState({ redirectToSignin: true });
             } else {
                 let following = this.checkFriend(data);
                 this.setState({ user: data, following });
                 this.loadPosts(data._id);
+                this.checkprofile(data._id);
             }
         });
     };
 
     // listByUser
     loadPosts = userId => {
-        const token = isAuthenticated().token;
-        listByUser(userId, token).then(data => {
+        listByUser(userId).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
@@ -69,20 +70,31 @@ class Profile extends Component {
             }
         });
     };
+    checkprofile = id => {
+        const posterId = isAuthenticated().user._id;
+        if(id === posterId){
+            this.setState({ userProfile:true });  
+        }
+    };
 
     componentDidMount() {
         const userId = this.props.match.params.userId;
         this.init(userId);
+    }
+    componentWillUpdate(){
+        const userId = this.props.match.params.userId;
+        this.init(userId);
+      
     }
 
     componentWillReceiveProps(props) {
         const userId = props.match.params.userId;
         this.init(userId);
     }
-
+    
     render() {
         const { redirectToSignin, user, posts } = this.state;
-       
+        console.log(this.state.user);
         if (redirectToSignin) return <Redirect to="/signin" />;
 
         return(
@@ -105,7 +117,13 @@ class Profile extends Component {
                 </div>
 
                 <div className="col-530 float-right">
-                <NewPost />
+                    {this.state.userProfile ?
+                      <NewPost />:
+                      <PostOnFriends
+                        user={this.state.user}
+                        />
+                    
+                    }              
                     {/* Posts */}
                     {posts.map((post, i) => (
                         <div key={i}>
@@ -123,8 +141,7 @@ class Profile extends Component {
                         {isAuthenticated().user &&
                             isAuthenticated().user._id === user._id ? (
                                 <div className="1">
-                                    {/* Post Creation */}
-                                    
+                                   
                                     <DeleteUser 
                                         userId={user._id} 
                                     />

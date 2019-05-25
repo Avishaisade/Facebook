@@ -22,7 +22,9 @@ const UserHeader = (props) => {
                 src={photoUrl}
                 alt={name}
             />
-            <Link className="UserInfo" to={`/user/${_id}`}>
+            <Link 
+                className="UserInfo" 
+                to={`/users/${_id}`}>
                 <span>{name}</span>
                 <TimeLabel
                     post={props.created}

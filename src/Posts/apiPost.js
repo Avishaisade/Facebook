@@ -15,13 +15,12 @@ export const createPost = (userId, token, post) => {
         .catch(err => console.log(err));
 };
 
-export const listByUser = (userId, token) => {
+export const listByUser = (userId) => {
     return fetch(`${API}/users/${userId}/posts/`, {
         method: "GET",
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
         }
     })
         .then(response => {

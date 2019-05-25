@@ -17,7 +17,7 @@ const {
 
 
 const { requireSignin } = require("../controllers/auth");
-const { userById, friendsByUser, } = require("../controllers/users");
+const { userById } = require("../controllers/users");
 const { createPostValidator } = require("../controllers/Validator");
 
 const router = express.Router();
@@ -46,7 +46,7 @@ router.get(
     getPosts
     );
 
-router.get("/users/:userId/posts", requireSignin, postsByUser);
+router.get("/users/:userId/posts",postsByUser);
 router.get("/posts/:postId", singlePost);
 router.put("/posts/:postId", requireSignin, isPoster, updatePost);
 router.delete("/posts/:postId", requireSignin, isPoster, deletePost);

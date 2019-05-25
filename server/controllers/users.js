@@ -19,6 +19,22 @@ exports.userById = (req, res, next, id) => {
         });
 };
 
+async function getUsers(query) {
+	return User.find({
+		name: new RegExp(query, 'i')
+	});
+}
+    exports.searchUser=  async (req, res) => {
+        try {
+            const users = await getUsers(req.query);
+            res.send(users);
+        } catch (e) {
+            res.status(400);
+            res.send(e.message);
+        }
+    }
+
+
 exports.hasAuthorization = (req, res, next) => {
     let sameUser = req.profile && req.auth && req.profile._id == req.auth._id;
     let adminUser = req.profile && req.auth && req.auth.role === "admin";

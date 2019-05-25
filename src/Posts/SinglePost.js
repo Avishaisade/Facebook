@@ -172,15 +172,19 @@ class SinglePost extends Component {
             <div className="_l pointer">
                 {
                     like ? (
-                        <span className="_likeTxt" onClick={this.likeToggle}>
+                        <span 
+                            className="_likeTxt" 
+                            onClick={this.likeToggle}
+                        >
                             <i className="postsIcon like"></i>
                             {likes} Like
                     </span>
                     ) : (
-                            <span onClick={this.likeToggle}>
+                            <span 
+                                onClick={this.likeToggle}>
                                 <i className="postsIcon like"></i>
                                 {likes} Like
-                        </span>
+                            </span>
                         )
                 }
             </div>

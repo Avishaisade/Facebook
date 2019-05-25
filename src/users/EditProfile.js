@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
-import { getUsersbyId, updateUserById, updateUserToken} from "./apiUser";
+import { getUsersbyId, updateUserById, updateUserToken } from "./apiUser";
 import { Redirect } from "react-router-dom";
 import UserPicture from "./UserPicture";
+import DeleteUser from "./DeleteUser";
+
 
 
 class EditProfile extends Component {
@@ -19,9 +21,9 @@ class EditProfile extends Component {
             loading: false,
             about: "",
             company: "",
-            country:"",
-            city:"",
-            birthday:null
+            country: "",
+            city: "",
+            birthday: null
         };
     }
 
@@ -37,9 +39,9 @@ class EditProfile extends Component {
                     email: data.email,
                     error: "",
                     about: data.about,
-                    company:data.company,
-                    country:data.country,
-                    city:data.city,
+                    company: data.company,
+                    country: data.country,
+                    city: data.city,
                     birthday: data.birthday
                 });
             }
@@ -119,107 +121,146 @@ class EditProfile extends Component {
         }
     };
 
-    signupForm = (name, email, password, about, company,country, city,birthday) => (
+    signupForm = (id, name, email, password, about, company, country, city, birthday) => (
         <form>
-            <div className="form-group">
-                <label className="text-muted">Profile Photo</label>
-                <input
-                    onChange={this.handleChange("photo")}
-                    type="file"
-                    accept="image/*"
-                    className="form-control"
+            <div className="i-con-images">
+                <img
+                    alt={name}
+                    src="https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2017/08/facebook-cover-photo-header.jpg"
                 />
-            </div>
-            <div className="form-group">
-                <label className="text-muted">cover Photo</label>
+                <i className="userIcon_2 camera" style={{ top: "10px", left: "10px" }}>
+                    <span>Cover</span>
+                </i>
                 <input
                     onChange={this.handleChange("coverPhoto")}
                     type="file"
                     accept="image/*"
                     className="form-control"
                 />
+                <div className="i1">
+                    <UserPicture
+                        id={id}
+                        name={name}
+                    />
+                    <i className="userIcon_2 camera"></i>
+                    <input
+                        onChange={this.handleChange("photo")}
+                        type="file"
+                        accept="image/*"
+                        className="form-control"
+                    />
+                </div>
             </div>
-            <div className="form-group">
-                <label className="text-muted">Name</label>
+
+            <div className="t-bg"><i className="userIcon_4 edit"></i> Edit Bio</div>
+            <textarea
+                onChange={this.handleChange("about")}
+                type="text"
+                className="txt-full txtArea"
+                value={about}
+                placeholder="Describe who you are"
+                rows="4"
+            />
+
+            <div className="t-bg"><i className="userIcon_4 info"></i> Customize Your Info</div>
+
+            <div className="t-bg-edit">
+                <i className="userIcon_4 owl"></i>
+                <div style={{ height: "131px" }}></div>
+                <span>Details you select will be Public and won't post to News Feed.</span>
+            </div>
+
+            <div className="t-bg"><i className="userIcon_4 about"></i> Full Name</div>
+
+            <div className="p-12">
                 <input
                     onChange={this.handleChange("name")}
                     type="text"
-                    className="form-control"
+                    className="border-0"
                     value={name}
                 />
+                <i className="userIcon_5 edit float-right"></i>
             </div>
-            <div className="form-group">
-                <label className="text-muted">company</label>
+
+            <div className="t-bg"><i className="userIcon_4 work"></i> Work</div>
+
+            <div className="p-12">
                 <input
                     onChange={this.handleChange("company")}
                     type="text"
-                    className="form-control"
+                    className="border-0"
                     value={company}
+                    placeholder="Company Name"
                 />
+                <i className="userIcon_5 edit float-right"></i>
             </div>
-            <div className="form-group">
-                <label className="text-muted">country</label>
-                <input
-                    onChange={this.handleChange("country")}
-                    type="text"
-                    className="form-control"
-                    value={country}
-                />
-            </div>
-            <div className="form-group">
-                <label className="text-muted">city</label>
+
+            <div className="t-bg"><i className="userIcon_6 home"></i> Hometown</div>
+
+            <div className="p-12">
                 <input
                     onChange={this.handleChange("city")}
                     type="text"
-                    className="form-control"
+                    className="border-0"
                     value={city}
+                    placeholder="City"
                 />
+                <input
+                    onChange={this.handleChange("country")}
+                    type="text"
+                    className="border-0"
+                    value={country}
+                    placeholder="Country"
+                />
+                <i className="userIcon_5 edit float-right"></i>
             </div>
-            <div className="form-group">
-                <label className="text-muted">Birthday</label>
+
+            <div className="t-bg"><i className="userIcon_6 bday"></i> Birthday</div>
+
+            <div className="p-12">
                 <input
                     onChange={this.handleChange("birthday")}
                     type="date"
-                    className="form-control"
+                    className="border-0"
                     value={birthday}
+                    placeholder="Birthday"
                 />
             </div>
 
-            <div className="form-group">
-                <label className="text-muted">Email</label>
+            <div className="t-bg"><i className="userIcon_6 mail"></i> Email Address</div>
+
+            <div className="p-12">
                 <input
                     onChange={this.handleChange("email")}
                     type="email"
-                    className="form-control"
+                    className="border-0"
                     value={email}
+                    placeholder="Email Address"
                 />
             </div>
 
-            <div className="form-group">
-                <label className="text-muted">About</label>
-                <textarea
-                    onChange={this.handleChange("about")}
-                    type="text"
-                    className="form-control"
-                    value={about}
-                />
-            </div>
+            <div className="t-bg"><i className="userIcon_6 pwd"></i> Password</div>
 
-            <div className="form-group">
-                <label className="text-muted">Password</label>
+            <div className="p-12">
                 <input
                     onChange={this.handleChange("password")}
                     type="password"
-                    className="form-control"
+                    className="border-0"
                     value={password}
                 />
             </div>
-            <button
-                onClick={this.clickSubmit}
-                className="btn"
-            >
-                Update
+
+            <div className="p-12" style={{ height: "25px" }}>
+                <button
+                    onClick={this.clickSubmit}
+                    className="btn-s float-right"
+                >
+                    Save
             </button>
+                <DeleteUser
+                    userId={id}
+                />
+            </div>
         </form>
     );
 
@@ -232,7 +273,11 @@ class EditProfile extends Component {
             redirectToProfile,
             error,
             loading,
-            about
+            about,
+            company,
+            country,
+            city,
+            birthday
         } = this.state;
 
         if (redirectToProfile) {
@@ -240,34 +285,30 @@ class EditProfile extends Component {
         }
 
         return (
-            <div className="container">
-                <h2 className="1">Edit Profile</h2>
-                <div
-                    className="alert"
-                    style={{ display: error ? "" : "none" }}
-                >
-                    {error}
-                </div>
-
-                {loading ? (
-                    <div className="text">
-                        <h2>Loading...</h2>
+            <div className="userEditProfileComp">
+                <div className="dialog">
+                    <div className="t1">Edit Profile</div>
+                    <div
+                        className="alert"
+                        style={{ display: error ? "" : "none" }}
+                    >
+                        {error}
                     </div>
-                ) : (
-                        ""
-                    )}
-                 <UserPicture
-                    className="img-thumbnail"
-                    style={{ height: "200px", width: "auto" }}
-                    id={id}
-                    name={name}
-                />              
 
-                {/* {isAuthenticated().user.role === "admin" &&
+                    {loading ? (
+                        <div className="text">
+                            <h2>Loading...</h2>
+                        </div>
+                    ) : (
+                            ""
+                        )}
+
+                    {/* {isAuthenticated().user.role === "admin" &&
                     this.signupForm(name, email, password, about)} */}
 
-                {isAuthenticated().user._id === id &&
-                    this.signupForm(name, email, password, about)}
+                    {isAuthenticated().user._id === id &&
+                        this.signupForm(id, name, email, password, about, company, country, city, birthday)}
+                </div>
             </div>
         );
     }

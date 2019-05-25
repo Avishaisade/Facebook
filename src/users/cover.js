@@ -9,7 +9,7 @@ class Cover extends Component {
         const user = this.props.user;
         const photoUrl = getProfilePhoto(user._id);
         const coverPhoto = getCoverPhoto(user._id);
-        const friends=user.following.concat(user.followers)
+        const friends = user.following.concat(user.followers)
 
         return (
             <div className="coverHeaderContainer">
@@ -46,10 +46,10 @@ class Cover extends Component {
                             <li>
                                 <div className="_6a _6-6 _9rx _6-7">
                                     <Link className="_9ry _p" to={""}>
-                                        Friends 
+                                        Friends
                                             <span className="_gs6">
-                                                {friends.length}
-                                            </span>
+                                            {friends.length}
+                                        </span>
                                     </Link>
                                 </div>
                             </li>
@@ -65,7 +65,7 @@ class Cover extends Component {
                                     <Link className="_9ry _p" to={""}>
                                         Archive
                                     </Link
-                                ></div>
+                                    ></div>
                             </li>
                         </ul>
                         <img className="profilePicThumb"

@@ -21,8 +21,8 @@ class Profile extends Component {
             following: false,
             error: "",
             posts: [],
-            userProfile:false
-        };    
+            userProfile: false
+        };
     }
 
     // check friend
@@ -72,8 +72,8 @@ class Profile extends Component {
     };
     checkprofile = id => {
         const posterId = isAuthenticated().user._id;
-        if(id === posterId){
-            this.setState({ userProfile:true });  
+        if (id === posterId) {
+            this.setState({ userProfile: true });
         }
     };
 
@@ -81,49 +81,44 @@ class Profile extends Component {
         const userId = this.props.match.params.userId;
         this.init(userId);
     }
-    componentWillUpdate(){
-        const userId = this.props.match.params.userId;
-        this.init(userId);
-      
-    }
 
     componentWillReceiveProps(props) {
         const userId = props.match.params.userId;
         this.init(userId);
     }
-    
+
     render() {
         const { redirectToSignin, user, posts } = this.state;
         console.log(this.state.user);
         if (redirectToSignin) return <Redirect to="/signin" />;
 
-        return(
+        return (
             <div className="globalContainer">
                 {/* Cover Area */}
-                <Cover                  
+                <Cover
                     user={user}
                 />
 
                 <div className="col-320 float-left">
                     {/* Details Tab */}
-                    <UserDetails 
-                        user={user} 
+                    <UserDetails
+                        user={user}
                     />
                     {/* Friends Tab */}
                     <FriendsTab
-                        followers={user.followers} 
-                        following={user.following} 
-                     />
+                        followers={user.followers}
+                        following={user.following}
+                    />
                 </div>
 
                 <div className="col-530 float-right">
                     {this.state.userProfile ?
-                      <NewPost />:
-                      <PostOnFriends
-                        user={this.state.user}
+                        <NewPost /> :
+                        <PostOnFriends
+                            user={this.state.user}
                         />
-                    
-                    }              
+
+                    }
                     {/* Posts */}
                     {posts.map((post, i) => (
                         <div key={i}>
@@ -141,9 +136,9 @@ class Profile extends Component {
                         {isAuthenticated().user &&
                             isAuthenticated().user._id === user._id ? (
                                 <div className="1">
-                                   
-                                    <DeleteUser 
-                                        userId={user._id} 
+
+                                    <DeleteUser
+                                        userId={user._id}
                                     />
                                 </div>
                             ) : (

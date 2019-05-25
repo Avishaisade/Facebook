@@ -16,6 +16,9 @@ body {background: #e9ebee; }
 .pb-4 {
     padding-bottom: 4px;
 }
+.p-12 {
+    padding: 12px;
+}
 .mt-0 {
     margin-top: 0px !important;
 }
@@ -40,4 +43,41 @@ body {background: #e9ebee; }
 }
 ._block {
     display:block;
+}
+input[type='textarea'], input[type='text'], button, textarea {
+    &:focus {outline: none !important;}
+}
+.border-0 {
+    border: none !important;
+}
+.btn-s {
+    background-color: $btn-d;
+    border-color: $btn-border-d;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 22px;
+    color: $btn-color-d;
+    border-radius: 2px;
+    box-sizing: content-box;
+    font-size: 12px;
+    -webkit-font-smoothing: antialiased;
+    font-weight: bold;
+    justify-content: center;
+    padding: 0 8px;
+    position: relative;
+    text-align: center;
+    text-shadow: none;
+    vertical-align: middle;
+    &:hover{
+        background-color: $btn-hover-d;
+        border-color: $btn-hover-d;
+    }
+}
+.btn-dang {
+    background-color: $btn-dang-d;
+    border-color: $btn-border-dang-d;
+    &:hover{
+        background-color: $btn-hover-dang-d;
+        border-color: $btn-hover-dang-d;
+    }
 }

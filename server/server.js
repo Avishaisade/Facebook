@@ -47,7 +47,7 @@ app.use(cors({origin: 'http://localhost:3000',}));
 app.use(postRoutes);
 app.use(authRoutes);
 app.use(userRoutes);
-app.use(express.static('build'));
+app.use('/', express.static('build'));
 app.use(function(err, req, res, next) {
     if (err.name === "UnauthorizedError") {
         res.status(401).json({ error: "Unauthorized!" });

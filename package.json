@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "scss": "node-sass styles.scss styles.css",
-    "heroku-postbuild":"npm install --only=dev && npm install && npm run build && npm /server/nodemon server.js"
+    "heroku-postbuild":"npm install --only=dev && npm install && npm run build && npm start"
   },
   "eslintConfig": {
     "extends": "react-app"

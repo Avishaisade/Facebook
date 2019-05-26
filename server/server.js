@@ -12,7 +12,7 @@ dotenv.config();
 
 // db
 mongoose
-    .connect(process.env.MONGO_URI, { useNewUrlParser: true })
+    .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
     .then(() => console.log("DB Connected"));
 
 mongoose.connection.on("error", err => {
@@ -54,7 +54,9 @@ app.use(function(err, req, res, next) {
         res.status(401).json({ error: "Unauthorized!" });
     }
 });
-app.use(express.static('build'));
+if(process.env.NODE_ENV==='production'){
+    app.use(express.static('build'));
+}
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {

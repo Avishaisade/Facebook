@@ -10,7 +10,7 @@ import NewPost from "../Posts/newPost";
 import UserDetails from "./userDetails";
 import FriendsTab from "./userFriendsTab";
 import SinglePost from "../Posts/SinglePost";
-import PostOnFriends from "../Posts/PostOnFriends";
+// import PostOnFriends from "../Posts/PostOnFriends";
 
 class Profile extends Component {
     constructor() {
@@ -81,6 +81,9 @@ class Profile extends Component {
         const userId = this.props.match.params.userId;
         this.init(userId);
     }
+    componentWillUpdate(){
+        this.init();  
+    }
 
     componentWillReceiveProps(props) {
         const userId = props.match.params.userId;
@@ -89,7 +92,7 @@ class Profile extends Component {
 
     render() {
         const { redirectToSignin, user, posts } = this.state;
-        console.log(this.state.user);
+        // console.log(this.state.user);
         if (redirectToSignin) return <Redirect to="/signin" />;
 
         return (
@@ -114,10 +117,10 @@ class Profile extends Component {
                 <div className="col-530 float-right">
                     {this.state.userProfile ?
                         <NewPost /> :
-                        <PostOnFriends
-                            user={this.state.user}
-                        />
-
+                        // <PostOnFriends
+                        //     user={this.state.user}
+                        // />
+                        null
                     }
                     {/* Posts */}
                     {posts.map((post, i) => (

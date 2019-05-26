@@ -1,14 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { isAuthenticated } from "../auth";
 import { Redirect, Link } from "react-router-dom";
 import { listByUser } from "../Posts/apiPost";
 import Cover from './cover';
 import { getUsersbyId } from "./apiUser";
 import NewPost from "../Posts/newPost";
-import UserDetails from "./userDetails";
 import FriendsTab from "./userFriendsTab";
 import SinglePost from "../Posts/SinglePost";
 import PostOnFriends from "../Posts/PostOnFriends";
+import Loader from "../widgets/loader";
+const UserDetails = React.lazy(() => import("./userDetails"));
+
 
 class Profile extends Component {
     constructor() {
@@ -19,7 +21,8 @@ class Profile extends Component {
             following: false,
             error: "",
             posts: [],
-            userProfile: false
+            userProfile: false,
+            loaded: false
         };
     }
 
@@ -51,7 +54,7 @@ class Profile extends Component {
                 this.setState({ redirectToSignin: true });
             } else {
                 let following = this.checkFriend(data);
-                this.setState({ user: data, following });
+                this.setState({ user: data, following, loaded: true });
                 this.loadPosts(data._id);
                 this.checkprofile(data._id);
             }
@@ -87,30 +90,34 @@ class Profile extends Component {
 
     render() {
         const { redirectToSignin, user, posts } = this.state;
-        console.log(this.state.user);
         if (redirectToSignin) return <Redirect to="/signin" />;
 
         return (
             <div className="globalContainer">
-                {/* Cover Area */}
-                <Cover
-                    user={user}
-                />
-
-                <div className="col-320 float-left">
-                    {/* Details Tab */}
-                    <UserDetails
+                {this.state.loaded && (
+                    < Cover
                         user={user}
                     />
-                    {/* Friends Tab */}
-                    <FriendsTab
-                        followers={user.followers}
-                        following={user.following}
-                    />
+                )}
+
+                <div className="col-320 float-left">
+                    {this.state.loaded && (
+                        <Suspense fallback={<Loader />}>
+                            {/* Details Tab */}
+                            <UserDetails
+                                user={user}
+                            />
+                            {/* Friends Tab */}
+                            <FriendsTab
+                                followers={user.followers}
+                                following={user.following}
+                            />
+                        </Suspense>
+                    )}
                 </div>
 
                 <div className="col-530 float-right">
-                    {this.state.userProfile ?
+                    {this.state.user && this.state.userProfile ?
                         <NewPost /> :
                         <PostOnFriends
                             user={this.state.user}
@@ -125,33 +132,6 @@ class Profile extends Component {
                             />
                         </div>
                     ))}
-                </div>
-
-                <div className="row">
-
-                    <div className="col">
-                        <div>
-                            {isAuthenticated().user &&
-                                isAuthenticated().user.role === "admin" && (
-                                    <div className="1">
-                                        <div className="card-body">
-                                            <h5 className="card-title">
-                                                Admin
-                                            </h5>
-                                            <p className="text">
-                                                Edit/Delete as an Admin
-                                            </p>
-                                            <Link
-                                                className="btn"
-                                                to={`/users/${user._id}`}
-                                            >
-                                                Edit Profile
-                                            </Link>
-                                        </div>
-                                    </div>
-                                )}
-                        </div>
-                    </div>
                 </div>
             </div>
         );

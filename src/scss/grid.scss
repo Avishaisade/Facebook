@@ -13,6 +13,9 @@ body {background: #e9ebee; }
 .clearfix {
     zoom: 1;
 }
+.v-top {
+    vertical-align: top;
+}
 .pb-4 {
     padding-bottom: 4px;
 }
@@ -24,6 +27,9 @@ body {background: #e9ebee; }
 }
 .mr-10 {
     margin-right: 10px !important;
+}
+.mb-10 {
+    margin-bottom: 10px !important;
 }
 .float-right {
     float: right !important;
@@ -98,4 +104,11 @@ input[type='textarea'], input[type='text'], button, textarea {
         background-color: $btn-hover-dang-d;
         border-color: $btn-hover-dang-d;
     }
+}
+.inline-block {
+    display: inline-block !important;
+}
+.avatar-48 {
+    height: 48px;
+    width: 48px;
 }

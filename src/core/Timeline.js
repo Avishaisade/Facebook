@@ -33,7 +33,6 @@ class Timeline extends Component {
     renderPosts = posts => {
         return (
             <div className="col">
-                <hr />
                 {posts.map((post, i) => (
                     <div key={i}>
                         <SinglePost

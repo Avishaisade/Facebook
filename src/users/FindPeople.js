@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { findPeople, follow} from "./apiUser";
+import { findPeople, follow } from "./apiUser";
 import UserPicture from './UserPicture'
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth";
@@ -10,11 +10,12 @@ class FindPeople extends Component {
         this.state = {
             users: [],
             error: "",
-            open: false
+            open: false,
+            loading: true
         };
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const userId = isAuthenticated().user._id;
         const token = isAuthenticated().token;
 
@@ -23,10 +24,10 @@ class FindPeople extends Component {
                 console.log(data.error);
             } else {
                 this.setState({ users: data });
+                this.setState({ loading: false });
             }
         });
     }
-    
 
     clickFollow = (user, i) => {
         const userId = isAuthenticated().user._id;
@@ -41,7 +42,7 @@ class FindPeople extends Component {
                 this.setState({
                     users: toFollow,
                     open: true,
-                    followMessage: `You are now friends with ${user.name}`
+                    followMessage: `You are now friends with ${user.name}.`
                 });
             }
         });
@@ -50,26 +51,25 @@ class FindPeople extends Component {
     renderUsers = users => (
         <div className="row">
             {users.map((user, i) => (
-                <div className="card col-md-4" key={i}>
-                    <UserPicture
-                        className="img-thumbnail"
-                        style={{ height: "200px", width: "auto" }}
-                        id={user._id}
-                        name={user.name}
-                    />
-                    <div className="card-body">
-                        <h5 className="card-title">{user.name}</h5>
-                        <p className="card-text">{user.email}</p>
-                        <Link
-                            to={`/users/${user._id}`}
-                            className="btn btn-raised btn-primary btn-sm"
+                <div className="p-12" key={i}>
+                    <div className="mr-10 inline-block v-top">
+                        <UserPicture
+                            id={user._id}
+                            name={user.name}
+                        />
+                    </div>
+                    <div className="inline-block">
+                        <span className="f-13">{user.name}</span>
+                        <button
+                            className="btn-s mr-10"
+                            onClick={`window.location.href='/users/${user._id}'`}
                         >
                             View Profile
-                        </Link>
+                        </button>
 
                         <button
                             onClick={() => this.clickFollow(user, i)}
-                            className="btn btn-raised btn-info float-right btn-sm"
+                            className="btn-s mr-10"
                         >
                             Add Friend
                         </button>
@@ -80,16 +80,18 @@ class FindPeople extends Component {
     );
 
     render() {
-        const { users, open, followMessage } = this.state;
+        const { users, open, followMessage, loading } = this.state;
         return (
-            <div className="container">
-                <h2 className="mt-5 mb-5">Find People</h2>
+            <div className="userEditProfileComp friendList">
+                <div className="dialog">
+                    <div className="t1">Find People</div>
 
-                {open && (
-                    <div className="alert alert-success">{followMessage}</div>
-                )}
+                    {open && (
+                        <div className="p-12 f-13">{followMessage}</div>
+                    )}
 
-                {this.renderUsers(users)}
+                    {loading ? "" : this.renderUsers(users)}
+                </div>
             </div>
         );
     }

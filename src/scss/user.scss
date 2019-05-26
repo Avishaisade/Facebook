@@ -507,3 +507,14 @@ User page grid
         }
     }
 }
+
+// Find People section
+
+.friendList {
+    img { width: 48px; height: 48px; }
+    span {
+        display: block;
+        font-weight: 600;
+        padding: 5px 0px;
+    }
+}

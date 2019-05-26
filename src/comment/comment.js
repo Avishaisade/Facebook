@@ -88,11 +88,11 @@ class Comment extends Component {
                         <div key={i}>
                             <div>
                                 <div>
-                                {/* {console.log(comment)} */}
-                                    <UserHeader 
-                                        created={comment.created} 
-                                        _id={comment.postedBy._id} 
-                                        name={comment.postedBy.name} 
+                                    {/* {console.log(comment)} */}
+                                    <UserHeader
+                                        created={comment.created}
+                                        _id={comment.postedBy._id}
+                                        name={comment.postedBy.name}
                                     />
                                     <div className="_comment_t">
                                         {comment.text}
@@ -107,7 +107,7 @@ class Comment extends Component {
                                                             comment
                                                         )
                                                     }
-                                                    className="_linker mar_lr float-right t_sm"
+                                                    className="_linker mar_lr float-right t_sm mb-10"
                                                 >
                                                     Delete
                                                         </span>

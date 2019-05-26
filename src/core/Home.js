@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
-// import Timeline from "../core/Timeline";
+import Timeline from "../core/Timeline";
 import NewPost from "../Posts/newPost";
 import Avatar from "../users/avatar";
 
@@ -78,7 +78,7 @@ class Home extends Component {
                 <div className="col-500 float-left mr-10">
                     <NewPost />
                     <div className="feed">
-                        {/* <Timeline /> */}
+                        <Timeline />
                     </div>
                 </div>
                 <div className="col-200 float-left clearfix-t">

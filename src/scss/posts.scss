@@ -195,6 +195,10 @@
     border: 1px solid #dddfe2;
     border-radius: 3px;
 
+    .post-pic {
+        overflow: hidden;
+    }
+
     .body {
         border-bottom: 1px solid #dadde1;
         padding-bottom: 12px;

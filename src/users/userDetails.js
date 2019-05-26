@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function userDetails(props) {
-    const {about,email,company,created,city,country,birthday}= props.user;
+    const { about, email, company, created, city, country, birthday } = props.user;
     return (
         <div className="userDetails clearfix-t">
             <span className="title">Intro</span>
@@ -19,6 +19,7 @@ export default function userDetails(props) {
                         {company}
                     </li>
                     <li>
+                        <i className="userIcon_6 bday"></i>
                         Birthday: {new Date(birthday).toDateString()}
                     </li>
                     <li>
@@ -27,7 +28,7 @@ export default function userDetails(props) {
                     </li>
                     <li>
                         <i className="userIcon home"></i>
-                         {`Lives in ${city}, ${country}`}
+                        {`Lives in ${city}, ${country}`}
                     </li>
                 </ul>
             </div>

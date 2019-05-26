@@ -1,3 +1,117 @@
-.post {
-    
+.home-RightNav {
+        font-size: 13px;
+
+    .icons {
+        background-image: url('../Images/postICO.png');
+        background-repeat: no-repeat;
+        background-size: 140px 836px;
+        height: 20px;
+        width: 20px;
+        display:inline-block;
+        vertical-align: middle;
+
+        &.dots { background-position: -105px -581px; }
+        &.feed { background-position: 2px -497px; }
+        &.msg { background-position: -103px -369px; }
+        &.vid { background-position: 2px -560px; }
+        &.event { background-position: 3px -21px; }
+        &.groups { background-position: -60px -369px; }
+        &.pages { background-position: -20px -392px; }
+        &.rec { background-position: -82px -434px; }
+        &.fr { background-position: -62px -455px;  }
+    }
+
+    .icons2 {
+        background-image: url('../Images/postICO2.png');
+        background-repeat: no-repeat;
+        background-size: 21px 244px;
+        height: 20px;
+        width: 20px;
+        display:inline-block;
+        vertical-align: middle;
+
+        &.event { background-position: 3px -21px; }
+    }
+
+    ul {
+        margin-bottom: 10px;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        
+        h4 {
+            color: #616770;
+            font-size: 13px;
+            line-height: 17px;
+            display: block;
+            margin:0 0 10px 0;
+        }
+
+        li {
+            background-color: transparent;
+            height: 28px;
+            line-height: 28px;
+            border-bottom: 0;
+            border-radius: 2px;
+            padding: 0 4px 0 28px;
+            padding-right: 4px;
+            text-decoration: none;
+            position: relative;
+            z-index: 0;
+            cursor:pointer;
+            margin:3px 0;
+
+            &:hover, &.active{
+                background-color: #f5f6f7;
+                border-radius: 2px;
+                font-weight: 600;
+                transition: 400ms cubic-bezier(.08,.52,.52,1) background-color, 400ms cubic-bezier(.08,.52,.52,1) opacity;
+            }
+
+            img, i {
+                height: 48px;
+                width: 48px;
+                border-radius: 50%;
+                overflow: hidden;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+                max-height: 20px;
+                max-width: 20px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                padding-left:2px;
+            }
+
+            i {
+                border-radius: 0;
+            }
+
+            span {
+            height: 20px;
+            margin: 4px 6px 0 -24px;
+            position: relative;
+            width: 20px;
+            margin-left: 0px;
+            }
+
+            .linkWrap {
+                display: block;
+                margin-left: 2px;
+                max-width: 126px;
+                overflow: hidden;
+                padding-left: 0;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+.home-footer {
+    color: #616770;
+    padding: 10px 12px 2px;
+    font-size: 13px;
+    a { color: #616770; }
 }

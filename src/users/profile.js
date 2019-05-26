@@ -3,8 +3,6 @@ import { isAuthenticated } from "../auth";
 import { Redirect, Link } from "react-router-dom";
 import { listByUser } from "../Posts/apiPost";
 import Cover from './cover';
-import DeleteUser from "./DeleteUser";
-import FriendProfileButton from "./FriendProfileButton";
 import { getUsersbyId } from "./apiUser";
 import NewPost from "../Posts/newPost";
 import UserDetails from "./userDetails";
@@ -132,22 +130,6 @@ class Profile extends Component {
                 <div className="row">
 
                     <div className="col">
-
-                        {isAuthenticated().user &&
-                            isAuthenticated().user._id === user._id ? (
-                                <div className="1">
-
-                                    <DeleteUser
-                                        userId={user._id}
-                                    />
-                                </div>
-                            ) : (
-                                <FriendProfileButton
-                                    following={this.state.following}
-                                    onButtonClick={this.clickFriendButton}
-                                />
-                            )}
-
                         <div>
                             {isAuthenticated().user &&
                                 isAuthenticated().user.role === "admin" && (
@@ -165,9 +147,6 @@ class Profile extends Component {
                                             >
                                                 Edit Profile
                                             </Link>
-                                            <DeleteUser
-                                                userId={user._id}
-                                            />
                                         </div>
                                     </div>
                                 )}

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getProfilePhoto, getCoverPhoto } from "./apiUser";
+import FollowProfileButton from "./FriendProfileButton";
 import DefaultProfile from "../Images/default_profile.png";
+import { isAuthenticated } from "../auth";
 
 class Cover extends Component {
 
@@ -83,6 +85,16 @@ class Cover extends Component {
                             </h1>
                         </div>
                         <div className="_actionBar">
+                            {isAuthenticated().user &&
+                                isAuthenticated().user._id === user._id ? (
+                                    <div className="1">
+                                    </div>
+                                ) : (
+                                    <FollowProfileButton
+                                        following={user.following}
+                                        onButtonClick={this.clickFriendButton}
+                                    />
+                                )}
                             <Link to={`/user/edit/${user._id}`}><i className="userIcon_2 fb"></i> Add Friend</Link>
                             <Link to={`/user/edit/${user._id}`}><i className="userIcon_2 edit"></i> Edit Profile</Link>
                         </div>

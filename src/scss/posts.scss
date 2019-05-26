@@ -14,13 +14,14 @@
 }
 
 .userIcon_3 {
-    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yP/r/IZFSOi34yXv.png');
+    background-image: url('../Images/postICO.png');
     background-repeat: no-repeat;
     background-size: 140px 836px;
     height: 20px;
     width: 20px;
 
     &.dots { background-position: -105px -581px; }
+    &.feed { background-position: 0 -497px; }
 }
 
 .fbTimelineComposerUnit {
@@ -31,7 +32,7 @@
         background: #fff;
 
     .icon {
-        background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yP/r/IZFSOi34yXv.png");
+        background-image: url('../Images/postICO.png');
         background-size: 140px 836px;
         background-repeat: no-repeat;
         display: inline-block;

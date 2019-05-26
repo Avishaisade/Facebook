@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "scss": "node-sass styles.scss styles.css",
-    "heroku-postbuild":"npm install --only=dev && npm install && npm run build"
+    "heroku-postbuild":"npm install --only=dev && npm install && npm run build && npm /server/nodemon server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -34,6 +34,6 @@
   ],
   "proxy": "http://localhost:8080",
   "engines": {
-    "node": "11.2.0"
+    "node": "11.2.2"
 }
 }

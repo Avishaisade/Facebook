@@ -7,7 +7,6 @@ const cookieParser = require("cookie-parser");
 const expressValidator = require("express-validator");
 const fs = require("fs");
 const cors = require("cors");
-const path = require("path")
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -52,7 +51,7 @@ app.use(cors({
 app.use(postRoutes);
 app.use(authRoutes);
 app.use(userRoutes);
-app.use(express.static(path.join(__dirname, "build")))
+app.use(express.static("build"));
 
 
 app.use(function(err, req, res, next) {
@@ -60,9 +59,7 @@ app.use(function(err, req, res, next) {
         res.status(401).json({ error: "Unauthorized!" });
     }
 });
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname,"build", "index.html"));
-});
+
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`);

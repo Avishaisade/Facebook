@@ -1,4 +1,4 @@
-const API = process.env.REACT_APP_API_URL;
+const API = '/';
 
 export const getUsersbyId = (userId, token) => {
     return fetch(`${API}/users/${userId}`, {

@@ -25,6 +25,8 @@ const postRoutes = require("./Routes/posts.route");
 const authRoutes = require("./Routes/auth.route");
 const userRoutes = require("./Routes/user.route");
 
+
+
 // apiDocs
 app.get("/api", (req, res) => {
     fs.readFile("docs/apiDocs.json", (err, data) => {
@@ -47,6 +49,10 @@ app.use(cors());
 app.use(postRoutes);
 app.use(authRoutes);
 app.use(userRoutes);
+if(process.env.NODE_ENV==='production'){
+    app.use(express.static('build'));
+}
+
 app.use(function(err, req, res, next) {
     if (err.name === "UnauthorizedError") {
         res.status(401).json({ error: "Unauthorized!" });

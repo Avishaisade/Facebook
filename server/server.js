@@ -52,6 +52,7 @@ app.use(function(err, req, res, next) {
         res.status(401).json({ error: "Unauthorized!" });
     }
 });
+app.use(express.static('build'));
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {

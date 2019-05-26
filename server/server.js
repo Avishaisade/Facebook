@@ -44,7 +44,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(cors({
-	origin: 'http://localhost:3000',
+	origin: 'https://safe-wave-89351.herokuapp.com',
 }));
 app.use(postRoutes);
 app.use(authRoutes);
@@ -54,9 +54,7 @@ app.use(function(err, req, res, next) {
         res.status(401).json({ error: "Unauthorized!" });
     }
 });
-if(process.env.NODE_ENV==='production'){
-    app.use(express.static('build'));
-}
+app.use(express.static('build'));
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {

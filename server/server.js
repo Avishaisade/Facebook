@@ -46,6 +46,7 @@ app.use(expressValidator());
 app.use(cors({
 	origin: 'http://localhost:3000',
 }));
+app.use(express.static('build'));
 app.use(postRoutes);
 app.use(authRoutes);
 app.use(userRoutes);

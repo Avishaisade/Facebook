@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const expressValidator = require("express-validator");
 const fs = require("fs");
 const cors = require("cors");
+const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -46,7 +47,7 @@ app.use(expressValidator());
 app.use(cors({
 	origin: 'http://localhost:3000',
 }));
-app.use(express.static('build'));
+app.use(express.static(path.join(__dirname, "build")))
 app.use(postRoutes);
 app.use(authRoutes);
 app.use(userRoutes);
@@ -54,6 +55,9 @@ app.use(function(err, req, res, next) {
     if (err.name === "UnauthorizedError") {
         res.status(401).json({ error: "Unauthorized!" });
     }
+});
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 const port = process.env.PORT || 8080;

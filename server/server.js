@@ -13,7 +13,8 @@ dotenv.config();
 
 // db
 mongoose
-    .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+    .connect(process.env.MONGOddDB_URI || 'mongodb://localhost:27017/nov-18-mongoose', 
+    { useNewUrlParser: true })
     .then(() => console.log("DB Connected"));
 
 mongoose.connection.on("error", err => {

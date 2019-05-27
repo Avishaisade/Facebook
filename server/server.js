@@ -6,13 +6,14 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const expressValidator = require("express-validator");
 const fs = require("fs");
+const path = require("path")
 const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
 
 // db
 mongoose
-    .connect(process.env.MONGO_URI, { useNewUrlParser: true })
+    .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
     .then(() => console.log("DB Connected"));
 
 mongoose.connection.on("error", err => {
@@ -53,6 +54,13 @@ app.use(function(err, req, res, next) {
     }
 });
 
+if(process.env.NODE_ENV ==='production'){
+    app.use(express.static("build"))
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(__dirname,"build", "index.html"));
+    });
+}
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`);

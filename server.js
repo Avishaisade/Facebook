@@ -1,5 +1,5 @@
 const express = require("express");
-const app = express();
+const cors = require("cors");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
@@ -7,9 +7,10 @@ const cookieParser = require("cookie-parser");
 const expressValidator = require("express-validator");
 const fs = require("fs");
 const path = require("path")
-const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
+
+const app = app = express().use("*",cors());
 
 // db
 mongoose

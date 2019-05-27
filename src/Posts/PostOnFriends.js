@@ -99,7 +99,7 @@ class PostOnFriends extends Component {
             redirectToProfile,
             profileUser
         } = this.state;
-        console.log(this.state);
+        // console.log(this.state);
 
         if (redirectToProfile) {
             return <Redirect to={`/users/${profileUser._id}`} />;

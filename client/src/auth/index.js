@@ -1,4 +1,4 @@
-const API= '/';
+const API= process.env.PORT;
 export const signup = user => {
     return fetch(`${API}/signup`, {
         method: "POST",
@@ -15,7 +15,7 @@ export const signup = user => {
 };
 
 export const signin = user => {
-    return fetch(`${process.env.REACT_APP_API_URL}/signin`, {
+    return fetch(`${API}/signin`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -39,7 +39,7 @@ export const authenticate = (jwt, next) => {
 export const signout = next => {
     if (typeof window !== "undefined") localStorage.removeItem("jwt");
     next();
-    return fetch(`${process.env.REACT_APP_API_URL}/signout`, {
+    return fetch(`${API}/signout`, {
         method: "GET"
     })
         .then(response => {

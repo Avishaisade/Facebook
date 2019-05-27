@@ -1,4 +1,4 @@
-const API = '/';
+const API= process.env.PORT
 
 export const createPost = (userId, token, post) => {
     return fetch(`${API}/posts/${userId}/`, {

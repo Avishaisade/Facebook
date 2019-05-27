@@ -1,5 +1,6 @@
+const API= '/';
 export const signup = user => {
-    return fetch(`${process.env.REACT_APP_API_URL}/signup`, {
+    return fetch(`${API}/signup`, {
         method: "POST",
         headers: {
             Accept: "application/json",

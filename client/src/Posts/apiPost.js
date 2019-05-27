@@ -1,4 +1,4 @@
-const API = '/';
+const API = process.env.REACT_APP_API_URL;
 
 export const createPost = (userId, token, post) => {
     return fetch(`${API}/posts/${userId}/`, {

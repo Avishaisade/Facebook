@@ -233,6 +233,7 @@ class SinglePost extends Component {
                         posterName={posterName}
                         
                     />
+                    {console.log(post)}
                 </div>
             </div>
         );

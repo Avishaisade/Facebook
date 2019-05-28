@@ -1,6 +1,6 @@
 import React, { Component, Suspense } from "react";
 import { isAuthenticated } from "../auth";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { listByUser } from "../Posts/apiPost";
 import Cover from './cover';
 import { getUsersbyId } from "./apiUser";

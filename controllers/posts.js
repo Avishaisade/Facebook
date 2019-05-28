@@ -26,6 +26,7 @@ exports.getPosts = async (req, res) => {
         .countDocuments()
         .then(posts => {
             return Post.find()
+                .sort({created:-1})
                 .populate("comments", "text created")
                 .populate("comments.postedBy", "_id name")
                 .populate("postedBy", "_id name")

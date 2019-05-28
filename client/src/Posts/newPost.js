@@ -4,8 +4,6 @@ import { isAuthenticated } from "../auth";
 import { createPost } from "./apiPost";
 import { Redirect } from "react-router-dom";
 import Avatar from "../users/avatar";
-
-
 class NewPost extends Component {
     constructor() {
         super();

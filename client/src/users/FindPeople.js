@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { findPeople, follow } from "./apiUser";
 import UserPicture from './UserPicture'
-import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 
 class FindPeople extends Component {

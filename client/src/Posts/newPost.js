@@ -50,7 +50,7 @@ class NewPost extends Component {
     clickSubmit = event => {
         event.preventDefault();
         this.setState({ loading: true });
-
+        this.props.handlePost(true)
         if (this.isValid()) {
             const userId = isAuthenticated().user._id;
             const token = isAuthenticated().token;
@@ -90,7 +90,7 @@ class NewPost extends Component {
             redirectToProfile
         } = this.state;
 
-        if (redirectToProfile) {
+        if (redirectToProfile && this.props.Redirect=== true) {
             return <Redirect to={`/users/${user._id}`} />;
         }
         return (

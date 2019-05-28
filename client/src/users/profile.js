@@ -22,10 +22,21 @@ class Profile extends Component {
             error: "",
             posts: [],
             userProfile: false,
-            loaded: false
+            loaded: false,
+            postloded: false
         };
+        this.handlePost = this.handlePost.bind(this);
     }
-
+    
+    
+    handlePost(value) {
+        this.setState(prevState => {
+          return {
+            postloded: true
+          };
+        });
+      }
+      
     // check friend
     checkFriend = user => {
         const jwt = isAuthenticated();
@@ -91,7 +102,7 @@ class Profile extends Component {
     render() {
         const { redirectToSignin, user, posts } = this.state;
         if (redirectToSignin) return <Redirect to="/signin" />;
-
+        // if (this.state.postloded === true) return this.loadPosts(this.state.user._id);
         return (
             <div className="globalContainer">
                 {this.state.loaded && (
@@ -118,7 +129,9 @@ class Profile extends Component {
 
                 <div className="col-530 float-right">
                     {this.state.user && this.state.userProfile ?
-                        <NewPost /> :
+                        <NewPost 
+                            handlePost={this.handlePost}
+                        /> :
                         <PostOnFriends
                             user={this.state.user}
                         />

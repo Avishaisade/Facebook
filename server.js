@@ -45,7 +45,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(cors({
-	origin: 'https://facebook-netcraft.herokuapp.com',
+	// origin: 'https://facebook-netcraft.herokuapp.com',
 }));
 app.use(postRoutes);
 app.use(authRoutes);

@@ -32,7 +32,7 @@ export default function userFriendsTab(props) {
                                      id= {person._id} 
                                      name= {person.name}
                                     />
-                                    {console.log(person)}
+                                    {/* {console.log(person)} */}
                                     <div className="_fr_name">{person.name}</div>
                                 </Link>
                             </div>

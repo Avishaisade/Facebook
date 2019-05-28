@@ -94,6 +94,7 @@ class Comment extends Component {
                                         _id={comment.postedBy._id}
                                         name={comment.postedBy.name}
                                     />
+                                    {console.log(comment.postedBy)}
                                     <div className="_comment_t">
                                         {comment.text}
                                     </div>

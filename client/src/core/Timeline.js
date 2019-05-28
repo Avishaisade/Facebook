@@ -38,6 +38,7 @@ class Timeline extends Component {
                         <SinglePost
                             post={post}
                         />
+                        {/* {console.log(post)} */}
                     </div>
                 ))}
             </div>

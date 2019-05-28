@@ -143,6 +143,7 @@ class Profile extends Component {
                             <SinglePost
                                 post={post}
                             />
+                            {console.log(post)}
                         </div>
                     ))}
                 </div>

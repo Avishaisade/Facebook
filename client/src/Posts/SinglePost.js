@@ -13,6 +13,7 @@ class SinglePost extends Component {
         this.state = {
             post: "",
             postId:"",
+            posterName:'',
             redirectToHome: false,
             redirectToSignin: false,
             like: false,
@@ -36,9 +37,11 @@ class SinglePost extends Component {
                 this.setState({
                     postId:data._id,
                     post: data,
+                    posterName:data.postedBy.name,
                     likes: data.likes.length,
                     like: this.checkLike(data.likes),
                     comments: data.comments
+                    
                 });
             }
     };
@@ -192,7 +195,8 @@ class SinglePost extends Component {
     };
 
     render() {
-        const { post, redirectToHome, redirectToSignin, comments } = this.state;
+        // console.log(this.state.comments);
+        const { post, redirectToHome, redirectToSignin,posterName, comments } = this.state;
         if (redirectToHome) {
             return <Redirect to={`/`} />;
         } else if (redirectToSignin) {
@@ -226,6 +230,7 @@ class SinglePost extends Component {
                         postId={post._id}
                         comments={comments.reverse()}
                         updateComments={this.updateComments}
+                        posterName={posterName}
                         
                     />
                 </div>

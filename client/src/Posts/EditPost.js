@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { singlePost, updatePost } from "./apiPost";
 import { isAuthenticated } from "../auth";
 import { Redirect } from "react-router-dom";
 import PostPhoto from "./postPhoto";
+import Avatar from "../users/avatar";
 
 
 class EditPost extends Component {
@@ -86,33 +88,45 @@ class EditPost extends Component {
     };
 
     editPostForm = (body) => (
-        <form>
-            <div className="form-group">
-                <label className="text-muted">Post Photo</label>
-                <input
-                    onChange={this.handleChange("photo")}
-                    type="file"
-                    accept="image/*"
-                    className="form-control"
-                />
-            </div>
-            <div className="form-group">
-                <label className="text-muted">Body</label>
-                <textarea
-                    onChange={this.handleChange("body")}
-                    type="text"
-                    className="form-control"
-                    value={body}
-                />
-            </div>
+        <div className="_2col">
+            <form>
+                <div className="form-group">
+                    <textarea
+                        onChange={this.handleChange("body")}
+                        type="text"
+                        className="c_post_txt"
+                        value={body}
+                    />
+                </div>
 
-            <button
-                onClick={this.clickSubmit}
-                className="btn btn-raised btn-primary"
-            >
-                Update Post
-            </button>
-        </form>
+                <div className="footer">
+                    <ul>
+                        <li>
+                            <div className="btn">
+                                <i className="icon pic"></i>
+                                <span>Photo/Video</span>
+
+                                <input
+                                    onChange={this.handleChange("photo")}
+                                    type="file"
+                                    accept="image/*"
+                                />
+                            </div>
+                        </li>
+                        <li className="_right mr-0">
+                            {this.state.loading ? (<span>Loading</span>) : (
+                                <button
+                                    className="btn-s"
+                                    onClick={this.clickSubmit}
+                                >
+                                    <span>Edit Post</span>
+                                </button>)}
+                        </li>
+                    </ul>
+                </div>
+            </form>
+
+        </div>
     );
 
     render() {
@@ -129,21 +143,24 @@ class EditPost extends Component {
         }
 
         return (
-            <div className="container">
+            <div className="col-530 float-right fbTimelineComposerUnit clearfix-t">
                 <div
-                    className="alert"
-                    style={{ display: error ? "" : "none" }}
+                    className="postMenu"
                 >
+                    <div>
+                        <Link to={`/`}>
+                            <span className="c_post">
+                                <i className="icon"></i>
+                                Edit Post
+                            </span>
+                        </Link>
+                    </div>
                     {error}
                 </div>
+                <div className="_1col">
 
-                {loading ? (
-                    <div className="text">
-                        <h2>Loading...</h2>
-                    </div>
-                ) : (
-                    ""
-                )}
+                </div>
+
                 {PostPhoto(id)}
 
                 {/* <img

@@ -20,7 +20,7 @@ class NewPost extends Component {
 
     componentDidMount() {
         this.postData = new FormData();
-        this.setState({ user: isAuthenticated().user });
+        this.setState({ user: isAuthenticated().user, redirectToProfile: false });
     }
 
     isValid = () => {
@@ -104,14 +104,6 @@ class NewPost extends Component {
                     </div>
                 </div>
 
-                {loading ? (
-                    <div className="text">
-                        <h2>Loading...</h2>
-                    </div>
-                ) : (
-                        ""
-                    )}
-
                 <div className="_1col">
                     <Avatar
                         _id={this.state.user._id}
@@ -136,12 +128,13 @@ class NewPost extends Component {
                             </div>
                         </li>
                         <li className="_right mr-0">
-                            <button
-                                className="btn-s"
-                                onClick={this.clickSubmit}
-                            >
-                                <span>Create Post</span>
-                            </button>
+                            {loading ? (<span>Loading</span>) : (
+                                <button
+                                    className="btn-s"
+                                    onClick={this.clickSubmit}
+                                >
+                                    <span>Create Post</span>
+                                </button>)}
                         </li>
                     </ul>
                 </div>

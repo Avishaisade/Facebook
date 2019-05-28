@@ -92,8 +92,8 @@ class Comment extends Component {
                                     {/* {console.log(comment)} */}
                                     <UserHeader
                                         created={comment.created}
-                                        _id={comment.postedBy}
-                                        name={posterName}
+                                        _id={comment.postedBy._id}
+                                        name={comment.postedBy.name}
                                     />
                                     {console.log(comment.postedBy)}
                                     <div className="_comment_t">

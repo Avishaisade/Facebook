@@ -17,21 +17,21 @@ class PostOnFriends extends Component {
             fileSize: 0,
             loading: false,
             redirectToProfile: false,
-            profileUser:{}
+            profileUser: {}
 
         };
     }
 
     componentDidMount() {
         this.postData = new FormData();
-        this.setState({ 
+        this.setState({
             poster: isAuthenticated().user,
-            
+
         });
     }
     componentWillReceiveProps(props) {
         const user = props.user;
-        this.setState({profileUser:user });
+        this.setState({ profileUser: user });
     }
 
     isValid = () => {
@@ -85,7 +85,7 @@ class PostOnFriends extends Component {
                 type="text"
                 className="c_post_txt"
                 value={body}
-                placeholder={`Write somthing on ${this.state.profileUser.name} wall`}
+                placeholder={`Write somthing on ${this.state.profileUser.name}'s wall`}
             />
 
         </form>
@@ -148,13 +148,12 @@ class PostOnFriends extends Component {
                                 />
                             </div>
                         </li>
-                        <li className="_right">
+                        <li className="_right mr-0">
                             <button
-                                className="btn"
+                                className="btn-s"
                                 onClick={this.clickSubmit}
                             >
-                                <i className="icon approve"></i>
-                                <span>Create Post</span>
+                                <span>Publish</span>
                             </button>
                         </li>
                     </ul>

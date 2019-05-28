@@ -30,7 +30,7 @@ class Comment extends Component {
         e.preventDefault();
 
         if (!isAuthenticated()) {
-            this.setState({ error: "Please signin to leave a comment" });
+            this.setState({ error: "Please Sign in to leave a comment" });
             return false;
         }
 
@@ -86,7 +86,7 @@ class Comment extends Component {
 
                 <div>
                     {comments.map((comment, i) => (
-                        <div key={i}>
+                        <div key={i} className="com_container">
                             <div>
                                 <div>
                                     {/* {console.log(comment)} */}

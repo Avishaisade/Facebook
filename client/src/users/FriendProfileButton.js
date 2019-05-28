@@ -12,22 +12,22 @@ class FollowProfileButton extends Component {
 
     render() {
         return (
-            <div className="1">
+            <div className="inline-block ">
                 {!this.props.following ? (
                     <button
                         onClick={this.followClick}
                         className="btn"
                     >
-                        Add Friend
+                        <i className="userIcon_2 fb"></i> Add Friend
                     </button>
                 ) : (
-                    <button
-                        onClick={this.unfollowClick}
-                        className="btn"
-                    >
-                        UnFriend
+                        <button
+                            onClick={this.unfollowClick}
+                            className="btn"
+                        >
+                            <i className="userIcon_2 fb"></i> Unfriend
                     </button>
-                )}
+                    )}
             </div>
         );
     }

@@ -95,7 +95,6 @@ class Cover extends Component {
                                         onButtonClick={this.clickFriendButton}
                                     />
                                 )}
-                            <Link to={`/user/edit/${user._id}`}><i className="userIcon_2 fb"></i> Add Friend</Link>
                             <Link to={`/user/edit/${user._id}`}><i className="userIcon_2 edit"></i> Edit Profile</Link>
                         </div>
                     </div>

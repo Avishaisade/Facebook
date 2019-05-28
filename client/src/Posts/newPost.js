@@ -88,7 +88,7 @@ class NewPost extends Component {
             redirectToProfile
         } = this.state;
 
-        if (redirectToProfile && this.props.Redirect=== true) {
+        if (redirectToProfile && this.props.Redirect === true) {
             return <Redirect to={`/users/${user._id}`} />;
         }
         return (
@@ -135,12 +135,11 @@ class NewPost extends Component {
                                 />
                             </div>
                         </li>
-                        <li className="_right">
+                        <li className="_right mr-0">
                             <button
-                                className="btn"
+                                className="btn-s"
                                 onClick={this.clickSubmit}
                             >
-                                <i className="icon approve"></i>
                                 <span>Create Post</span>
                             </button>
                         </li>

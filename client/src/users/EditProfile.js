@@ -279,7 +279,7 @@ class EditProfile extends Component {
             city,
             birthday
         } = this.state;
-        console.log(this.state);
+        // console.log(this.state);
 
         if (redirectToProfile) {
             return <Redirect to={`/users/${id}`} />;

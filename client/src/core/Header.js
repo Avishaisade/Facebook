@@ -154,4 +154,3 @@ const Header = ({ history }) => (
     </div>
 );
 export default withRouter(Header);
-

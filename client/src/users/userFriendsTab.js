@@ -28,7 +28,11 @@ export default function userFriendsTab(props) {
                             <div style={{ position: 'relative' }}>
                                 <Link 
                                     to={`/users/${person._id}`}>
-                                    {UserPicture(person._id, person.name)}
+                                    <UserPicture
+                                     id= {person._id} 
+                                     name= {person.name}
+                                    />
+                                    {console.log(person)}
                                     <div className="_fr_name">{person.name}</div>
                                 </Link>
                             </div>

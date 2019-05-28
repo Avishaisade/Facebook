@@ -6,6 +6,7 @@ const Avatar = (props) => {
 
     const { _id, name } = props;
     let photoUrl = getProfilePhoto(_id);
+    console.log(photoUrl);
     return (
         <div className="userAvatarContainer">
             <img

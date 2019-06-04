@@ -16,9 +16,9 @@ class Profile extends Component {
     constructor() {
         super();
         this.state = {
-            user: { following: [], followers: [] },
+            user: { friends: [] },
             redirectToSignin: false,
-            following: false,
+            friends: false,
             error: "",
             posts: [],
             userProfile: false,
@@ -40,8 +40,8 @@ class Profile extends Component {
     // check friend
     checkFriend = user => {
         const jwt = isAuthenticated();
-        const match = user.followers.find(follower => {
-            return follower._id === jwt.user._id;
+        const match = user.friends.find(friend => {
+            return friend._id === jwt.user._id;
         });
         return match;
     };
@@ -54,7 +54,7 @@ class Profile extends Component {
             if (data.error) {
                 this.setState({ error: data.error });
             } else {
-                this.setState({ user: data, following: !this.state.following });
+                this.setState({ user: data, frienda: !this.state.friends });
             }
         });
     };
@@ -64,8 +64,8 @@ class Profile extends Component {
             if (data.error) {
                 this.setState({ redirectToSignin: true });
             } else {
-                let following = this.checkFriend(data);
-                this.setState({ user: data, following, loaded: true });
+                let friends = this.checkFriend(data);
+                this.setState({ user: data, friends, loaded: true });
                 this.loadPosts(data._id);
                 this.checkprofile(data._id);
             }
@@ -120,8 +120,8 @@ class Profile extends Component {
                             />
                             {/* Friends Tab */}
                             <FriendsTab
-                                followers={user.followers}
-                                following={user.following}
+                                friends={user.friends}
+                                
                             />
                         </Suspense>
                     )}

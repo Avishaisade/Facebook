@@ -80,15 +80,15 @@ export const updateUserToken = (user, next) => {
     }
 };
 
-export const follow = (userId, token, followId) => {
-    return fetch(`${API}/users/${userId}/follow`, {
+export const friend = (userId, token, friendId) => {
+    return fetch(`${API}/users/${userId}/friend`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ userId, followId })
+        body: JSON.stringify({ userId, friendId })
     })
         .then(response => {
             return response.json();
@@ -96,15 +96,15 @@ export const follow = (userId, token, followId) => {
         .catch(err => console.log(err));
 };
 
-export const unfollow = (userId, token, unfollowId) => {
-    return fetch(`${API}/users/${userId}/unfollow`, {
+export const unfriend = (userId, token, unfriendId) => {
+    return fetch(`${API}/users/${userId}/unfriend`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ userId, unfollowId })
+        body: JSON.stringify({ userId, unfriendId })
     })
         .then(response => {
             return response.json();

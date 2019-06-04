@@ -11,7 +11,7 @@ class Cover extends Component {
         const user = this.props.user;
         const photoUrl = getProfilePhoto(user._id);
         const coverPhoto = getCoverPhoto(user._id);
-        const friends = user.following.concat(user.followers)
+        const friends = user.friends;
 
         return (
             <div className="coverHeaderContainer">
@@ -91,7 +91,7 @@ class Cover extends Component {
                                     </div>
                                 ) : (
                                     <FollowProfileButton
-                                        following={user.following}
+                                        friends={user.friends}
                                         onButtonClick={this.clickFriendButton}
                                     />
                                 )}

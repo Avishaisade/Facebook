@@ -7,10 +7,10 @@ const {
     deleteUser,
     userPhoto,
     userCoverPhoto,
-    addFollowing,
-    addFollower,
-    removeFollowing,
-    removeFollower,
+    addFriend,
+    addToFriend,
+    removefriends,
+    removeFromFriend, 
     findPeople,
     hasAuthorization,
     searchUser
@@ -20,8 +20,8 @@ const { requireSignin } = require("../controllers/auth");
 const route = Router();
 
 
-route.put("/users/:userId/follow", requireSignin, addFollowing, addFollower);
-route.put("/users/:userId/unfollow", requireSignin, removeFollowing, removeFollower);
+route.put("/users/:userId/friend", requireSignin, addFriend, addToFriend);
+route.put("/users/:userId/unfriend", requireSignin, removefriends, removeFromFriend);
 
 route.get("/users", allUsers);
 route.get("/users/:userId", getUser);

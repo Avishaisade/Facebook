@@ -1,28 +1,28 @@
 import React, { Component } from "react";
-import { follow, unfollow } from "./apiUser";
+import { friend, unfriend } from "./apiUser";
 
 class FollowProfileButton extends Component {
     followClick = () => {
-        this.props.onButtonClick(follow);
+        this.props.onButtonClick(friend);
     };
 
     unfollowClick = () => {
-        this.props.onButtonClick(unfollow);
+        this.props.onButtonClick(unfriend);
     };
 
     render() {
         return (
             <div className="inline-block ">
-                {!this.props.following ? (
+                {!this.props.friending ? (
                     <button
-                        onClick={this.followClick}
+                        onClick={this.friendClick}
                         className="btn"
                     >
                         <i className="userIcon_2 fb"></i> Add Friend
                     </button>
                 ) : (
                         <button
-                            onClick={this.unfollowClick}
+                            onClick={this.unfriendClick}
                             className="btn"
                         >
                             <i className="userIcon_2 fb"></i> Unfriend

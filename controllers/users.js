@@ -6,8 +6,7 @@ const fs = require("fs");
 
 exports.userById = (req, res, next, id) => {
     User.findById(id)
-        .populate("following", "_id name")
-        .populate("followers", "_id name")
+        .populate("friends", "_id name")
         .exec((err, user) => {
             if (err || !user) {
                 return res.status(400).json({
@@ -133,10 +132,10 @@ exports.deleteUser = (req, res, next) => {
         res.json({ message: "User deleted successfully" });
     });
 };
-exports.addFollowing = (req, res, next) => {
+exports.addFriend = (req, res, next) => {
     User.findByIdAndUpdate(
         req.body.userId,
-        { $push: { following: req.body.followId } },
+        { $push: { friends: req.body.friendId } },
         (err, result) => {
             if (err) {
                 return res.status(400).json({ error: err });
@@ -146,14 +145,13 @@ exports.addFollowing = (req, res, next) => {
     );
 };
 
-exports.addFollower = (req, res) => {
+exports.addToFriend = (req, res) => {
     User.findByIdAndUpdate(
-        req.body.followId,
-        { $push: { followers: req.body.userId } },
+        req.body.friendId,
+        { $push: { friends: req.body.userId } },
         { new: true }
     )
-        .populate("following", "_id name")
-        .populate("followers", "_id name")
+        .populate("friends", "_id name")
         .exec((err, result) => {
             if (err) {
                 return res.status(400).json({
@@ -166,10 +164,10 @@ exports.addFollower = (req, res) => {
         });
 };
 
-exports.removeFollowing = (req, res, next) => {
+exports.removefriends = (req, res, next) => {
     User.findByIdAndUpdate(
         req.body.userId,
-        { $pull: { following: req.body.unfollowId } },
+        { $pull: { friends: req.body.unfriendId } },
         (err, result) => {
             if (err) {
                 return res.status(400).json({ error: err });
@@ -179,14 +177,13 @@ exports.removeFollowing = (req, res, next) => {
     );
 };
 
-exports.removeFollower = (req, res) => {
+exports.removeFromFriend = (req, res) => {
     User.findByIdAndUpdate(
-        req.body.unfollowId,
-        { $pull: { followers: req.body.userId } },
+        req.body.unfriendId,
+        { $pull: { friends: req.body.userId } },
         { new: true }
     )
-        .populate("following", "_id name")
-        .populate("followers", "_id name")
+        .populate("friends", "_id name")
         .exec((err, result) => {
             if (err) {
                 return res.status(400).json({
@@ -200,9 +197,9 @@ exports.removeFollower = (req, res) => {
 };
 
 exports.findPeople = (req, res) => {
-    let following = req.profile.following;
-    following.push(req.profile._id);
-    User.find({ _id: { $nin: following } }, (err, users) => {
+    let friends = req.profile.friends;
+    friends.push(req.profile._id);
+    User.find({ _id: { $nin: friends } }, (err, users) => {
         if (err) {
             return res.status(400).json({
                 error: err
@@ -212,6 +209,3 @@ exports.findPeople = (req, res) => {
     }).select("name");
 };
 
-// module.exports = {
-//     getFollowersByUserId
-// };

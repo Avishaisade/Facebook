@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { findPeople, follow } from "./apiUser";
+import { findPeople, friend } from "./apiUser";
 import UserPicture from './UserPicture'
 import { isAuthenticated } from "../auth";
 
@@ -28,20 +28,20 @@ class FindPeople extends Component {
         });
     }
 
-    clickFollow = (user, i) => {
+    clickFriend = (user, i) => {
         const userId = isAuthenticated().user._id;
         const token = isAuthenticated().token;
 
-        follow(userId, token, user._id).then(data => {
+        friend(userId, token, user._id).then(data => {
             if (data.error) {
                 this.setState({ error: data.error });
             } else {
-                let toFollow = this.state.users;
-                toFollow.splice(i, 1);
+                let toFriend = this.state.users;
+                toFriend.splice(i, 1);
                 this.setState({
-                    users: toFollow,
+                    users: toFriend,
                     open: true,
-                    followMessage: `You are now friends with ${user.name}.`
+                   friendMessage: `You are now friends with ${user.name}.`
                 });
             }
         });
@@ -67,7 +67,7 @@ class FindPeople extends Component {
                         </button>
 
                         <button
-                            onClick={() => this.clickFollow(user, i)}
+                            onClick={() => this.clickFriend(user, i)}
                             className="btn-s mr-10"
                         >
                             Add Friend
@@ -79,14 +79,14 @@ class FindPeople extends Component {
     );
 
     render() {
-        const { users, open, followMessage, loading } = this.state;
+        const { users, open, friendMessage, loading } = this.state;
         return (
             <div className="userEditProfileComp friendList">
                 <div className="dialog">
                     <div className="t1">Find People</div>
 
                     {open && (
-                        <div className="p-12 f-13">{followMessage}</div>
+                        <div className="p-12 f-13">{friendMessage}</div>
                     )}
 
                     {loading ? "" : this.renderUsers(users)}

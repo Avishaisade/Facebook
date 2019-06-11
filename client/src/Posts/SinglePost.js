@@ -14,6 +14,7 @@ class SinglePost extends Component {
             post: "",
             postId:"",
             posterName:'',
+            posterId:'',
             redirectToHome: false,
             redirectToSignin: false,
             like: false,
@@ -38,6 +39,7 @@ class SinglePost extends Component {
                     postId:data._id,
                     post: data,
                     posterName:data.postedBy.name,
+                    posterId:data.postedBy._id,
                     likes: data.likes.length,
                     like: this.checkLike(data.likes),
                     comments: data.comments
@@ -196,7 +198,7 @@ class SinglePost extends Component {
 
     render() {
         // console.log(this.state.comments);
-        const { post, redirectToHome, redirectToSignin,posterName, comments } = this.state;
+        const { post, redirectToHome, redirectToSignin,posterName, posterId, comments } = this.state;
         if (redirectToHome) {
             return <Redirect to={`/`} />;
         } else if (redirectToSignin) {
@@ -231,6 +233,7 @@ class SinglePost extends Component {
                         comments={comments.reverse()}
                         updateComments={this.updateComments}
                         posterName={posterName}
+                        posterId= {posterId}
                         
                     />
                     {console.log(post)}

@@ -77,9 +77,9 @@ class Comment extends Component {
     };
 
     render() {
-        const { comments, posterName } = this.props;
+        const { comments,postId, posterName, posterId } = this.props;
         const { error } = this.state;
-        console.log(comments);
+        console.log(this.props);
 
         return (
             <div>
@@ -92,16 +92,16 @@ class Comment extends Component {
                                     {/* {console.log(comment)} */}
                                     <UserHeader
                                         created={comment.created}
-                                        _id={comment.postedBy._id}
-                                        name={comment.postedBy.name}
+                                        _id={posterId}
+                                        name={posterName}
                                     />
-                                    {console.log(comment.postedBy)}
+                                    {/* {console.log(postId)} */}
                                     <div className="_comment_t">
                                         {comment.text}
                                     </div>
                                     {isAuthenticated().user &&
                                         isAuthenticated().user._id ===
-                                        comment.postedBy._id && (
+                                        postId && (
                                             <>
                                                 <span
                                                     onClick={() =>

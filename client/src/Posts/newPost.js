@@ -48,7 +48,6 @@ class NewPost extends Component {
     clickSubmit = event => {
         event.preventDefault();
         this.setState({ loading: true });
-        this.props.handlePost(true)
         if (this.isValid()) {
             const userId = isAuthenticated().user._id;
             const token = isAuthenticated().token;

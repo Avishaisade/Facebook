@@ -19,14 +19,15 @@ class Timeline extends Component {
                 console.log(data.error);
             } else {
                 // console.log(data);
-                this.setState({ posts: data });              
+                this.setState({ posts: data });   
+                console.log(this.state.posts)           
             }
         });
     };
     
 
     componentDidMount() {
-        this.loadPosts(this.state.posts);
+        this.loadPosts(this.state.posts);         
     }
    
 

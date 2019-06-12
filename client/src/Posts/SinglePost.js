@@ -236,7 +236,7 @@ class SinglePost extends Component {
                         posterId= {posterId}
                         
                     />
-                    {console.log(post)}
+                    {/* {console.log(post)} */}
                 </div>
             </div>
         );

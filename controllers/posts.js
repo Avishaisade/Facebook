@@ -27,15 +27,33 @@ exports.getPosts = async (req, res) => {
         .then(posts => {
             return Post.find()
                 .sort({created:-1})
-                .populate("comments", "text created")
-                .populate("comments.postedBy", "_id name")
                 .populate("postedBy", "_id name")
+                // .populate("comments", "text created")
+                // .populate("comments.postedBy", "_id name")
+                .select("_id body created likes comments")
         })
         .then(posts => {
             res.status(200).json(posts);
         })
         .catch(err => console.log(err));
 };
+
+// exports.postsByUser = (req, res) => {
+//     Post.find({ postedBy: req.profile._id })
+//         .sort({created:-1})
+//         .populate("postedBy", "_id name")
+//         .select("_id body created likes comments")
+//         .exec((err, posts) => {
+//             if (err) {
+//                 return res.status(400).json({
+//                     error: err
+//                 });
+//             }
+//             res.json(posts);
+//         });
+// };
+
+
 
 exports.createPost = (req, res, next) => {
     let form = new formidable.IncomingForm();

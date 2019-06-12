@@ -79,7 +79,7 @@ class Comment extends Component {
     render() {
         const { comments,postId, posterName, posterId } = this.props;
         const { error } = this.state;
-        console.log(this.props);
+        // console.log(this.props);
 
         return (
             <div>

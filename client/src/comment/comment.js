@@ -79,7 +79,6 @@ class Comment extends Component {
     render() {
         const { comments,postId, posterName, posterId } = this.props;
         const { error } = this.state;
-        // console.log(this.props);
 
         return (
             <div>
@@ -89,13 +88,11 @@ class Comment extends Component {
                         <div key={i} className="com_container">
                             <div>
                                 <div>
-                                    {/* {console.log(comment)} */}
                                     <UserHeader
                                         created={comment.created}
                                         _id={posterId}
                                         name={posterName}
                                     />
-                                    {/* {console.log(postId)} */}
                                     <div className="_comment_t">
                                         {comment.text}
                                     </div>

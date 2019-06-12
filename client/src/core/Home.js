@@ -1,31 +1,52 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
-import Timeline from "../core/Timeline";
+import { postByFriends } from "../Posts/apiPost";
 import NewPost from "../Posts/newPost";
 import Avatar from "../users/avatar";
+import SinglePost from "../Posts/SinglePost";
 
 class Home extends Component {
     constructor() {
         super();
         this.state = {
-            body: "",
-            photo: "",
-            error: "",
             user: {},
-            fileSize: 0,
             loading: false,
-            redirectToProfile: false
+            redirectToProfile: false,
+            posts: []
         };
     }
+    updatePosts = () => {
+        this.loadPosts();      
+    };
+    
+    loadPosts = () => {
+        const userId = isAuthenticated().user._id;
+        const token = isAuthenticated().token;  
+        postByFriends(userId,token ).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                // console.log(data);
+                this.setState({ posts: data });   
+                console.log(this.state.posts)               
+            }
+        });
+    };
+    
 
     componentDidMount() {
         this.postData = new FormData();
         this.setState({ user: isAuthenticated().user });
+        this.loadPosts(this.state.posts);
+    }
+    shouldComponentUpdate(nextProps, nextState){
+
     }
 
     render() {
         return (
             <div className="globalContainer">
+                {console.log(this.state.posts)   }
                 <div className="col-180 float-left home-RightNav clearfix-t mr-10">
                     <ul>
                         <li>
@@ -76,9 +97,21 @@ class Home extends Component {
                     </ul>
                 </div>
                 <div className="col-500 float-left mr-10">
-                    <NewPost />
+                    <NewPost 
+                        updatePosts={this.updatePosts}
+                    />
                     <div className="feed">
-                        <Timeline />
+                        <div className="container">
+                        <div className="col">
+                {this.state.posts.map((post, i) => (
+                    <div key={i}>
+                        <SinglePost
+                            post={post}                          
+                        />
+                    </div>
+                ))}
+            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="col-200 float-left clearfix-t">
@@ -91,6 +124,7 @@ class Home extends Component {
                 </div>
             </div>
         )
+        
     }
 }
 

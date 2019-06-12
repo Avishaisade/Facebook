@@ -60,8 +60,10 @@ class NewPost extends Component {
                         body: "",
                         redirectToProfile: true
                     });
+                    this.props.updatePosts(data.posts);
                 }
             });
+            
         }
     };
 

@@ -34,7 +34,6 @@ class SinglePost extends Component {
              if (data.error) {
                 console.log(data.error);
             } else {
-                // console.log(data);
                 this.setState({
                     postId:data._id,
                     post: data,

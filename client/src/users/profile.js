@@ -25,10 +25,13 @@ class Profile extends Component {
             loaded: false,
             postloded: false
         };
-        this.handlePost = this.handlePost.bind(this);
+        this.updatePosts = this.updatePosts.bind(this);
     }
     
-    
+    updatePosts = posts => {
+        this.setState({ posts });
+    };
+
     handlePost(value) {
         this.setState(prevState => {
           return {
@@ -58,7 +61,7 @@ class Profile extends Component {
             }
         });
     };
-    // read
+
     init = userId => {
         getUsersbyId(userId).then(data => {
             if (data.error) {
@@ -72,7 +75,6 @@ class Profile extends Component {
         });
     };
 
-    // listByUser
     loadPosts = userId => {
         listByUser(userId).then(data => {
             if (data.error) {
@@ -82,6 +84,8 @@ class Profile extends Component {
             }
         });
     };
+   
+
     checkprofile = id => {
         const posterId = isAuthenticated().user._id;
         if (id === posterId) {
@@ -142,6 +146,7 @@ class Profile extends Component {
                         <div key={i}>
                             <SinglePost
                                 post={post}
+                                updatePosts={this.updatePosts}
                             />
                             {console.log(post)}
                         </div>

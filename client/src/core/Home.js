@@ -39,10 +39,7 @@ class Home extends Component {
         this.setState({ user: isAuthenticated().user });
         this.loadPosts(this.state.posts);
     }
-    shouldComponentUpdate(nextProps, nextState){
-
-    }
-
+    
     render() {
         return (
             <div className="globalContainer">
@@ -106,8 +103,9 @@ class Home extends Component {
                 {this.state.posts.map((post, i) => (
                     <div key={i}>
                         <SinglePost
-                            post={post}                          
-                        />
+                            post={post}
+                            ref={this.textUpdate}                                            
+                        />  
                     </div>
                 ))}
             </div>

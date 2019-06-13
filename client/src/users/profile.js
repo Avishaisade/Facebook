@@ -23,23 +23,13 @@ class Profile extends Component {
             posts: [],
             userProfile: false,
             loaded: false,
-            postloded: false
         };
-        this.updatePosts = this.updatePosts.bind(this);
     }
     
-    updatePosts = posts => {
-        this.setState({ posts });
+    updatePosts = () => {
+        this.loadPosts();      
     };
-
-    handlePost(value) {
-        this.setState(prevState => {
-          return {
-            postloded: true
-          };
-        });
-      }
-      
+  
     // check friend
     checkFriend = user => {
         const jwt = isAuthenticated();
@@ -85,7 +75,6 @@ class Profile extends Component {
         });
     };
    
-
     checkprofile = id => {
         const posterId = isAuthenticated().user._id;
         if (id === posterId) {
@@ -124,8 +113,7 @@ class Profile extends Component {
                             />
                             {/* Friends Tab */}
                             <FriendsTab
-                                friends={user.friends}
-                                
+                                friends={user.friends}                               
                             />
                         </Suspense>
                     )}
@@ -134,7 +122,7 @@ class Profile extends Component {
                 <div className="col-530 float-right">
                     {this.state.user && this.state.userProfile ?
                         <NewPost 
-                            handlePost={this.handlePost}
+                        updatePosts={this.updatePosts}   
                         /> :
                         <PostOnFriends
                             user={this.state.user}
@@ -148,7 +136,7 @@ class Profile extends Component {
                                 post={post}
                                 updatePosts={this.updatePosts}
                             />
-                            {console.log(post)}
+                            {/* {console.log(post)} */}
                         </div>
                     ))}
                 </div>
